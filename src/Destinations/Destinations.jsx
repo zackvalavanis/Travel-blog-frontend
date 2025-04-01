@@ -29,6 +29,7 @@ export function Destinations() {
             {d.country}
           </h1>
           <h1>{d.city}</h1>
+          <p>{d.description}</p>
         </div>
       ))}
 
