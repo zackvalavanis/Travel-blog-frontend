@@ -4,6 +4,8 @@ import { Destinations } from './Destinations/Destinations'
 import { Header } from './Header/Header.tsx'
 import { Footer } from './Footer/Footer'
 import { Main } from './Main/Main'
+import { DestinationsShow } from './Destinations/DestinationsShow.jsx'
+import axios from 'axios'
 
   const router = createBrowserRouter([
     {
@@ -22,6 +24,11 @@ import { Main } from './Main/Main'
         { 
           path: '/destinations', 
           element: <Destinations/>
+        }, 
+        { 
+          path: '/destinations/:id', 
+          element: <DestinationsShow />, 
+          loader: ({params}) => axios.get(`http://localhost:3000/destinations/${params.id}.json`).then((response) => response.data)
         }
       ]
     }

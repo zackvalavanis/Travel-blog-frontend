@@ -21,7 +21,7 @@ export function Destinations() {
   }, [])
 
   const handleShow = (d) => { 
-    console.log(d)
+    navigate(`/destinations/${d.id}`)
   }
 
 
