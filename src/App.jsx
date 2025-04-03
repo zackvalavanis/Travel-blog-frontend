@@ -1,8 +1,9 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import { Destinations } from './Destinations/Destinations'
-import { Header } from './Header/Header'
+// import { Destinations } from './Destinations/Destinations'
+import { Header } from './Header/Header.tsx'
 import { Footer } from './Footer/Footer'
+import { Main } from './Main/Main'
 
   const router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ import { Footer } from './Footer/Footer'
       children: [
         { 
           path: '/', 
-          element: <Destinations/>
+          element: <Main/>
         }
       ]
     }
