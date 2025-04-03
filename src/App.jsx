@@ -1,6 +1,6 @@
 import './App.css'
 import {createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-// import { Destinations } from './Destinations/Destinations'
+import { Destinations } from './Destinations/Destinations'
 import { Header } from './Header/Header.tsx'
 import { Footer } from './Footer/Footer'
 import { Main } from './Main/Main'
@@ -18,6 +18,10 @@ import { Main } from './Main/Main'
         { 
           path: '/', 
           element: <Main/>
+        }, 
+        { 
+          path: '/destinations', 
+          element: <Destinations/>
         }
       ]
     }
