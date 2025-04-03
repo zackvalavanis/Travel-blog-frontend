@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Destinations } from '../Destinations/Destinations';
 import { useNavigate } from 'react-router-dom'
 import './Header.css'
 
@@ -41,8 +40,8 @@ export function Header() {
     setAnchorElUser(null);
   };
 
-  const handleNavigation = (event) => {
-    navigate(`${event.target.textContent}`)
+  const handleNavigation = (page) => {
+    navigate(`${page}`)
   }
 
   return (
@@ -55,7 +54,7 @@ export function Header() {
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -99,7 +98,7 @@ export function Header() {
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={() => {
                     handleCloseNavMenu()
-                    handleNavigation(event)
+                    handleNavigation(page)
                   }}>
                     <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                   </MenuItem>
@@ -111,7 +110,7 @@ export function Header() {
               variant="h5"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -129,7 +128,10 @@ export function Header() {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
+                  onClick={() => {
+                    handleCloseNavMenu()
+                    handleNavigation(page)
+                  }}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
                   {page}

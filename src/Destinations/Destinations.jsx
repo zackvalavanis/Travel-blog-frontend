@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export function Destinations() { 
   const [destination, setDestination] = useState([])
+  const navigate = useNavigate()
 
 
   const handleIndex = async () => { 
@@ -18,7 +20,9 @@ export function Destinations() {
     handleIndex();
   }, [])
 
-
+  const handleShow = (d) => { 
+    console.log(d)
+  }
 
 
   return ( 
@@ -30,6 +34,9 @@ export function Destinations() {
           </h1>
           <h1>{d.city}</h1>
           <p>{d.description}</p>
+          <button onClick={() => { 
+            handleShow(d)
+          }} >More Information</button>
           {d.images && d.images.length > 0 ? (
             <div>
               {d.images.map((image) => (
