@@ -3,3 +3,8 @@
   margin: 0 auto !important;
   width: 100% !important;
 }
+
+.destination-button:hover {
+  transform: scale(1.05);
+
+}

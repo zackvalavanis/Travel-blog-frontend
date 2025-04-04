@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom'
 import './Header.css'
 
-const pages = ['Destinations', 'Pricing', 'Blog'];
+const pages = ['Destinations'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
@@ -133,6 +133,7 @@ export function Header() {
                     handleNavigation(page)
                   }}
                   sx={{ my: 2, color: 'white', display: 'block' }}
+                  className='destination-button'
                 >
                   {page}
                 </Button>

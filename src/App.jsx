@@ -10,9 +10,11 @@ import axios from 'axios'
   const router = createBrowserRouter([
     {
       element: ( 
-        <div>
+        <div className='layout'>
             <Header />
+            <main className='main-content'>
             <Outlet />
+            </main>
             <Footer />
         </div>
       ), 
