@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom'
 import './Header.css'
 
-const pages = ['Destinations'];
+const pages = ['Destinations', ''];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
@@ -46,10 +46,12 @@ export function Header() {
 
   return (
     <div className='header-container'>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: 'black' }}>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <IconButton onClick={() => navigate('/')} sx={{ p: 0, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+              <AdbIcon sx={{ color: 'white' }} />
+            </IconButton>
             <Typography
               variant="h6"
               noWrap
@@ -65,7 +67,6 @@ export function Header() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
