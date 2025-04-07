@@ -6,6 +6,7 @@ import { Footer } from './Footer/Footer'
 import { Main } from './Main/Main'
 import { DestinationsShow } from './Destinations/DestinationsShow.jsx'
 import axios from 'axios'
+import { CreateNewDestination } from './createNewDestination/createNewDestination.jsx'
 
   const router = createBrowserRouter([
     {
@@ -31,7 +32,12 @@ import axios from 'axios'
           path: '/destinations/:id', 
           element: <DestinationsShow />, 
           loader: ({params}) => axios.get(`http://localhost:3000/destinations/${params.id}.json`).then((response) => response.data)
+        }, 
+        {
+        path: '/CreateNewDestination', 
+        element: <CreateNewDestination />
         }
+
       ]
     }
   ])

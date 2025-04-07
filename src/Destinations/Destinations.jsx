@@ -23,6 +23,10 @@ export function Destinations() {
   const handleShow = (d) => { 
     navigate(`/destinations/${d.id}`)
   }
+  
+  const handleCreate = () => { 
+    navigate('/CreateNewDestination')
+  }
 
 
   return ( 
@@ -48,6 +52,7 @@ export function Destinations() {
           )}
         </div>
       ))}
+      <button onClick={handleCreate}>Create New Post</button>
     </div>
   )
 }
