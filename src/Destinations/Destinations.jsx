@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import './Destinations.css'
 
 export function Destinations() { 
   const [destination, setDestination] = useState([])
   const navigate = useNavigate()
+  const [imageIndexes, setImageIndexes] = useState({})
 
 
   const handleIndex = async () => { 
@@ -14,6 +16,20 @@ export function Destinations() {
     }catch (error) { 
       console.error('Error fetching data', error)
     }
+  }
+
+  const handlePrevImage = (id) => { 
+    setImageIndexes(prev => ({ 
+      ...prev, 
+      [id]: Math.max((prev[id] || 0) -1, 0)
+    }))
+  }
+
+  const handleNextImage = (id, totalImages) => { 
+    setImageIndexes(prev => ({ 
+      ...prev, 
+      [id]: Math.min((prev[id] || 0) + 1, totalImages -1)
+    }))
   }
 
   useEffect(() => { 
@@ -42,15 +58,36 @@ export function Destinations() {
             handleShow(d)
           }} >More Information</button>
           {d.images && d.images.length > 0 ? (
-            <div>
-              {d.images.map((image) => (
-                <img key={image.id} src={image.image_url} alt={`image of ${d.city}`} />
-              ))}
+          <div className='image-carousel-wrapper'>
+            <button 
+              className='arrow-button left'
+              onClick={() => handlePrevImage(d.id)}
+              disabled={(imageIndexes[d.id] || 0) === 0}
+            >
+              &#8592;
+            </button>
+
+            <div className='image-carousel-single'>
+              <img 
+                className='carousel-image' 
+                key={d.images[imageIndexes[d.id] || 0].id} 
+                src={d.images[imageIndexes[d.id] || 0].image_url} 
+                alt={`image of ${d.city}`} 
+              />
             </div>
-          ) : (
-            <p>No Images available</p>
-          )}
-        </div>
+
+            <button 
+              className="arrow-button right"
+              onClick={() => handleNextImage(d.id, d.images.length)}
+              disabled={(imageIndexes[d.id] || 0) === d.images.length - 1}
+            >
+              &#8594;
+            </button>
+          </div>
+        ) : (
+          <p>No Images available</p>
+        )}
+      </div>
       ))}
       <button onClick={handleCreate}>Create New Post</button>
     </div>
