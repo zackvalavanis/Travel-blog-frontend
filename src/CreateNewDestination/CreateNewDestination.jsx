@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export function CreateNewDestination() { 
+  const navigate = useNavigate()
   
   const handleCreate = async (event) => { 
     event.preventDefault()
@@ -11,6 +13,8 @@ export function CreateNewDestination() {
     } catch(error) { 
       console.log(error)
     }
+    navigate('/destinations')
+
   }
 
 
