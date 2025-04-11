@@ -46,26 +46,21 @@ export function Destinations() {
 
 
   return ( 
-    <div>
+    <div className='container-all'>
       {destination.map((d) => (
-        <div key={d.id}>
+        <div className='information-d' key={d.id}>
           <h1>
-            {d.country}
+            {d.city}, {d.country}
           </h1>
-          <h1>{d.city}</h1>
-          <p>{d.description}</p>
-          <button onClick={() => { 
-            handleShow(d)
-          }} >More Information</button>
           {d.images && d.images.length > 0 ? (
-          <div className='image-carousel-wrapper'>
-            <button 
-              className='arrow-button left'
-              onClick={() => handlePrevImage(d.id)}
-              disabled={(imageIndexes[d.id] || 0) === 0}
-            >
-              &#8592;
-            </button>
+            <div className='image-carousel-wrapper'>
+              <button 
+                className='arrow-button left'
+                onClick={() => handlePrevImage(d.id)}
+                disabled={(imageIndexes[d.id] || 0) === 0}
+              >
+                &#8592;
+              </button>
 
             <div className='image-carousel-single'>
               <img 
@@ -87,9 +82,22 @@ export function Destinations() {
         ) : (
           <p>No Images available</p>
         )}
+      <div className='button-container-1'>
+        <button 
+          className='moreInfo-button'  
+          onClick={() => {handleShow(d)}}>
+          More Information
+        </button>
+      </div>
       </div>
       ))}
-      <button onClick={handleCreate}>Create New Post</button>
+      <div className='button-container-3'>
+      <button
+        className='new-post-button'
+        onClick={handleCreate}>
+        Create New Post
+      </button>
+      </div>
     </div>
   )
 }

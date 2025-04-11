@@ -3,11 +3,14 @@ import axios from 'axios'
 import { Modal } from "./Modal"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import './DestinationsShow.css'
 
 export function DestinationsShow() { 
   const destinations = useLoaderData()
   const [modalShow, isModalShow] = useState(false)
   const navigate = useNavigate()
+
+  console.log(destinations)
 
 
   const handleDelete = async (id) => { 
@@ -30,18 +33,27 @@ export function DestinationsShow() {
 
   return ( 
     <div>
-      <h1>{destinations.city}, {destinations.country}</h1>
-      <p>{destinations.description}</p>
-      {destinations.images && destinations.images.length > 0 ? (
-        <div>
-          {destinations.images.map((image) => ( 
-            <img key={image.id} src={image.image_url}/>
-          ))}
-        </div>
-      ) : (
-        <p>No Image Available</p>
+      <h1 
+        className='place-name'>
+        {destinations.city}, {destinations.country}
+      </h1>
+      {destinations.images.length > 0 ? ( 
+      <img 
+        className='images-show' src={destinations.images[0].image_url}>
+      </img> ) : (
+        <p>There are no images</p>
       )}
-      <button onClick={handleModalShow}>Delete</button>
+      <p 
+        className='description'>{destinations.description}
+      </p>
+      <div className='button-container'>
+        <button 
+          onClick={handleModalShow}
+          className='button-delete'
+        > 
+          Delete 
+        </button>
+      </div>
       <Modal 
         show={modalShow} 
         onClose={handleModalHide}

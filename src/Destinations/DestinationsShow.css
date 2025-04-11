@@ -1,0 +1,67 @@
+.images-show {
+  display: block;
+  /* Ensures the image is treated as a block element */
+  margin-left: auto;
+  /* Centers the image horizontally */
+  margin-right: auto;
+  /* Centers the image horizontally */
+  width: 80%;
+  /* Adjust the width as per your preference (100% for full width) */
+  height: auto;
+  /* Maintains the aspect ratio of the image */
+  object-fit: cover;
+  /* Ensures the image fills the container without distortion */
+}
+
+.place-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.description {
+  display: block;
+  /* Ensures the image is treated as a block element */
+  margin-left: auto;
+  /* Centers the image horizontally */
+  margin-right: auto;
+  /* Centers the image horizontally */
+  width: 80%;
+  /* Adjust the width as per your preference (100% for full width) */
+  height: auto;
+  /* Maintains the aspect ratio of the image */
+  object-fit: cover;
+  /* Ensures the image fills the container without distortion */
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  /* or adjust width as needed */
+  padding: 10px 20px;
+  /* Add padding to make the button larger */
+  background-color: #f44336;
+  /* Optional: red background to signify deletion */
+  color: white;
+  /* White text */
+  border: none;
+  /* Remove border */
+  cursor: pointer;
+  /* Make it appear clickable */
+  border-radius: 5px;
+  /* Optional: rounded corners */
+}
+
+.button-delete:hover {
+  transform: scale(1.05);
+}
