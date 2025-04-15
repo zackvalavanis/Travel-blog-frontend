@@ -86,7 +86,11 @@ export function Destinations() {
       <div className='button-container-1'>
         <button 
           className='moreInfo-button'  
-          onClick={() => {handleShow(d)}}>
+          onClick={() => 
+            {
+              handleShow(d)
+            }
+          }>
           More Information
         </button>
       </div>
