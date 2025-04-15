@@ -46,6 +46,18 @@ export function DestinationsShow() {
       <p 
         className='description'>{destinations.description}
       </p>
+
+      {destinations.images.length > 0 ? ( 
+        destinations.images.map((image) => ( 
+          <div key={image.id}>
+            <img src={image.image_url}></img>
+          </div>
+        ))
+      ) : (
+        <p>The image doesnt exist</p>
+      )}
+
+      
       <div className='button-container'>
         <button 
           onClick={handleModalShow}

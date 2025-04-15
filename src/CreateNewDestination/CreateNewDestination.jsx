@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import './CreateNewDestination.css'
 
 export function CreateNewDestination() { 
   const navigate = useNavigate()
@@ -19,32 +20,38 @@ export function CreateNewDestination() {
 
 
   return ( 
-  <div>
+  <div className='form-wrapper'>
     <h1>New Destination</h1>
-    <form onSubmit={handleCreate}>
+    <form 
+      onSubmit={handleCreate}
+      className='form-create'
+    >
       <label>City:
         <input 
+          className='city-input'
           type='text'
           placeholder='city'
           name='city'  
           required>
         </input>
       </label>
-      <label>Country
+      <label>Country:
         <input 
+          className='country-input'
           type='text'
           placeholder='country'
           name='country' 
           required>
         </input>
       </label>
-      <label>Descriptions
-        <input 
+      <label>Description:
+        <textarea 
+          className='description-input'
           type='text'
-          placeholder='description'
+          placeholder='Description'
           name='description' 
           required>
-        </input>
+        </textarea>
       </label>
       <button type='submit'> Create</button>
     </form>

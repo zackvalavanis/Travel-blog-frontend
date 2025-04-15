@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom'
 import './Header.css'
 
-const pages = ['Destinations', ''];
+const pages = ['Destinations'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
@@ -123,7 +123,7 @@ export function Header() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              HOME
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (

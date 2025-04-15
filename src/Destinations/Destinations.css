@@ -82,3 +82,11 @@
 .button-container-3 {
   margin-top: 40px;
 }
+
+.header-destinations {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+}

@@ -47,6 +47,7 @@ export function Destinations() {
 
   return ( 
     <div className='container-all'>
+      <h1 className='header-destinations'>My Travels</h1>
       {destination.map((d) => (
         <div className='information-d' key={d.id}>
           <h1>
