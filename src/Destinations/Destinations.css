@@ -68,7 +68,7 @@
 
 
 .button-container-1:hover,
-.button-container-3:hover {
+.new-post-button:hover {
   transform: scale(1.05);
 }
 
