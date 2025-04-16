@@ -22,8 +22,9 @@ export function CreateNewDestination() {
     const params = new FormData(event.target)
     try { 
       const response = await axios.post('http://localhost:3000/destinations.json', params)
-      const destinationID = response.data.id
+      const destinationId = response.data.destinationid
       console.log(response.data)
+      console.log(destinationId)
 
       for (const url of imageUrls) {
         await axios.post('http://localhost:3000/images.json', {
