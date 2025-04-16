@@ -12,9 +12,6 @@ export function DestinationsShow()
   const navigate = useNavigate()
   const [imageIndexes, setImageIndexes] = useState({})
 
-  console.log(destinations)
-
-
   const handleDelete = async (id) => { 
     try { 
       const response = await axios.delete(`http://localhost:3000/destinations/${id}.json`)
@@ -50,6 +47,17 @@ export function DestinationsShow()
   const images = destinations?.images || [];
   const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
   const currentImage = images[currentIndex];
+
+  const handleUploadImages = async (event) => { 
+    event.preventDefault()
+    const params = new FormData(event.target)
+    try{ 
+      const response = await axios.patch('http://localhost:3000/images.json', params)
+      console.log(response.data)
+    } catch (error){ 
+      console.log(error)
+    }
+  }
   
   return (
     <div>
@@ -66,6 +74,7 @@ export function DestinationsShow()
       ) : (
         <p>There are no images</p>
       )}
+      <button onClick={() => {handleUploadImages(destinations.id)}}>Add Image</button>
       <h1 style={{display:'flex', justifyContent: 'center'}}>What is {destinations.city}</h1>
       <p className='description'>{destinations.description}</p>
       <div style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}>
@@ -78,27 +87,6 @@ export function DestinationsShow()
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
       <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>More Images Below</h1>
       {images.length > 0 && currentImage ? (
         <div className='image-carousel-wrapper'>
