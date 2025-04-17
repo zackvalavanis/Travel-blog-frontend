@@ -4,12 +4,13 @@ import { Modal } from "./Modal"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import './DestinationsShow.css'
+import { Modal2 } from "./Modal2"
 
-export function DestinationsShow() 
-{ 
+export function DestinationsShow() { 
   const destinations = useLoaderData()
   const [modalShow, isModalShow] = useState(false)
   const navigate = useNavigate()
+  const [modalShow2, isModalShow2] = useState(false)
   const [imageIndexes, setImageIndexes] = useState({})
 
   const handleDelete = async (id) => { 
@@ -22,13 +23,27 @@ export function DestinationsShow()
     navigate('/destinations')
   }
 
+
   const handleModalShow = () => { 
     isModalShow(true)
+  }
+
+  const handleModalShow2 = () => { 
+    isModalShow2(true)
   }
 
   const handleModalHide = () => { 
     isModalShow(false)
   }
+
+  const handleModalHide2 = () => { 
+    isModalShow2(false)
+  }
+
+
+  const images = destinations?.images || [];
+  const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
+  const currentImage = images[currentIndex];
 
   const handlePrevImage = (id) => { 
     setImageIndexes(prev => ({ 
@@ -44,20 +59,6 @@ export function DestinationsShow()
     }))
   }
 
-  const images = destinations?.images || [];
-  const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
-  const currentImage = images[currentIndex];
-
-  const handleUploadImages = async (event) => { 
-    event.preventDefault()
-    const params = new FormData(event.target)
-    try{ 
-      const response = await axios.patch('http://localhost:3000/images.json', params)
-      console.log(response.data)
-    } catch (error){ 
-      console.log(error)
-    }
-  }
   
   return (
     <div>
@@ -74,7 +75,14 @@ export function DestinationsShow()
       ) : (
         <p>There are no images</p>
       )}
-      <button onClick={() => {handleUploadImages(destinations.id)}}>Add Image</button>
+{/* Adding pictures once your on the show page.*/}
+      <Modal2
+        show={modalShow2}
+        onClose={handleModalHide2}
+        destinations={destinations}
+      >
+      </Modal2>
+      <button onClick={handleModalShow2}>Add Additional Images</button>
       <h1 style={{display:'flex', justifyContent: 'center'}}>What is {destinations.city}</h1>
       <p className='description'>{destinations.description}</p>
       <div style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}>
