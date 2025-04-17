@@ -1,0 +1,39 @@
+.image-url-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-url-input {
+  width: 400px;
+  margin: 20px
+}
+
+.button-containers-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.button-look,
+.button-look2,
+.button-look3 {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+  margin: 20px;
+  align-items: center;
+}
+
+.button-look:hover,
+.button-look2:hover,
+.button-look3:hover {
+  transform: scale(1.05);
+
+}

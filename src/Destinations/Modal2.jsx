@@ -1,4 +1,5 @@
 import './Modal.css'
+import './Modal2.css'
 import { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
@@ -60,9 +61,10 @@ export function Modal2({show, onClose, destinations}) {
           {/* Destination ID: {destinations.id} */}
         </label>
         {imageUrls.map((url, index) => (
-          <label key={index}>
+          <label className='image-url-name' key={index}>
             Image URL {index + 1}
             <input  
+              className='image-url-input'
               type='text'
               name='image_url'
               value={url}
@@ -71,9 +73,23 @@ export function Modal2({show, onClose, destinations}) {
             />
           </label>
           ))}
-          <button type='button' onClick={addImageUrlField}>Add Another Image</button>
-          <button type='button' onClick={subtractImageUrlField}>Remove</button>
-      <button type='submit'>Add Image</button>
+        <div className='button-containers-end'>
+          <button 
+            className='button-look'
+            type='button' 
+            onClick={addImageUrlField}>Add Another Image
+          </button>
+          <button 
+            className='button-look2'
+            type='button' 
+            onClick={subtractImageUrlField}>Remove
+          </button>
+          <button 
+            className='button-look3'
+            type='submit'>
+            Add Image
+          </button>
+        </div>
       </form>
       <div className='button-container-2'>
         <button 
