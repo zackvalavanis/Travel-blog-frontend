@@ -26,8 +26,6 @@ export function Modal2({show, onClose, destinations}) {
     }
   }
 
-
-
   const handleUploadImages = async (event) => { 
     event.preventDefault()
     const params = new FormData(event.target)
@@ -36,11 +34,11 @@ export function Modal2({show, onClose, destinations}) {
       console.log(response.data)
       navigate(`/destinations/${destinations.id}`);
       setImageUrls([''])
+      alert('Images have been Uploaded')
     } catch (error){ 
       console.log(error)
     }
   }
-
 
   if(!show) return null;
   return ( 
@@ -87,7 +85,7 @@ export function Modal2({show, onClose, destinations}) {
           <button 
             className='button-look3'
             type='submit'>
-            Add Image
+            Submit
           </button>
         </div>
       </form>
@@ -95,7 +93,7 @@ export function Modal2({show, onClose, destinations}) {
         <button 
           className='button-hide'
           onClick={onClose}>
-          Hide
+          Cancel
         </button>
       </div>
     </div>

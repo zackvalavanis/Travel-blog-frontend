@@ -65,3 +65,23 @@
 .button-delete:hover {
   transform: scale(1.05);
 }
+
+.button-add-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.button-add-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 25px;
+  background-color: white
+}
+
+.button-add-button:hover {
+  transform: scale(1.05);
+  background-color: rgb(148, 244, 148);
+}

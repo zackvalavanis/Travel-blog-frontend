@@ -5,6 +5,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import './DestinationsShow.css'
 import { Modal2 } from "./Modal2"
+import { Modal3 } from "./Modal3"
 
 export function DestinationsShow() { 
   const destinations = useLoaderData()
@@ -12,6 +13,9 @@ export function DestinationsShow() {
   const navigate = useNavigate()
   const [modalShow2, isModalShow2] = useState(false)
   const [imageIndexes, setImageIndexes] = useState({})
+  const [modalShow3, isModalShow3] = useState(false);
+  const [description, setDescription] = useState(destinations.description || "");
+  
 
   const handleDelete = async (id) => { 
     try { 
@@ -32,6 +36,10 @@ export function DestinationsShow() {
     isModalShow2(true)
   }
 
+  const handleModalShow3 = () => { 
+    isModalShow3(true)
+  }
+
   const handleModalHide = () => { 
     isModalShow(false)
   }
@@ -39,6 +47,10 @@ export function DestinationsShow() {
   const handleModalHide2 = () => { 
     isModalShow2(false)
   }
+  const handleModalHide3 = () => { 
+    isModalShow3(false)
+  }
+
 
 
   const images = destinations?.images || [];
@@ -59,7 +71,7 @@ export function DestinationsShow() {
     }))
   }
 
-  
+
   return (
     <div>
       <h1 className='place-name'>
@@ -82,20 +94,58 @@ export function DestinationsShow() {
         destinations={destinations}
       >
       </Modal2>
-      <button onClick={handleModalShow2}>Add Additional Images</button>
-      <h1 style={{display:'flex', justifyContent: 'center'}}>What is {destinations.city}</h1>
-      <p className='description'>{destinations.description}</p>
-      <div style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}>
+      <div className='button-add-container'>
+        <button 
+            className='button-add-button'
+            onClick={handleModalShow2}
+          >Add Additional Images
+        </button>
+      </div>
+      <h1 
+        style={{display:'flex', justifyContent: 'center'}}
+      >
+        What is {destinations.city}
+      </h1>
+        <p className='description'>{description}</p>
+{/* Add destination description */}
+      <Modal3
+      show={modalShow3}
+      onClose={handleModalHide3}
+      destinations={destinations}
+      description={description}
+      setDescription={setDescription}
+      />
+
+      <div className='button-add-container'>
+      <button 
+          className='button-add-button'
+          onClick={handleModalShow3}
+        >
+          Edit Description
+        </button>
+      </div>
+
+      <div 
+        style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}
+      >
         <div>
           <h1>Restaurants & Bars</h1>
-            <p>There were many terrific restaurants and bars in {destinations.city} and here are a couple of my favorites.</p>
+            <p>
+              There were many terrific restaurants and bars in {destinations.city} and here are a couple of my favorites.
+            </p>
         </div>
         <div>
-          <h1>Touristy Spots</h1>
+          <h1>
+            Touristy Spots
+          </h1>
         </div>
       </div>
 
-      <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>More Images Below</h1>
+      <h1 
+        style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+      >
+        More Images Below
+      </h1>
       {images.length > 0 && currentImage ? (
         <div className='image-carousel-wrapper'>
           <button

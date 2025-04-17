@@ -35,5 +35,21 @@
 .button-look2:hover,
 .button-look3:hover {
   transform: scale(1.05);
+}
 
+.button-look3 {
+  background-color: rgb(41, 184, 41)
+}
+
+.button-look3:hover {
+  background-color: rgb(94, 237, 103)
+}
+
+.button-hide {
+  background-color: rgb(246, 95, 95);
+  height: 30px;
+}
+
+.button-hide:hover {
+  background-color: rgb(246, 183, 183);
 }
