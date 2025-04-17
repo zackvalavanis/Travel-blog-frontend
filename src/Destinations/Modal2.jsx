@@ -18,7 +18,11 @@ export function Modal2({show, onClose, destinations}) {
   };
 
   const subtractImageUrlField = () => { 
-    setImageUrls(prev => prev.slice(0,-1))
+    if(imageUrls.length === 1){ 
+      return alert('Cant Remove Another')
+    } else { 
+      setImageUrls(prev => prev.slice(0,-1))
+    }
   }
 
 
@@ -53,7 +57,7 @@ export function Modal2({show, onClose, destinations}) {
             className='image-add-input' 
             defaultValue={destinations.id}>
           </input>
-          Destination ID: {destinations.id}
+          {/* Destination ID: {destinations.id} */}
         </label>
         {imageUrls.map((url, index) => (
           <label key={index}>
