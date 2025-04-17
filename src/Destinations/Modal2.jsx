@@ -91,7 +91,7 @@ export function Modal2({show, onClose, destinations}) {
       </form>
       <div className='button-container-2'>
         <button 
-          className='button-hide'
+          className='button-hide-2'
           onClick={onClose}>
           Cancel
         </button>

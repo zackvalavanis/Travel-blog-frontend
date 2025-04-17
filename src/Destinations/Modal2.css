@@ -45,11 +45,17 @@
   background-color: rgb(94, 237, 103)
 }
 
-.button-hide {
+.button-hide-2 {
   background-color: rgb(246, 95, 95);
   height: 30px;
+  width: 100px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  height: 25px;
 }
 
-.button-hide:hover {
+
+.button-hide-2:hover {
   background-color: rgb(246, 183, 183);
 }

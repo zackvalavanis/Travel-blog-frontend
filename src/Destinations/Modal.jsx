@@ -7,7 +7,7 @@ export function Modal({show, onClose, handleDelete}) {
   <div className='modal-overlay'>
     <div className='modal-container'>
       <h1 className='textModal'>
-        Are you sure you want to delete this? 
+        This will Delete the Entire Destination.. 
       </h1>
       <div className='button-container-2'>
         <button 
@@ -16,9 +16,9 @@ export function Modal({show, onClose, handleDelete}) {
           Delete
         </button>
         <button 
-          className='button-hide'
+          className='button-hide-1'
           onClick={onClose}>
-          Hide
+          Cancel
         </button>
       </div>
     </div>

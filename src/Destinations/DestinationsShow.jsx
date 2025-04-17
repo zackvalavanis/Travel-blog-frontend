@@ -184,7 +184,7 @@ export function DestinationsShow() {
           onClick={handleModalShow}
           className='button-delete'
         >
-          Delete
+          Delete Destination
         </button>
       </div>
   

@@ -19,7 +19,10 @@
 }
 
 .textModal {
-  color: black
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 25px;
 }
 
 .button-container-2 {
@@ -41,7 +44,7 @@
 }
 
 .button-delete-2,
-.button-hide {
+.button-hide-1 {
   width: 100px;
   cursor: pointer;
   border: none;
@@ -62,6 +65,6 @@
 
 
 .button-delete-2:hover,
-.button-hide:hover {
+.button-hide-1:hover {
   transform: scale(1.05);
 }
