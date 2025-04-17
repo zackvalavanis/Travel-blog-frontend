@@ -1,8 +1,11 @@
 import './Modal.css'
 import { useState } from 'react';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
-export function Modal2({show, onClose, imageCreate, destinations}) { 
+export function Modal2({show, onClose, destinations}) { 
   const [imageUrls, setImageUrls] = useState([''])
+  const navigate = useNavigate()
 
   const handleImageUrlChange = (index, value) => { 
     const newImageUrls = [...imageUrls];
@@ -26,6 +29,8 @@ export function Modal2({show, onClose, imageCreate, destinations}) {
     try{ 
       const response = await axios.post('http://localhost:3000/images.json', params)
       console.log(response.data)
+      navigate(`/destinations/${destinations.id}`);
+      setImageUrls([''])
     } catch (error){ 
       console.log(error)
     }
@@ -38,7 +43,7 @@ export function Modal2({show, onClose, imageCreate, destinations}) {
   <div className='modal-overlay'>
     <div className='modal-container'>
       <h1 className='textModal'>
-        Soup
+        Add Images
       </h1>
       <form onSubmit={handleUploadImages}>
         <label className='image-add-label'>
@@ -50,35 +55,23 @@ export function Modal2({show, onClose, imageCreate, destinations}) {
           </input>
           Destination ID: {destinations.id}
         </label>
-        <label>
-          <input 
-            name='image_url'
-            className='image-add-input' 
-            placeholder="Enter URL"
-            >
-          </input>
-          Image_URL: 
-        </label>
         {imageUrls.map((url, index) => (
           <label key={index}>
             Image URL {index + 1}
             <input  
               type='text'
+              name='image_url'
+              value={url}
               onChange={(e) => handleImageUrlChange(index, e.target.value)}
               required
             />
           </label>
           ))}
-          <button onClick={addImageUrlField}>Add Another Image</button>
-          <button onClick={subtractImageUrlField}>Remove</button>
+          <button type='button' onClick={addImageUrlField}>Add Another Image</button>
+          <button type='button' onClick={subtractImageUrlField}>Remove</button>
       <button type='submit'>Add Image</button>
       </form>
       <div className='button-container-2'>
-        <button 
-          className='button-delete-2'
-          onClick={() => imageCreate()}>
-          Add Images
-        </button>
         <button 
           className='button-hide'
           onClick={onClose}>
