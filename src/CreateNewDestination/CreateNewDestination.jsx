@@ -39,6 +39,14 @@ export function CreateNewDestination() {
 
   }
 
+  const handleRemoveImage = () => { 
+    if(imageUrls.length === 1){ 
+      alert('You cant remove another image!')
+    } else { 
+      setImageUrls(prev => prev.slice(0,-1) )
+    }
+  }
+
 
   return (
     <div className="form-wrapper">
@@ -47,6 +55,10 @@ export function CreateNewDestination() {
         <label>
           City:
           <input className="city-input" type="text" placeholder="city" name="city" required />
+        </label>
+        <label>
+          State: 
+          <input className="city-input" type="text" placeholder="State if applicable" name="state"></input>
         </label>
         <label>
           Country:
@@ -72,10 +84,25 @@ export function CreateNewDestination() {
             />
           </label>
         ))}
-        <button type="button" onClick={addImageUrlField}>
+        <div className='button-container-3'>
+        <button 
+          className='button-add-image' type="button" 
+          onClick={addImageUrlField}>
           Add Another Image
         </button>
-        <button type="submit">Create</button>
+        <button
+          className='button-remove-image'
+          type='button'
+          onClick={handleRemoveImage}
+        > 
+          Remove Image
+        </button>
+        <button 
+          className='button-submit-1'
+          type="submit">
+          Create
+        </button>
+        </div>
       </form>
     </div>
   );

@@ -47,19 +47,34 @@ label {
   height: 200px
 }
 
-.submit-button {
-  margin-top: 10px;
-  padding: 12px;
-  cursor: pointer;
-  color: #0a0a23;
-  background-color: #feac32;
-  background-image: linear-gradient(#fecc4c, #ffac33);
-  border: 3px solid #feac32;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background 0.2s ease-in-out;
+.button-container-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
-.submit-button:hover {
-  background-image: linear-gradient(#ffd86a, #ffb342);
+.button-submit-1,
+.button-add-image,
+.button-remove-image {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 25px;
+  width: 150px;
+}
+
+.button-submit-1:hover,
+.button-add-image:hover,
+.button-remove-image:hover {
+  transform: scale(1.05);
+}
+
+.button-submit-1:hover {
+  background-color: rgb(132, 235, 132);
+}
+
+.button-remove-image:hover {
+  background-color: rgb(248, 132, 132);
 }
