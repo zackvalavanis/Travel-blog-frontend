@@ -29,14 +29,18 @@ export function Modal2({show, onClose, destinations}) {
   const handleUploadImages = async (event) => { 
     event.preventDefault()
     const params = new FormData(event.target)
-    try{ 
-      const response = await axios.post('http://localhost:3000/images.json', params)
-      console.log(response.data)
+    imageUrls.forEach((url) => {
+      params.append('image_url[]', url);  // Use 'image_url[]' to send multiple values
+    });
+  
+    try { 
+      const response = await axios.post('http://localhost:3000/images.json', params);
+      console.log(response.data);
       navigate(`/destinations/${destinations.id}`);
-      setImageUrls([''])
-      alert('Images have been Uploaded')
-    } catch (error){ 
-      console.log(error)
+      setImageUrls(['']);
+      alert('Images have been Uploaded');
+    } catch (error) { 
+      console.log(error);
     }
   }
 
@@ -64,7 +68,7 @@ export function Modal2({show, onClose, destinations}) {
             <input  
               className='image-url-input'
               type='text'
-              name='image_url'
+              name='image_url[]'
               value={url}
               onChange={(e) => handleImageUrlChange(index, e.target.value)}
               required

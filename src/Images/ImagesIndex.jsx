@@ -2,10 +2,13 @@ import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import './ImagesIndex.css';
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 export function ImagesIndex() {
   const location = useLocation();
-  const images = location.state?.images || [];
+  const [images, setImages] = useState(location.state?.images || []);
+  const { id, city, country, state } = location.state?.destinations || {};// Access passed data from location.state
+  const navigate = useNavigate()
 
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
@@ -21,11 +24,14 @@ export function ImagesIndex() {
     try { 
       await axios.delete(`http://localhost:3000/images/${imageId}.json`)
       const updatedImages = images.filter((img) => img.id !== imageId)
-      location.state.imafes = updatedImages
-      window.location.reload()
+      setImages(updatedImages)
     } catch (err) { 
       console.error('Failed to delete image', err)
     }
+  }
+
+  const navigateBack = () => { 
+    navigate(`/destinations/${id}`)
   }
 
   return (
@@ -45,12 +51,14 @@ export function ImagesIndex() {
               className="thumbnail"
               onClick={() => handleImageClick(img.image_url)}
             />
+            <div className='delete-button-container'>
             <button 
               className='delete-button'
               onClick={() => handleDeleteImage(img.id)} // <== wrap it in a function
             >
               Delete Image
             </button>
+          </div>
           </div>
         ))
         ) : (
@@ -62,6 +70,14 @@ export function ImagesIndex() {
           <img className="modal-image" src={fullscreenImage} alt="Full view" />
         </div>
       )}
+    </div>
+    <div className='back-button-container'>
+      <button
+        className='navigate-back'
+        onClick={navigateBack}
+      >
+        Back to {city}, {country}
+      </button>
     </div>
     </div>
   );

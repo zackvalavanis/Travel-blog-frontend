@@ -71,9 +71,10 @@ export function DestinationsShow() {
   }
 
   const navToSeeAllImages = () => { 
-    console.log("Navigating with images:", images);
-    navigate('/Images', { state: { images, id: destinations.id } });
-
+    console.log("Navigating with images:", images, destinations);
+    navigate('/Images', { state: { images, destinations } 
+    });
+      console.log('this is your array', images, destinations)
   }
 
 

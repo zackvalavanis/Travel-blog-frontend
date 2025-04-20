@@ -8,7 +8,7 @@
 
 .thumbnail {
   width: 300px;
-  height: auto;
+  height: 200px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   border-radius: 8px;
@@ -46,4 +46,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.delete-button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px
+}
+
+.delete-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  height: 25px;
+
+}
+
+.delete-button:hover {
+  transform: scale(1.05);
+  background-color: rgb(244, 137, 137);
+
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.navigate-back {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  height: 25px
+}
+
+.navigate-back:hover {
+  transform: scale(1.05);
 }
