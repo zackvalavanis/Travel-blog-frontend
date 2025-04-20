@@ -3,12 +3,14 @@ import { useState } from 'react';
 import './ImagesIndex.css';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { ModalDelete } from './ModalDelete';
 
 export function ImagesIndex() {
   const location = useLocation();
   const [images, setImages] = useState(location.state?.images || []);
-  const { id, city, country, state } = location.state?.destinations || {};// Access passed data from location.state
+  const { id, city, country} = location.state?.destinations || {};// Access passed data from location.state
   const navigate = useNavigate()
+  const [modalShow, setModalShow] = useState(false)
 
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
@@ -28,6 +30,15 @@ export function ImagesIndex() {
     } catch (err) { 
       console.error('Failed to delete image', err)
     }
+  }
+
+  const handleModalHide = () => { 
+    setModalShow(false)
+  }
+
+  const handleDeleteModalShow = () => { 
+    setModalShow(true)
+    console.log('you clicked it')
   }
 
   const navigateBack = () => { 
@@ -78,6 +89,15 @@ export function ImagesIndex() {
       >
         Back to {city}, {country}
       </button>
+    <button
+      onClick={handleDeleteModalShow}
+    > Delete
+    </button>
+    <ModalDelete
+      show={modalShow}
+      onClose={handleModalHide}
+    >
+    </ModalDelete>
     </div>
     </div>
   );
