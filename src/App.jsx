@@ -7,6 +7,7 @@ import { Main } from './Main/Main'
 import { DestinationsShow } from './Destinations/DestinationsShow.jsx'
 import axios from 'axios'
 import { CreateNewDestination } from './createNewDestination/createNewDestination.jsx'
+import { ImagesIndex } from './Images/ImagesIndex.jsx'
 
   const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ import { CreateNewDestination } from './createNewDestination/createNewDestinatio
         {
         path: '/CreateNewDestination', 
         element: <CreateNewDestination />
+        }, 
+        { 
+          path: '/Images', 
+          element: <ImagesIndex />
         }
 
       ]

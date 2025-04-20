@@ -52,7 +52,6 @@ export function DestinationsShow() {
   }
 
 
-
   const images = destinations?.images || [];
   const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
   const currentImage = images[currentIndex];
@@ -69,6 +68,12 @@ export function DestinationsShow() {
       ...prev, 
       [id]: Math.min((prev[id] || 0) + 1, totalImages -1)
     }))
+  }
+
+  const navToSeeAllImages = () => { 
+    console.log("Navigating with images:", images);
+    navigate('/Images', { state: { images, id: destinations.id } });
+
   }
 
 
@@ -178,6 +183,14 @@ export function DestinationsShow() {
       ) : (
         <p>No Images available</p>
       )}
+      <div className='navigate-container'>
+        <button
+          className='navigate-images'
+          onClick={navToSeeAllImages}
+        >
+          See all Images
+        </button>
+      </div>
   
       <div className='button-container'>
         <button
