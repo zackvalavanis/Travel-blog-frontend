@@ -11,6 +11,7 @@ export function ImagesIndex() {
   const { id, city, country} = location.state?.destinations || {};// Access passed data from location.state
   const navigate = useNavigate()
   const [modalShow, setModalShow] = useState(false)
+  const [selectedImageId, setSelectedImageId] = useState(null)
 
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
@@ -22,6 +23,21 @@ export function ImagesIndex() {
     setFullscreenImage(null);
   };
 
+
+  const handleModalHide = () => { 
+    setModalShow(false)
+  }
+
+  const handleDeleteModalShow = (imageId) => { 
+    setSelectedImageId(imageId)
+    setModalShow(true)
+    console.log('you clicked it')
+  }
+
+  const navigateBack = () => { 
+    navigate(`/destinations/${id}`)
+  }
+
   const handleDeleteImage = async (imageId) => {
     try { 
       await axios.delete(`http://localhost:3000/images/${imageId}.json`)
@@ -30,19 +46,6 @@ export function ImagesIndex() {
     } catch (err) { 
       console.error('Failed to delete image', err)
     }
-  }
-
-  const handleModalHide = () => { 
-    setModalShow(false)
-  }
-
-  const handleDeleteModalShow = () => { 
-    setModalShow(true)
-    console.log('you clicked it')
-  }
-
-  const navigateBack = () => { 
-    navigate(`/destinations/${id}`)
   }
 
   return (
@@ -65,7 +68,7 @@ export function ImagesIndex() {
             <div className='delete-button-container'>
             <button 
               className='delete-button'
-              onClick={() => handleDeleteImage(img.id)} // <== wrap it in a function
+              onClick={() => handleDeleteModalShow(img.id)}
             >
               Delete Image
             </button>
@@ -89,13 +92,11 @@ export function ImagesIndex() {
       >
         Back to {city}, {country}
       </button>
-    <button
-      onClick={handleDeleteModalShow}
-    > Delete
-    </button>
     <ModalDelete
       show={modalShow}
       onClose={handleModalHide}
+      imageId={selectedImageId}
+      onDelete={handleDeleteImage}
     >
     </ModalDelete>
     </div>
