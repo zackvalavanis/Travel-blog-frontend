@@ -28,8 +28,10 @@ export function CreateNewDestination() {
 
       for (const url of imageUrls) {
         await axios.post('http://localhost:3000/images.json', {
-          destination_id: destinationId,
-          image_url: url,
+          image: { 
+            destination_id: destinationId,
+            image_url: url
+          }
         });
       }
     } catch(error) { 
@@ -77,7 +79,9 @@ export function CreateNewDestination() {
           <label key={index}>
             Image URL {index + 1}:
             <input
-              type="text"
+              className='image-url-input'
+              type='text'
+              name='image_url[]'
               value={url}
               onChange={(e) => handleImageUrlChange(index, e.target.value)}
               required

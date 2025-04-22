@@ -11,22 +11,29 @@ export function ModalDelete({show, onClose, imageId, onDelete}) {
   }
 
   return ( 
-  <div className='modal-delete-show'>
-    <h1
-      className='header-delete-modal'
-      style={{color: 'black'}}
-    >
-      Are You sure You want to Delete this Image?
-    </h1>
-    <button
-      onClick={handleDeleteClick}
-    > Delete Image
-    </button>
-    <button
-      onClick={onClose}
-    >
-      Close
-    </button>
+  <div className='modal-delete-overlay'>
+    <div className='modal-delete-show'>
+      <h1
+        className='header-delete-modal'
+        style={{color: 'black', fontSize: '20px', margin: '20px'}}
+      >
+        Are You sure You want to Delete this Image?
+      </h1>
+      <div className='delete-modal-buttons-container'>
+        <button
+          className='button-delete-1'
+          onClick={handleDeleteClick}
+        > 
+          Delete Image
+        </button>
+        <button
+          className='button-close-2'
+          onClick={onClose}
+        >
+          Close
+        </button>
+      </div>
+    </div>
   </div>
   )
 

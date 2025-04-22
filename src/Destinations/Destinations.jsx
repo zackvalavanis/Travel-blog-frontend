@@ -48,7 +48,7 @@ export function Destinations() {
   return ( 
     <div className='container-all'>
       <h1 className='header-destinations'>My Travels</h1>
-      {destination.map((d) => (
+      {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
         <div className='information-d' key={d.id}>
           <h1>
             {d.city}, {d.country}

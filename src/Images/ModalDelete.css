@@ -1,4 +1,44 @@
 .modal-delete-show {
   border: 200px;
+  border-radius: 5px;
   background-color: white
+}
+
+.delete-modal-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modal-delete-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black */
+  z-index: 999;
+  /* Behind the modal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-close-2,
+.button-delete-1 {
+  border: none;
+  border-radius: 5px;
+  height: 25px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.button-close-2:hover,
+.button-delete-1:hover {
+  transform: scale(1.05);
+}
+
+.button-delete-1:hover {
+  background-color: rgb(248, 127, 127);
 }
