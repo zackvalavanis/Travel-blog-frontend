@@ -26,7 +26,8 @@ h1 {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-label {
+label,
+.imageUrl-header {
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -77,4 +78,24 @@ label {
 
 .button-remove-image:hover {
   background-color: rgb(248, 132, 132);
+}
+
+.image-url-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.image-url-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageUrl-header {
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }

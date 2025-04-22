@@ -76,7 +76,8 @@ export function CreateNewDestination() {
           ></textarea>
         </label>
         {imageUrls.map((url, index) => (
-          <label key={index}>
+          <div key={index}className='image-url-container'>
+          <label className='imageUrl-header' key={index}>
             Image URL {index + 1}:
             <input
               className='image-url-input'
@@ -87,6 +88,7 @@ export function CreateNewDestination() {
               required
             />
           </label>
+          </div>
         ))}
         <div className='button-container-3'>
         <button 
