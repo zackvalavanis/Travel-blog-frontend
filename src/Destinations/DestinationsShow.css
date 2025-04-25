@@ -46,7 +46,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 150px;
   /* or adjust width as needed */
   padding: 10px 20px;
   /* Add padding to make the button larger */
@@ -98,6 +98,7 @@
   border: none;
   border-radius: 5px;
   height: 30px;
+  width: 100px;
   cursor: pointer;
 }
 

@@ -79,7 +79,7 @@ export function DestinationsShow() {
 
 
   return (
-    <div>
+    <div className='container-all'>
       <h1 className='place-name'>
         {destinations.city}, {destinations.country}
       </h1>
@@ -134,17 +134,17 @@ export function DestinationsShow() {
       <div 
         style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}
       >
-        <div>
+        {/* <div>
           <h1>Restaurants & Bars</h1>
             <p>
               There were many terrific restaurants and bars in {destinations.city} and here are a couple of my favorites.
             </p>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <h1>
             Touristy Spots
           </h1>
-        </div>
+        </div> */}
       </div>
 
       <h1 

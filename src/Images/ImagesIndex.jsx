@@ -49,7 +49,7 @@ export function ImagesIndex() {
   }
 
   return (
-    <div>
+    <div className='container-all'>
       <h1
         className='header-images'
       >

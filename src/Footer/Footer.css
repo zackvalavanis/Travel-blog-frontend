@@ -2,12 +2,35 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100% !important;
-  height: 5em;
-  margin-top: 8em;
+  background-color: black;
+  padding: 20px 0;
+
+  color: white;
+  text-align: center;
 }
 
-.footer {
-  margin: 0;
-  text-align: center;
+.footer-words {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.footer-container link {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.footer-container a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  margin-bottom: 30px;
+  color: inherit;
+  font-size: 17px;
+}
+
+.footer-container a:hover {
+  text-decoration: underline;
 }

@@ -1,24 +1,64 @@
+* {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, sans-serif;
+}
+
+/* Remove debugging background if not needed */
+.container-main,
+.container-japan,
+.container-n {
+  background-color: #000;
+  /* or set a background that fits your design */
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* MAIN CONTAINER */
 .container-main {
   position: relative;
-  display: inline-block;
-}
-
-.container-main img {
   width: 100%;
-  /* Adjust width as needed */
-  height: auto;
+  overflow: hidden;
 }
 
+/* TEXT OVERLAY */
 .text-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  /* Adjust text color to stand out against the image */
   text-align: center;
-  font-size: 2em;
-  /* Adjust font size as needed */
+  font-size: 6vw;
+  /* Responsive font size */
   font-weight: bold;
-  /* Make the text bold */
+  padding: 0 10px;
+  /* For safety on smaller screens */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  /* Optional: improve contrast */
+}
+
+/* IMAGE CONTAINERS */
+.container-japan,
+.container-n {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container-japan img,
+.container-n img {
+  width: 100%;
+  height: auto;
+  display: block;
 }

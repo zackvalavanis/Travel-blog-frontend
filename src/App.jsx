@@ -17,6 +17,7 @@ import { ImagesIndex } from './Images/ImagesIndex.jsx'
             <main className='main-content'>
             <Outlet />
             </main>
+            <Footer/>
         </div>
       ), 
       children: [
