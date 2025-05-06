@@ -3,11 +3,20 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Destinations.css';
 import HereMap from '../Map/Map.jsx';
+import React from 'react';
 
+type DestinationImage = {
+  image_url: string
+}
 
+type Destination = {
+  id: number;
+  city: string;
+  images: DestinationImage[];
+}
 
 export function Destinations() {
-  const [destination, setDestination] = useState([]);
+  const [destination, setDestination] = useState<Destination[]>([])
   const navigate = useNavigate();
 
   const handleIndex = async () => {
@@ -51,9 +60,9 @@ export function Destinations() {
         </div>
       </div>
 
-          
 
-      <div className='container-4'>   
+
+      <div className='container-4'>
         {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
           <div className='information-d' key={d.id}>
             <h1 className='headers-5'>
@@ -87,30 +96,12 @@ export function Destinations() {
           Create New Post
         </button>
       </div>
-      <div className='middle-container'> 
+      <div className='middle-container'>
         <h1>
-          This is the middle container where I will put a big map showing all of the places I have been to. 
+          This is the middle container where I will put a big map showing all of the places I have been to.
         </h1>
         <HereMap />
-
-
-
-
-
-
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   );
 }

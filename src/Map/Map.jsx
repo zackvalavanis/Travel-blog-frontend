@@ -4,8 +4,6 @@ const HereMap = () => {
   const mapRef = useRef(null);
   const apiKey = import.meta.env.VITE_HERE_API_KEY;
 
-  console.log(apiKey)
-
   useEffect(() => {
     if (!apiKey) {
       console.error("HERE API Key is missing.");
