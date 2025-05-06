@@ -134,17 +134,7 @@ export function DestinationsShow() {
       <div 
         style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}
       >
-        {/* <div>
-          <h1>Restaurants & Bars</h1>
-            <p>
-              There were many terrific restaurants and bars in {destinations.city} and here are a couple of my favorites.
-            </p>
-        </div> */}
-        {/* <div>
-          <h1>
-            Touristy Spots
-          </h1>
-        </div> */}
+        
       </div>
 
       <h1 
