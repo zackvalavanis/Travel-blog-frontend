@@ -15,6 +15,7 @@
 .container-4 {
   display: flex;
   background: linear-gradient(135deg, #ffffff, #f5f5f5, #e0e0e0);
+  height: 800px;
   justify-content: center;
   gap: 40px;
   padding: 100px
@@ -133,4 +134,18 @@
 
 .button-container-3 {
   margin-top: 40px;
+}
+
+.new-post-container {
+  display: flex;
+  justify-content: center;
+  background: white
+}
+
+.middle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  background: linear-gradient(135deg, #343333, #f5f5f5, #e0e0e0);
 }
