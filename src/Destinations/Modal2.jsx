@@ -26,23 +26,26 @@ export function Modal2({show, onClose, destinations}) {
     }
   }
 
-  const handleUploadImages = async (event) => { 
-    event.preventDefault()
-    const params = new FormData(event.target)
-    imageUrls.forEach((url) => {
-      params.append('image_url[]', url);  // Use 'image_url[]' to send multiple values
-    });
+  const handleUploadImages = async (event) => {
+    event.preventDefault();
   
-    try { 
-      const response = await axios.post('http://localhost:3000/images.json', params);
-      console.log(response.data);
-      navigate(`/destinations/${destinations.id}`);
-      setImageUrls(['']);
-      alert('Images have been Uploaded');
-    } catch (error) { 
-      console.log(error);
+    for (const url of imageUrls) {
+      const formData = new FormData();
+      formData.append('image_url', url);
+      formData.append('destination_id', destinations.id);
+  
+      try {
+        await axios.post('http://localhost:3000/images.json', formData);
+      } catch (error) {
+        console.error('Upload failed for URL:', url, error);
+      }
     }
-  }
+  
+    setImageUrls(['']);
+    alert('Images have been uploaded');
+    navigate(`/destinations/${destinations.id}`);
+  };
+  
 
   if(!show) return null;
   return ( 

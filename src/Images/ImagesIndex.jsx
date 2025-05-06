@@ -49,7 +49,8 @@ export function ImagesIndex() {
   }
 
   return (
-    <div className='container-all'>
+    <div className='container-all-3'>
+    <div className='container'>
       <h1
         className='header-images'
       >
@@ -101,5 +102,6 @@ export function ImagesIndex() {
     </ModalDelete>
     </div>
     </div>
+  </div>
   );
 }

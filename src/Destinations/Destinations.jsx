@@ -1,108 +1,87 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Destinations.css'
+import './Destinations.css';
 
-export function Destinations() { 
-  const [destination, setDestination] = useState([])
-  const navigate = useNavigate()
-  const [imageIndexes, setImageIndexes] = useState({})
+export function Destinations() {
+  const [destination, setDestination] = useState([]);
+  const navigate = useNavigate();
 
-
-  const handleIndex = async () => { 
-    try { 
-     const response = await axios.get('http://localhost:3000/destinations.json');
-      setDestination(response.data)
-    }catch (error) { 
-      console.error('Error fetching data', error)
+  const handleIndex = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/destinations.json');
+      setDestination(response.data);
+    } catch (error) {
+      console.error('Error fetching data', error);
     }
-  }
+  };
 
-  const handlePrevImage = (id) => { 
-    setImageIndexes(prev => ({ 
-      ...prev, 
-      [id]: Math.max((prev[id] || 0) -1, 0)
-    }))
-  }
-
-  const handleNextImage = (id, totalImages) => { 
-    setImageIndexes(prev => ({ 
-      ...prev, 
-      [id]: Math.min((prev[id] || 0) + 1, totalImages -1)
-    }))
-  }
-
-  useEffect(() => { 
+  useEffect(() => {
     handleIndex();
-  }, [])
+  }, []);
 
-  const handleShow = (d) => { 
-    navigate(`/destinations/${d.id}`)
-  }
-  
-  const handleCreate = () => { 
-    navigate('/CreateNewDestination')
-  }
+  const handleShow = (d) => {
+    navigate(`/destinations/${d.id}`);
+  };
 
+  const handleCreate = () => {
+    navigate('/CreateNewDestination');
+  };
 
-  return ( 
+  return (
     <div className='container-all'>
-      <h1 className='header-destinations'>My Travels</h1>
-      {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
-        <div className='information-d' key={d.id}>
-          <h1>
-            {d.city}, {d.country}
-          </h1>
-          {d.images && d.images.length > 0 ? (
-            <div className='image-carousel-wrapper'>
-              <button 
-                className='arrow-button left'
-                onClick={() => handlePrevImage(d.id)}
-                disabled={(imageIndexes[d.id] || 0) === 0}
-              >
-                &#8592;
+      <div className='header-container-8'>
+        <h1 className='header-destinations'>My Travels</h1>
+        <div className='image-container'>
+          <img
+            className='image-header-2'
+            src='/FDD87365-651A-4492-A41F-D0D0A701A372.jpeg'
+            alt='header'
+            rel="noopener noreferrer"
+          />
+          <img
+            className='image-header-2'
+            src='/80C487E2-9948-426A-BE36-FE4506A265C0_1_105_c.jpeg'
+            alt='header'
+            rel="noopener noreferrer"
+          />
+        </div>
+      </div>
+
+          
+
+      <div className='container-4'>   
+        {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
+          <div className='information-d' key={d.id}>
+            <h1 className='headers-5'>
+              {d.city}
+            </h1>
+            {d.images && d.images.length > 0 ? (
+              <div className='single-image-wrapper'>
+                <img
+                  className='carousel-image'
+                  src={d.images[0].image_url}
+                  alt={`image of ${d.city}`}
+                />
+              </div>
+            ) : (
+              <p>No Images available</p>
+            )}
+            <div className='button-container-1'>
+              <button
+                className='moreInfo-button'
+                onClick={() => handleShow(d)}>
+                More Information
               </button>
-
-            <div className='image-carousel-single'>
-              <img 
-                className='carousel-image' 
-                key={d.images[imageIndexes[d.id] || 0].id} 
-                src={d.images[imageIndexes[d.id] || 0].image_url} 
-                alt={`image of ${d.city}`} 
-              />
             </div>
-
-            <button 
-              className="arrow-button right"
-              onClick={() => handleNextImage(d.id, d.images.length)}
-              disabled={(imageIndexes[d.id] || 0) === d.images.length - 1}
-            >
-              &#8594;
-            </button>
           </div>
-        ) : (
-          <p>No Images available</p>
-        )}
-      <div className='button-container-1'>
-        <button 
-          className='moreInfo-button'  
-          onClick={() => 
-            {
-              handleShow(d)
-            }
-          }>
-          More Information
-        </button>
+        ))}
+        <div className='button-container-3'></div>
       </div>
-      </div>
-      ))}
-      <div className='button-container-3'>
-      <button
-        className='new-post-button'
-        onClick={handleCreate}>
+
+      <button className='new-post-button' onClick={handleCreate}>
         Create New Post
       </button>
-      </div>
     </div>
-  )
+  );
 }

@@ -24,7 +24,7 @@ export function CreateNewDestination() {
       const response = await axios.post('http://localhost:3000/destinations.json', params)
       const destinationId = response.data.destinationid
       console.log(response.data)
-      console.log(destinationId)
+      console.log('this is id: ', destinationId)
 
       for (const url of imageUrls) {
         await axios.post('http://localhost:3000/images.json', {
@@ -77,7 +77,7 @@ export function CreateNewDestination() {
         </label>
         {imageUrls.map((url, index) => (
           <div key={index}className='image-url-container'>
-          <label className='imageUrl-header' key={index}>
+          <label className='imageUrl-header'key={index}>
             Image URL {index + 1}:
             <input
               className='image-url-input'

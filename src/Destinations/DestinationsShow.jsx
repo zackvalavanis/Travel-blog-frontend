@@ -79,7 +79,7 @@ export function DestinationsShow() {
 
 
   return (
-    <div className='container-all'>
+    <div className='container-all-2'>
       <h1 className='place-name'>
         {destinations.city}, {destinations.country}
       </h1>
