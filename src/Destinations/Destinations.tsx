@@ -85,7 +85,6 @@ export function Destinations() {
                 className='moreInfo-button'
                 onClick={() => {
                   handleShow(d)
-                  deselectPages
                 }}>
                 More Information
               </button>
