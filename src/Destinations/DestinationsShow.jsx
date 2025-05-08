@@ -12,7 +12,6 @@ export function DestinationsShow() {
   const [modalShow, isModalShow] = useState(false)
   const navigate = useNavigate()
   const [modalShow2, isModalShow2] = useState(false)
-  const [imageIndexes, setImageIndexes] = useState({})
   const [modalShow3, isModalShow3] = useState(false);
   const [description, setDescription] = useState(destinations.description || "");
   
@@ -53,8 +52,7 @@ export function DestinationsShow() {
 
 
   const images = destinations?.images || [];
-  const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
-  const currentImage = images[currentIndex];
+
 
   const navToSeeAllImages = () => { 
     console.log("Navigating with images:", images, destinations);
@@ -134,15 +132,6 @@ export function DestinationsShow() {
           Middle Container
         </h1>
       </div>
-
-
-
-
-
-
-
-
-
 
       <div className='button-container'>
         <button

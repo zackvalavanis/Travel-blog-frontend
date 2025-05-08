@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Header.css'
 import { useState } from 'react';
 
@@ -46,14 +46,16 @@ export function Header() {
     setAnchorElUser(null);
   };
 
+  const getSelectedPage = () => {
+    const path = decodeURIComponent(location.pathname);
+    if (path.startsWith('/Destinations')) return 'Destinations';
+    if (path.startsWith('/New Post')) return 'New Post';
+    return '';
+  };
+
   const handleNavigation = (page: string) => {
     navigate(`${page}`)
   }
-
-  const handleSelectedPage = (page: string) => {
-    setSelectedPage(page)
-  }
-
 
   return (
     <div className='header-container'>
@@ -146,9 +148,8 @@ export function Header() {
                   onClick={() => {
                     handleCloseNavMenu()
                     handleNavigation(page)
-                    handleSelectedPage(page)
                   }}
-                  sx={{ my: 2, color: 'white', display: 'block', textDecoration: selectedPage === page ? 'underline' : 'none' }}
+                  sx={{ my: 2, color: 'white', display: 'block', textDecoration: getSelectedPage() === page ? 'underline' : 'none' }}
                   className='destination-button'
                 >
                   {page}

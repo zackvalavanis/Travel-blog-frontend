@@ -5,6 +5,7 @@ import './Destinations.css';
 // import HereMap from '../Map/Map.jsx';
 import React from 'react';
 
+
 type DestinationImage = {
   image_url: string
 }
@@ -82,7 +83,10 @@ export function Destinations() {
             <div className='button-container-1'>
               <button
                 className='moreInfo-button'
-                onClick={() => handleShow(d)}>
+                onClick={() => {
+                  handleShow(d)
+                  deselectPages
+                }}>
                 More Information
               </button>
             </div>
