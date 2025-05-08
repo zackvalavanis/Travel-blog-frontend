@@ -31,8 +31,8 @@ export function Modal2({show, onClose, destinations}) {
   
     for (const url of imageUrls) {
       const formData = new FormData();
-      formData.append('image_url', url);
-      formData.append('destination_id', destinations.id);
+      formData.append('image[image_url]', url);
+      formData.append('image[destination_id]', destinations.id);
   
       try {
         await axios.post('http://localhost:3000/images.json', formData);

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Destinations.css';
-import HereMap from '../Map/Map.jsx';
+// import HereMap from '../Map/Map.jsx';
 import React from 'react';
 
 type DestinationImage = {
@@ -32,7 +32,7 @@ export function Destinations() {
     handleIndex();
   }, []);
 
-  const handleShow = (d) => {
+  const handleShow = (d: Destination) => {
     navigate(`/destinations/${d.id}`);
   };
 
@@ -97,10 +97,14 @@ export function Destinations() {
         </button>
       </div>
       <div className='middle-container'>
-        <h1>
-          This is the middle container where I will put a big map showing all of the places I have been to.
-        </h1>
-        <HereMap />
+        {/* <div className='middle-container-2'>
+          <h1>
+            This is the middle container where I will put a big map showing all of the places I have been to.
+          </h1>
+          <div className='map'>
+            <HereMap />
+          </div> */}
+        {/* </div> */}
       </div>
     </div>
   );
