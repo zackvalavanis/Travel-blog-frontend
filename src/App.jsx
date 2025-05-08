@@ -35,7 +35,7 @@ import { ImagesIndex } from './Images/ImagesIndex.jsx'
           loader: ({params}) => axios.get(`http://localhost:3000/destinations/${params.id}.json`).then((response) => response.data)
         }, 
         {
-        path: '/CreateNewDestination', 
+        path: '/New Post', 
         element: <CreateNewDestination />
         }, 
         { 

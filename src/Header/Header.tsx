@@ -14,14 +14,20 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom'
 import './Header.css'
+import { useState } from 'react';
 
-const pages = ['Destinations'];
+type Page = {
+  pages: string[]
+}
+
+const pages: string[] = ['Destinations', 'New Post'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate()
+  const [selectedPage, setSelectedPage] = useState('')
 
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -40,16 +46,25 @@ export function Header() {
     setAnchorElUser(null);
   };
 
-  const handleNavigation = (page) => {
+  const handleNavigation = (page: string) => {
     navigate(`${page}`)
   }
+
+  const handleSelectedPage = (page: string) => {
+    setSelectedPage(page)
+  }
+
 
   return (
     <div className='header-container'>
       <AppBar position="static" sx={{ backgroundColor: 'black' }}>
         <Container maxWidth='xl'>
           <Toolbar disableGutters>
-            <IconButton onClick={() => navigate('/')} sx={{ p: 0, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
+            <IconButton onClick={() => {
+              navigate('/')
+              setSelectedPage('')
+            }}
+              sx={{ p: 0, display: { xs: 'none', md: 'flex' }, mr: 1 }}>
               <AdbIcon sx={{ color: 'white' }} />
             </IconButton>
             <Typography
@@ -131,8 +146,9 @@ export function Header() {
                   onClick={() => {
                     handleCloseNavMenu()
                     handleNavigation(page)
+                    handleSelectedPage(page)
                   }}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'white', display: 'block', textDecoration: selectedPage === page ? 'underline' : 'none' }}
                   className='destination-button'
                 >
                   {page}

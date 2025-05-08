@@ -91,20 +91,15 @@ export function Destinations() {
 
         <div className='button-container-3'></div>
       </div>
-      <div className='new-post-container'>
-        <button className='new-post-button' onClick={handleCreate}>
-          Create New Post
-        </button>
-      </div>
       <div className='middle-container'>
-        {/* <div className='middle-container-2'>
+        <div className='middle-container-2'>
           <h1>
             This is the middle container where I will put a big map showing all of the places I have been to.
           </h1>
-          <div className='map'>
+          {/* <div className='map'>
             <HereMap />
-          </div> */}
-        {/* </div> */}
+          </div>  */}
+        </div>
       </div>
     </div>
   );

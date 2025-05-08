@@ -123,3 +123,9 @@
   height: 300px;
   width: 500px;
 }
+
+.container-middle-2 {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+}

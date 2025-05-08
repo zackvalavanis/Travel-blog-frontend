@@ -56,20 +56,6 @@ export function DestinationsShow() {
   const currentIndex = imageIndexes?.[destinations.id]  ?? 0;
   const currentImage = images[currentIndex];
 
-  const handlePrevImage = (id) => { 
-    setImageIndexes(prev => ({ 
-      ...prev, 
-      [id]: Math.max((prev[id] || 0) -1, 0)
-    }))
-  }
-
-  const handleNextImage = (id, totalImages) => { 
-    setImageIndexes(prev => ({ 
-      ...prev, 
-      [id]: Math.min((prev[id] || 0) + 1, totalImages -1)
-    }))
-  }
-
   const navToSeeAllImages = () => { 
     console.log("Navigating with images:", images, destinations);
     navigate('/Images', { state: { images, destinations } 
@@ -93,6 +79,14 @@ export function DestinationsShow() {
       ) : (
         <p>There are no images</p>
       )}
+      <div className='navigate-container'>
+        <button
+          className='navigate-images'
+          onClick={navToSeeAllImages}
+        >
+          See all Images
+        </button>
+      </div>
 {/* Adding pictures once your on the show page.*/}
       <Modal2
         show={modalShow2}
@@ -134,55 +128,22 @@ export function DestinationsShow() {
       <div 
         style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}
       >
-        
+      </div>
+      <div className='container-middle-2'>
+        <h1>
+          Middle Container
+        </h1>
       </div>
 
-      <h1 
-        style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
-      >
-        More Images Below
-      </h1>
-      {images.length > 0 && currentImage ? (
-        <div className='image-carousel-wrapper'>
-          <button
-            className='arrow-button left'
-            onClick={() => handlePrevImage(destinations.id)}
-            disabled={currentIndex === 0}
-          >
-            &#8592;
-          </button>
-  
-          <div className='image-carousel-single'>
-            <img
-              className='carousel-image'
-              key={currentImage.id}
-              src={currentImage.image_url}
-              alt={`Image of ${destinations.city}`}
-            />
-          </div>
-  
-          <button
-            className='arrow-button right'
-            onClick={() =>
-              handleNextImage(destinations.id, images.length)
-            }
-            disabled={currentIndex === images.length - 1}
-          >
-            &#8594;
-          </button>
-        </div>
-      ) : (
-        <p>No Images available</p>
-      )}
-      <div className='navigate-container'>
-        <button
-          className='navigate-images'
-          onClick={navToSeeAllImages}
-        >
-          See all Images
-        </button>
-      </div>
-  
+
+
+
+
+
+
+
+
+
       <div className='button-container'>
         <button
           onClick={handleModalShow}
