@@ -54,6 +54,7 @@ label,
   justify-content: center;
   align-items: center;
   gap: 15px;
+  margin: 0;
 }
 
 .button-submit-1,
@@ -84,7 +85,8 @@ label,
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: 150%;
+  margin: 5px;
 }
 
 .image-url-container {
@@ -92,7 +94,9 @@ label,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
+
 
 .imageUrl-header {
   display: flex;
