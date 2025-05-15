@@ -8,7 +8,7 @@ export function Footer() {
       <h1 className='footer-words'>Footer</h1>
       <div className='link-container'>
         <Link to='/destinations'>Destinations</Link>
-        <Link to='/CreateNewDestination'>New Post</Link>
+        <Link to='/New Post'>New Post</Link>
       </div>
     </div>
   )

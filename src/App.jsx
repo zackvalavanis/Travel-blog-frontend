@@ -6,7 +6,7 @@ import { Footer } from './Footer/Footer'
 import { Main } from './Main/Main'
 import { DestinationsShow } from './Destinations/DestinationsShow.jsx'
 import axios from 'axios'
-import { CreateNewDestination } from './createNewDestination/createNewDestination.jsx'
+import { CreateNewDestination } from './CreateNewDestination/CreateNewDestination.jsx'
 import { ImagesIndex } from './Images/ImagesIndex.jsx'
 
   const router = createBrowserRouter([

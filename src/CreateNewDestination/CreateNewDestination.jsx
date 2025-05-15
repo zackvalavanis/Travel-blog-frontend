@@ -52,7 +52,9 @@ export function CreateNewDestination() {
 
   return (
     <div className="form-wrapper-5">
-      <h1>New Destination</h1>
+      <div className='header-container-5'>
+        <h1 className='heaeder-5'>New Destination</h1>
+      </div>
       <form onSubmit={handleCreate} className="form-create">
         <label>
           City:
