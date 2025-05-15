@@ -9,12 +9,13 @@
   align-items: center;
   justify-content: space-around;
   height: 500px;
-  background: linear-gradient(135deg, #000000, #1a1a1a, #333333);
+  background-color: #da9b68;
+  backdrop-filter: blur(10px);
 }
 
 .container-4 {
   display: flex;
-  background: linear-gradient(135deg, #ffffff, #f5f5f5, #e0e0e0);
+  background-color: #eae6da;
   height: 800px;
   justify-content: center;
   gap: 40px;
@@ -22,7 +23,7 @@
 }
 
 .headers-5 {
-  color: #333
+  color: #cd3c2a
 }
 
 .image-container {
@@ -100,7 +101,7 @@
   margin: 10px;
   padding: 10px 20px;
   /* Add padding to make the button larger */
-  background-color: #2d975b;
+  background-color: #DA9b68;
   /* Optional: red background to signify deletion */
   color: white;
   /* White text */
@@ -147,7 +148,7 @@
   justify-content: center;
   align-items: center;
   height: 1000px;
-  background: linear-gradient(135deg, #343333, #f5f5f5, #e0e0e0);
+  background-color: #da9B68;
 }
 
 .middle-container-2 {

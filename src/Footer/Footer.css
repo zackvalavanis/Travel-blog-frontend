@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: black;
+  background-color: #eae6da;
   padding: 20px 0;
-
-  color: white;
+  color: #cd3c2a;
   text-align: center;
 }
 
@@ -13,6 +12,7 @@
   display: flex;
   justify-content: center;
   padding: 10px;
+  color: #cd3c2a;
 }
 
 .footer-container link {

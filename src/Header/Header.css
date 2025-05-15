@@ -2,7 +2,7 @@
   display: flex;
   margin: 0 auto !important;
   width: 100% !important;
-  background: linear-gradient(135deg, #000000, #1a1a1a, #333333) !important;
+  background: #eae6da !important;
 }
 
 .destination-button:hover {

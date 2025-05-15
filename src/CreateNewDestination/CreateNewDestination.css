@@ -1,17 +1,24 @@
-.form-wrapper {
+.form-wrapper-5 {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('your-image-url.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 40px;
-  min-height: 50vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 
 h1 {
   margin-bottom: 20px;
   color: #fffcfc;
 }
+
 
 .form-create {
   display: flex;
@@ -96,7 +103,6 @@ label,
   align-items: center;
 
 }
-
 
 .imageUrl-header {
   display: flex;

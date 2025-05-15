@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  background: linear-gradient(135deg, #343333, #4e4c4c, #e0e0e0);
+  background-color: #da9b68;
 }
 
 .images-show {
@@ -58,7 +58,7 @@
   /* or adjust width as needed */
   padding: 10px 20px;
   /* Add padding to make the button larger */
-  background-color: #f44336;
+  background-color: #cd3c2a;
   /* Optional: red background to signify deletion */
   color: white;
   /* White text */
@@ -86,12 +86,12 @@
   border-radius: 5px;
   width: 150px;
   height: 25px;
-  background-color: white
+  background-color: #eae6da;
+  color: #cd3c2a;
 }
 
 .button-add-button:hover {
   transform: scale(1.05);
-  background-color: rgb(148, 244, 148);
 }
 
 .navigate-container {
@@ -108,6 +108,8 @@
   height: 30px;
   width: 100px;
   cursor: pointer;
+  background-color: #eae6da;
+  color: #cd3c2a;
 }
 
 .navigate-images:hover {
