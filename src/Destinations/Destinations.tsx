@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Destinations.css';
-// import HereMap from '../Map/Map.jsx';
+import { HereMap } from '../Map/Map.jsx';
 import React from 'react';
 
 
@@ -62,7 +62,6 @@ export function Destinations() {
       </div>
 
 
-
       <div className='container-4'>
         {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
           <div className='information-d' key={d.id}>
@@ -96,12 +95,16 @@ export function Destinations() {
       </div>
       <div className='middle-container'>
         <div className='middle-container-2'>
-          <h1>
-            This is the middle container where I will put a big map showing all of the places I have been to.
-          </h1>
-          {/* <div className='map'>
-            <HereMap />
-          </div>  */}
+          <div className='container-h1'>
+            <h1>
+              This is the middle container where I will put a big map showing all of the places I have been to.
+            </h1>
+          </div>
+          <div className='map-container'>
+            <div className='map'>
+              <HereMap />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -153,9 +153,23 @@
 .middle-container-2 {
   display: flex;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
+.map-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  height: 400px;
+  width: 400px;
+}
+
+.container-h1 {
+  display: flex;
+  width: 800px;
+  margin-right: 20%
+}
 
 @media (max-width: 600px) {
   .container-all {
@@ -303,7 +317,8 @@
   .middle-container-2 {
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
+    text-wrap: wrap;
+    gap: 20px
   }
-
 }
