@@ -4,10 +4,14 @@ export function Main() {
   return ( 
     <div>
       <div className="container-main">
-        <div className="text-overlay">
-          <h1>hello</h1>
+        <div className='container-first'>
+          <h1>
+            Hi
+          </h1>
         </div>
-        <img className="london" src="/London Image.jpg" alt="image-london" />
+          <div className='img-container-1'>
+          <img className="london" src="/F294F716-3138-4B66-9BB7-B8AEA3BFCD2E_1_105_c.jpeg" alt="image-london" />
+          </div>
       </div>
       <div className="container-japan">
         <img src="/premium_photo-1661878091370-4ccb8763756a.jpeg" alt="image-japan" />

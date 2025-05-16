@@ -38,7 +38,7 @@ export function Destinations() {
   };
 
   const handleCreate = () => {
-    navigate('/CreateNewDestination');
+    navigate('/New Post');
   };
 
   return (
@@ -62,7 +62,14 @@ export function Destinations() {
       </div>
 
 
+
+
       <div className='container-4'>
+        {destination.length === 0 ? (
+          <div className='button-container10'>
+            <button className='button-post' onClick={handleCreate}>New Post</button>
+          </div>
+        ) : null}
         {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
           <div className='information-d' key={d.id}>
             <h1 className='headers-5'>
@@ -77,7 +84,7 @@ export function Destinations() {
                 />
               </div>
             ) : (
-              <p>No Images available</p>
+              <button>Button</button>
             )}
             <div className='button-container-1'>
               <button

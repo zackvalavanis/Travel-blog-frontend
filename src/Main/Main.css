@@ -10,6 +10,32 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+.container-main {
+  display: flex;
+  justify-content: space-between;
+  height: 500px;
+}
+
+.container-first {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 45%;
+}
+
+.img-container-1 {
+  display: flex;
+  align-items: right;
+  justify-content: space-between;
+}
+
+.london {
+  height: 300px;
+  border: none;
+  border-radius: 20px;
+  margin: 20px;
+}
+
 /* Remove debugging background if not needed */
 .container-main,
 .container-japan,
@@ -20,9 +46,11 @@ body {
 
 img {
   display: block;
-  max-width: 100%;
+  width: 100%;
+  /* max-width: 100%; */
   height: auto;
   vertical-align: bottom;
+  object-fit: cover;
 }
 
 /* MAIN CONTAINER */

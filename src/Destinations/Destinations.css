@@ -4,6 +4,13 @@
   flex: 1;
 }
 
+.button-container10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .header-container-8 {
   display: flex;
   align-items: center;
@@ -11,6 +18,21 @@
   height: 500px;
   background-color: #da9b68;
   backdrop-filter: blur(10px);
+}
+
+.button-post {
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 500px;
+  height: 100px;
+  background-color: #da9b68;
+  color: white
+}
+
+.button-post:hover {
+  transform: scale(1.05);
 }
 
 .container-4 {
