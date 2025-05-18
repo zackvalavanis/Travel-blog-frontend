@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom"
 import axios from 'axios'
 import { Modal } from "./Modal"
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom"
 import './DestinationsShow.css'
 import { Modal2 } from "./Modal2"
@@ -14,6 +14,9 @@ export function DestinationsShow() {
   const [modalShow2, isModalShow2] = useState(false)
   const [modalShow3, isModalShow3] = useState(false);
   const [description, setDescription] = useState(destinations.description || "");
+  const [city, setCity] = useState(destinations.city || "");
+  const [country, setCountry] = useState(destinations.country || "");
+
   
 
   const handleDelete = async (id) => { 
@@ -61,13 +64,51 @@ export function DestinationsShow() {
       console.log('this is your array', images, destinations)
   }
 
+  const handleUpdateName = async (e, id, city, country) => { 
+    e.preventDefault()
+    try { 
+      const params = { 
+        destination: { 
+          city, 
+          country
+        },
+      }
+
+      const response = await axios.patch(`http://localhost:3000/destinations/${id}.json`, params)
+      console.log(response.data)
+      setCity(response.data.destination.city || "")
+      setCountry(response.data.destination.country || "")
+    } catch (error) { 
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    setDescription(destinations.description || "");
+    setCity(destinations.city || "");
+    setCountry(destinations.country || "");
+  }, [destinations]);
+
 
   return (
     <div className='container-all-2'>
       <h1 className='place-name'>
-        {destinations.city}, {destinations.country}
+        {city}, {country}
       </h1>
-  
+      <form onSubmit={(e) => handleUpdateName(e, destinations.id, city, country)}>
+        <input 
+          name='city' 
+          value={city}
+          onChange={(e) => setCity(e.target.value)}>
+        </input>
+        <input 
+          name='country' 
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        >
+        </input>
+        <button type='submit'>Update Name</button>
+      </form>
       {images.length > 0 && images[0] ? (
         <img
           className='images-show'
