@@ -131,3 +131,47 @@
   justify-content: center;
   height: 400px;
 }
+
+.placeName-inputs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px;
+}
+
+.placeName-inputs {
+  display: flex;
+  justify-content: center;
+  flex-direction: row !;
+  align-items: center;
+  gap: 20px;
+}
+
+.input-field-1 {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  border: none;
+  border-radius: 2px;
+}
+
+.input-field-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.input-field-2:hover {
+  transform: scale(1.05);
+}
+
+.button-container-2 {
+  display: flex;
+  flex-direction: row !;
+}

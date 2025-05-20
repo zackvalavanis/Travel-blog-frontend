@@ -98,35 +98,52 @@ export function DestinationsShow() {
   return (
     <div className='container-all-2'>
       {isEditing ? (
-        <div>
-        <input 
-          name='city' 
-          value={city}
-          onChange={(e) => setCity(e.target.value)}>
-        </input>
-        <input 
-          name='country' 
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-        >
-        </input>
-        <button onClick={handleSave}>Save</button>
-        <button onClick={() => { 
-          setIsEditing(false)
-          setCity(destinations.city)
-          setCountry(destinations.country)
-        }
-        }>Cancel</button>
+        <div className='placeName-inputs-container'>
+          <div className='placeName-inputs'>
+          <input 
+            className='input-field-1'
+            name='city' 
+            value={city}
+            onChange={(e) => setCity(e.target.value)}>
+          </input>
+          <input 
+            className='input-field-1'
+            name='country' 
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          >
+          </input>
+        </div>
+        <div className='button-container-2'>
+          <button 
+            className='input-field-2'
+            onClick={handleSave}
+          >
+            Save
+          </button>
+          <button
+            className='input-field-2' 
+            onClick={() => { 
+            setIsEditing(false)
+            setCity(destinations.city)
+            setCountry(destinations.country)
+            }}
+            >
+            Cancel
+          </button>
+        </div>
       </div>
       ) : (
-      <h1 
-        className='place-name'
-        onClick={() => setIsEditing(true)}
-        style={{cursor: 'pointer'}}
-      >
-        {city}, {country}
-      </h1>
-      )}
+        <div className='place-name-container'>
+        <h1 
+          className='place-name'
+          onClick={() => setIsEditing(true)}
+          style={{cursor: 'pointer'}}
+        >
+          {city}, {country}
+        </h1>
+      </div>
+        )}
       {images.length > 0 && images[0] ? (
         <img
           className='images-show'
