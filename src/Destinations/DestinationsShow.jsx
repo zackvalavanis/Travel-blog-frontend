@@ -16,9 +16,13 @@ export function DestinationsShow() {
   const [description, setDescription] = useState(destinations.description || "");
   const [city, setCity] = useState(destinations.city || "");
   const [country, setCountry] = useState(destinations.country || "");
+  const [isEditing, setIsEditing] = useState(false)
 
-  
 
+  const handleSave = () => { 
+    handleUpdateName({preventDefault: () => {}}, destinations.id, city, country)
+    setIsEditing(false)
+  }
   const handleDelete = async (id) => { 
     try { 
       const response = await axios.delete(`http://localhost:3000/destinations/${id}.json`)
@@ -73,7 +77,6 @@ export function DestinationsShow() {
           country
         },
       }
-
       const response = await axios.patch(`http://localhost:3000/destinations/${id}.json`, params)
       console.log(response.data)
       setCity(response.data.destination.city || "")
@@ -82,6 +85,8 @@ export function DestinationsShow() {
       console.log(error)
     }
   }
+
+
 
   useEffect(() => {
     setDescription(destinations.description || "");
@@ -92,10 +97,8 @@ export function DestinationsShow() {
 
   return (
     <div className='container-all-2'>
-      <h1 className='place-name'>
-        {city}, {country}
-      </h1>
-      <form onSubmit={(e) => handleUpdateName(e, destinations.id, city, country)}>
+      {isEditing ? (
+        <div>
         <input 
           name='city' 
           value={city}
@@ -107,8 +110,23 @@ export function DestinationsShow() {
           onChange={(e) => setCountry(e.target.value)}
         >
         </input>
-        <button type='submit'>Update Name</button>
-      </form>
+        <button onClick={handleSave}>Save</button>
+        <button onClick={() => { 
+          setIsEditing(false)
+          setCity(destinations.city)
+          setCountry(destinations.country)
+        }
+        }>Cancel</button>
+      </div>
+      ) : (
+      <h1 
+        className='place-name'
+        onClick={() => setIsEditing(true)}
+        style={{cursor: 'pointer'}}
+      >
+        {city}, {country}
+      </h1>
+      )}
       {images.length > 0 && images[0] ? (
         <img
           className='images-show'
