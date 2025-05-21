@@ -1,0 +1,35 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /* remove default margin */
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #da9b68;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  width: 400px;
+  height: 500px;
+  margin: 400px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.label1,
+.label2 {
+  text-align: center;
+}

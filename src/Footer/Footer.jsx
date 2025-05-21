@@ -9,6 +9,7 @@ export function Footer() {
       <div className='link-container'>
         <Link to='/destinations'>Destinations</Link>
         <Link to='/New Post'>New Post</Link>
+        <Link to='/LoginPage'>Login</Link>
       </div>
     </div>
   )

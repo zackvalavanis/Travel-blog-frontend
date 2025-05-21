@@ -8,6 +8,7 @@ import { DestinationsShow } from './Destinations/DestinationsShow.jsx'
 import axios from 'axios'
 import { CreateNewDestination } from './CreateNewDestination/CreateNewDestination.jsx'
 import { ImagesIndex } from './Images/ImagesIndex.jsx'
+import { LoginPage } from './LoginPage/LoginPage.tsx'
 
   const router = createBrowserRouter([
     {
@@ -41,6 +42,10 @@ import { ImagesIndex } from './Images/ImagesIndex.jsx'
         { 
           path: '/Images', 
           element: <ImagesIndex />
+        }, 
+        { 
+          path: '/LoginPage', 
+          element: <LoginPage />
         }
 
       ]
