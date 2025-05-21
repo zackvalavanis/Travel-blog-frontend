@@ -16,13 +16,14 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const pages: string[] = ['Destinations', 'New Post'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login', 'Account', 'Dashboard', 'Logout'];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState('');
+  const [selectedSetting, setSelectedSetting] = useState('')
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -50,6 +51,11 @@ export function Header() {
     navigate(`/${page}`);
     setSelectedPage(page);
   };
+
+  const handleNavigationSettings = (settings: string) => {
+    navigate(`/${settings}`)
+    setSelectedSetting(settings)
+  }
 
   return (
     <div className='header-container'>
@@ -142,7 +148,12 @@ export function Header() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem key={setting} onClick={() => {
+                    handleCloseUserMenu()
+                    handleNavigationSettings(setting)
+                  }}
+
+                  >
                     <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                   </MenuItem>
                 ))}

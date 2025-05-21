@@ -2,10 +2,12 @@ import React from "react";
 import './LoginPage.css'
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export function LoginPage() {
+export function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -20,6 +22,7 @@ export function LoginPage() {
     }
     setEmail('')
     setPassword('')
+    navigate('/')
   }
 
 
@@ -39,6 +42,7 @@ export function LoginPage() {
             Email:
           </label>
           <input
+            className='input1'
             name='email'
             type='email'
             value={email}
@@ -51,13 +55,19 @@ export function LoginPage() {
             Password
           </label>
           <input
+            className='input2'
             name='password'
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           >
           </input>
-          <button type='submit'>Login</button>
+          <button
+            className='button-login'
+            type='submit'
+          >
+            Login
+          </button>
         </form>
       </div>
     </div>
