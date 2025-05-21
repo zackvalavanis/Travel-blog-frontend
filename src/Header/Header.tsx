@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const pages: string[] = ['Destinations', 'New Post'];
 const settings = ['Login', 'Account', 'Dashboard', 'Logout'];
@@ -24,6 +26,7 @@ export function Header() {
   const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState('');
   const [selectedSetting, setSelectedSetting] = useState('')
+  const { name, setName } = useContext(UserContext)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -128,7 +131,7 @@ export function Header() {
             <Box sx={{ marginLeft: 'auto' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Zack" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={name} src="/static/images/avatar/2.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu

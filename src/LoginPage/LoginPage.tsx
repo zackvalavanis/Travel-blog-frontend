@@ -1,13 +1,16 @@
 import React from "react";
 import './LoginPage.css'
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import { useContext } from 'react';
 
 export function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
+  const { name, setName } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -17,13 +20,20 @@ export function Login() {
         password: password,
       })
       console.log(response.data)
+      setName(response.data.email.split('@')[0].toUpperCase())
     } catch (error) {
       console.log(error)
     }
     setEmail('')
     setPassword('')
-    navigate('/')
+    // navigate('/')
   }
+
+  useEffect(() => {
+    if (name) {
+      console.log(name)
+    }
+  }, [name])
 
 
 

@@ -9,6 +9,7 @@ import axios from 'axios'
 import { CreateNewDestination } from './CreateNewDestination/CreateNewDestination.jsx'
 import { ImagesIndex } from './Images/ImagesIndex.jsx'
 import { Login } from './LoginPage/LoginPage.tsx'
+import { UserProvider } from './context/UserContext.tsx'
 
   const router = createBrowserRouter([
     {
@@ -53,7 +54,9 @@ import { Login } from './LoginPage/LoginPage.tsx'
   ])
 function App() { 
   return (
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   )
 }
 
