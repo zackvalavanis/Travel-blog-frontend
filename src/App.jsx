@@ -10,6 +10,7 @@ import { CreateNewDestination } from './CreateNewDestination/CreateNewDestinatio
 import { ImagesIndex } from './Images/ImagesIndex.jsx'
 import { Login } from './LoginPage/LoginPage.tsx'
 import { UserProvider } from './context/UserContext.tsx'
+import { SignUp } from './NewAccount/NewAccount.tsx'
 
   const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ import { UserProvider } from './context/UserContext.tsx'
         { 
           path: '/Login', 
           element: <Login />
+        }, 
+        { 
+          path: '/Signup', 
+          element: <SignUp />
         }
 
       ]

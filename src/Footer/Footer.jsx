@@ -10,6 +10,7 @@ export function Footer() {
         <Link to='/destinations'>Destinations</Link>
         <Link to='/New Post'>New Post</Link>
         <Link to='/Login'>Login</Link>
+        <Link to='/Signup'>Signup</Link>
       </div>
     </div>
   )

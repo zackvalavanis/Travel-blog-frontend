@@ -1,0 +1,7 @@
+.signup-container {
+  display: flex;
+  height: 1200px;
+  flex-direction: column;
+  flex: 1;
+  background-color: #da9b68;
+}
