@@ -38,19 +38,49 @@ export function SignUp() {
         onSubmit={(e) => handleSubmit(e)}
         className='form-signup'
       >
+
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required>
+          </input>
+        </div>
+
         <div>
           <label>Email:</label>
-          <input name='email' type='email' required></input>
+          <input
+            name='email'
+            type='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required>
+          </input>
         </div>
 
         <div>
           <label>Password</label>
-          <input></input>
+          <input
+            type='password'
+            name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required>
+          </input>
         </div>
 
         <div>
           <label>Password Confirmation</label>
-          <input></input>
+          <input
+            type='password_confrimation'
+            name='password_confirmation'
+            value={password_confrimation}
+            onChange={(e) => setPassword_confirmation(e.target.value)}
+            required
+          ></input>
         </div>
         <button type='submit'>Signup</button>
       </form>
