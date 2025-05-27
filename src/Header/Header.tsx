@@ -16,9 +16,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
+import { Logout } from '../Logout/LogoutLink';
 
 const pages: string[] = ['Destinations', 'New Post'];
-const settings = ['Login', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Login', 'Account', 'Dashboard', <Logout />];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);

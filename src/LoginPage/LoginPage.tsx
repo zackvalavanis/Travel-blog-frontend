@@ -21,6 +21,8 @@ export function Login() {
       })
       console.log(response.data)
       setName(response.data.email.split('@')[0].toUpperCase())
+      localStorage.setItem('name', response.data.name)
+      localStorage.setItem('jwt', response.data.jwt)
     } catch (error) {
       console.log(error)
     }
