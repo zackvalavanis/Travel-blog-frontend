@@ -13,21 +13,27 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
 
 const pages: string[] = ['Destinations', 'New Post'];
-const settings = ['Login', 'Account', 'Dashboard', <Logout />];
+const settings = [
+  { label: 'Login', path: '/Login' },
+  { label: 'Account', path: '/account' },
+  { label: 'Dashboard', path: '/dashboard' },
+  { label: 'Logout', component: <Logout /> }
+];
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const [selectedPage, setSelectedPage] = useState('');
-  const [selectedSetting, setSelectedSetting] = useState('')
-  const { name, setName } = useContext(UserContext)
+  const [selectedSetting, setSelectedSetting] = useState('');
+  const { name, loading } = useContext(UserContext);
+
+  const firstLetter = name ? name.charAt(0).toUpperCase() : '?';
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -57,14 +63,14 @@ export function Header() {
   };
 
   const handleNavigationSettings = (settings: string) => {
-    navigate(`/${settings}`)
-    setSelectedSetting(settings)
-  }
+    navigate(`${settings}`);
+    setSelectedSetting(settings);
+  };
 
   return (
-    <div className='header-container'>
+    <div className="header-container">
       <AppBar position="static" sx={{ backgroundColor: '#Eae6da' }}>
-        <Container maxWidth='xl'>
+        <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ position: 'relative' }}>
             {/* Left side - Icon + buttons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -93,7 +99,7 @@ export function Header() {
                       display: 'block',
                       textDecoration: getSelectedPage() === page ? 'underline' : 'none',
                     }}
-                    className='destination-button'
+                    className="destination-button"
                   >
                     {page}
                   </Button>
@@ -132,7 +138,11 @@ export function Header() {
             <Box sx={{ marginLeft: 'auto' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt={name} src="/static/images/avatar/2.jpg" />
+                  {!loading && (
+                    <Avatar alt={name}>
+                      {firstLetter}
+                    </Avatar>
+                  )}
                 </IconButton>
               </Tooltip>
               <Menu
@@ -151,14 +161,17 @@ export function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={() => {
-                    handleCloseUserMenu()
-                    handleNavigationSettings(setting)
-                  }}
-
+                {settings.map(({ label, path, component }) => (
+                  <MenuItem
+                    key={label}
+                    onClick={() => {
+                      handleCloseUserMenu();
+                      if (path) handleNavigationSettings(path);
+                    }}
                   >
-                    <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
+                    {component ? component : (
+                      <Typography sx={{ textAlign: 'center' }}>{label}</Typography>
+                    )}
                   </MenuItem>
                 ))}
               </Menu>

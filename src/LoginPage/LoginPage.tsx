@@ -19,10 +19,9 @@ export function Login() {
         email: email,
         password: password,
       })
-      console.log(response.data)
-      setName(response.data.email.split('@')[0].toUpperCase())
-      localStorage.setItem('name', response.data.name)
-      localStorage.setItem('jwt', response.data.jwt)
+      const formattedName = response.data.email.split('@')[0].toUpperCase();
+      setName(formattedName);
+      localStorage.setItem('jwt', response.data.jwt);
     } catch (error) {
       console.log(error)
     }
@@ -30,16 +29,6 @@ export function Login() {
     setPassword('')
     // navigate('/')
   }
-
-  useEffect(() => {
-    if (name) {
-      console.log(name)
-    }
-  }, [name])
-
-
-
-
 
   return (
     <div className='login-page'>

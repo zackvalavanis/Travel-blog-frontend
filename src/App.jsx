@@ -11,6 +11,7 @@ import { ImagesIndex } from './Images/ImagesIndex.jsx'
 import { Login } from './LoginPage/LoginPage.tsx'
 import { UserProvider } from './context/UserContext.tsx'
 import { SignUp } from './NewAccount/NewAccount.tsx'
+import { AccountPage } from './Account/AccountPage.tsx'
 
   const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ import { SignUp } from './NewAccount/NewAccount.tsx'
         { 
           path: '/Signup', 
           element: <SignUp />
+        }, 
+        { 
+          path: '/Account', 
+          element: <AccountPage/>
         }
 
       ]

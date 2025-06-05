@@ -5,7 +5,6 @@ import { Logout } from '../Logout/LogoutLink.tsx'
 export function Footer() { 
 
   const jwt = localStorage.getItem('jwt')
-  console.log(jwt)
 
   return (
     <div className='footer-container'>
