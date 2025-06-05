@@ -1,3 +1,8 @@
+body {
+  overflow-y: scroll;
+  /* Always show scrollbar, even when not needed */
+}
+
 .header-container {
   display: flex;
   margin: 0 auto !important;
@@ -7,5 +12,4 @@
 
 .destination-button:hover {
   transform: scale(1.05);
-
 }

@@ -27,7 +27,7 @@ export function Login() {
     }
     setEmail('')
     setPassword('')
-    // navigate('/')
+    navigate('/')
   }
 
   return (

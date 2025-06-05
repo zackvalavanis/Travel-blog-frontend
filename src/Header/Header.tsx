@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -17,7 +16,6 @@ import { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
 
-const pages: string[] = ['Destinations', 'New Post'];
 const settings = [
   { label: 'Login', path: '/Login' },
   { label: 'Account', path: '/account' },
@@ -35,15 +33,8 @@ export function Header() {
 
   const firstLetter = name ? name.charAt(0).toUpperCase() : '?';
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -62,9 +53,9 @@ export function Header() {
     setSelectedPage(page);
   };
 
-  const handleNavigationSettings = (settings: string) => {
-    navigate(`${settings}`);
-    setSelectedSetting(settings);
+  const handleNavigationSettings = (path: string) => {
+    navigate(path);
+    setSelectedSetting(path);
   };
 
   return (
@@ -72,7 +63,7 @@ export function Header() {
       <AppBar position="static" sx={{ backgroundColor: '#Eae6da' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ position: 'relative' }}>
-            {/* Left side - Icon + buttons */}
+            {/* Left side - Logo and nav buttons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <IconButton
                 onClick={() => {
@@ -84,26 +75,39 @@ export function Header() {
                 <AdbIcon sx={{ color: '#cd3c2a' }} />
               </IconButton>
 
-              {/* Navigation buttons on md+ screens */}
+              {/* Navigation buttons (always show Destinations, only show New Post if logged in) */}
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                {pages.map((page) => (
+                <Button
+                  onClick={() => {
+                    handleNavigation('Destinations');
+                  }}
+                  sx={{
+                    my: 2,
+                    color: '#cd3c2a',
+                    display: 'block',
+                    textDecoration: getSelectedPage() === 'Destinations' ? 'underline' : 'none',
+                  }}
+                  className="destination-button"
+                >
+                  Destinations
+                </Button>
+
+                {localStorage.getItem('jwt') && (
                   <Button
-                    key={page}
                     onClick={() => {
-                      handleCloseNavMenu();
-                      handleNavigation(page);
+                      handleNavigation('New Post');
                     }}
                     sx={{
                       my: 2,
                       color: '#cd3c2a',
                       display: 'block',
-                      textDecoration: getSelectedPage() === page ? 'underline' : 'none',
+                      textDecoration: getSelectedPage() === 'New Post' ? 'underline' : 'none',
                     }}
                     className="destination-button"
                   >
-                    {page}
+                    New Post
                   </Button>
-                ))}
+                )}
               </Box>
             </Box>
 
@@ -134,30 +138,21 @@ export function Header() {
               HOME
             </Typography>
 
-            {/* Right side user menu */}
+            {/* Right side user avatar + dropdown */}
             <Box sx={{ marginLeft: 'auto' }}>
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  {!loading && (
-                    <Avatar alt={name}>
-                      {firstLetter}
-                    </Avatar>
-                  )}
+                <IconButton onClick={handleOpenUserMenu}>
+                  {!loading && <Avatar alt={name}>{!firstLetter || ''}</Avatar>}
                 </IconButton>
               </Tooltip>
               <Menu
+                disableScrollLock
                 sx={{ mt: '45px' }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
@@ -172,48 +167,6 @@ export function Header() {
                     {component ? component : (
                       <Typography sx={{ textAlign: 'center' }}>{label}</Typography>
                     )}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-
-            {/* Mobile menu icon */}
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-start', ml: 1 }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{ display: { xs: 'block', md: 'none' } }}
-              >
-                {pages.map((page) => (
-                  <MenuItem
-                    key={page}
-                    onClick={() => {
-                      handleCloseNavMenu();
-                      handleNavigation(page);
-                    }}
-                  >
-                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
