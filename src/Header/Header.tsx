@@ -16,12 +16,8 @@ import { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
 
-const settings = [
-  { label: 'Login', path: '/Login' },
-  { label: 'Account', path: '/account' },
-  { label: 'Dashboard', path: '/dashboard' },
-  { label: 'Logout', component: <Logout /> }
-];
+
+
 
 export function Header() {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -30,6 +26,19 @@ export function Header() {
   const [selectedPage, setSelectedPage] = useState('');
   const [selectedSetting, setSelectedSetting] = useState('');
   const { name, loading } = useContext(UserContext);
+
+  const settings = [
+    { label: 'Login', path: '/Login' },
+    { label: 'Account', path: '/account' },
+    { label: 'Dashboard', path: '/dashboard' },
+    {
+      label: 'Logout', action: () => {
+        localStorage.removeItem('jwt')
+        localStorage.removeItem('name')
+        navigate('/Login')
+      }
+    }
+  ];
 
   const firstLetter = name ? name.charAt(0).toUpperCase() : '?';
 
@@ -142,7 +151,7 @@ export function Header() {
             <Box sx={{ marginLeft: 'auto' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu}>
-                  {!loading && <Avatar alt={name}>{!firstLetter || ''}</Avatar>}
+                  <Avatar alt={name}>{firstLetter || ''}</Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -156,17 +165,19 @@ export function Header() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map(({ label, path, component }) => (
+                {settings.map(({ label, path, action }) => (
                   <MenuItem
                     key={label}
                     onClick={() => {
                       handleCloseUserMenu();
-                      if (path) handleNavigationSettings(path);
+                      if (action) {
+                        action()
+                      } else if (path) {
+                        handleNavigationSettings(path);
+                      }
                     }}
                   >
-                    {component ? component : (
-                      <Typography sx={{ textAlign: 'center' }}>{label}</Typography>
-                    )}
+                    <Typography sx={{ textAlign: 'center' }}>{label}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
