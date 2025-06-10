@@ -6,8 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 type LikedDestination = {
   id: number,
+  city: string,
   user_id: number,
-  destination_id: number
+  destination_id: number,
+  images: any,
+  image: any
 
   destination: {
     id: number,
@@ -25,8 +28,23 @@ export function AccountPage() {
 
   const handleLikes = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/likes.json')
-      setLikedDestinations(response.data)
+      const response = await axios.post('http://localhost:3000/graphql', {
+        query: `{ 
+          destinations { 
+            id
+            city
+            country 
+            description
+            image
+          }
+        }`
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+      setLikedDestinations(response.data.data.destinations)
     } catch (error) {
       console.log(error)
     }
@@ -54,12 +72,12 @@ export function AccountPage() {
 
   return (
     <div>
-      {likedDestinations.map((like) => (
-        <div key={like.id}>
-          <h1>{like.destination.city}</h1>
-          {like.destination.images && like.destination.images.map((image) => (
-            <div key={image.id}>
-              <img src={image.image_url} style={{ height: '300px', width: '400px' }}></img>
+      {likedDestinations.map((destination) => (
+        <div key={destination.id}>
+          <h1>{destination.city}</h1>
+          {destination.images && destination.images.map((image_url, index) => (
+            <div key={index}>
+              <img src={image_url} style={{ height: '300px', width: '400px' }}></img>
             </div>
           ))}
           <button onClick={() => handleNavigate(like)}>Expand Story</button>
