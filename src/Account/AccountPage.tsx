@@ -4,38 +4,44 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-type LikedDestination = {
-  id: number,
-  city: string,
-  user_id: number,
-  destination_id: number,
-  images: any,
-  image: any
 
+type Like = {
+  id: number;
+  user: {
+    id: number;
+    name: string;
+  };
   destination: {
-    id: number,
-    name: string,
-    city: string,
-    country: string,
-    description: string
-    images: any
+    id: number;
+    city: string;
+    country: string;
+    description: string;
+    image: string[];
   }
 }
 
+
 export function AccountPage() {
-  const [likedDestinations, setLikedDestinations] = useState<LikedDestination[]>([])
+  const [likedDestinations, setLikedDestinations] = useState<Like[]>([])
   const navigate = useNavigate()
 
   const handleLikes = async () => {
     try {
       const response = await axios.post('http://localhost:3000/graphql', {
         query: `{ 
-          destinations { 
+          likes { 
             id
-            city
-            country 
-            description
-            image
+            user { 
+              id
+              name
+            }
+            destination { 
+              id
+              city
+              country 
+              description
+              image
+            }
           }
         }`
       }, {
@@ -44,7 +50,7 @@ export function AccountPage() {
         }
       }
       )
-      setLikedDestinations(response.data.data.destinations)
+      setLikedDestinations(response.data.data.likes)
     } catch (error) {
       console.log(error)
     }
@@ -54,13 +60,12 @@ export function AccountPage() {
     handleLikes()
   }, [])
 
-
-  const handleNavigate = (like: LikedDestination) => {
-    navigate(`/destinations/${like.destination.id}`)
+  const handleNavigate = (like: Like) => {
     console.log(like)
+    navigate(`/destinations/${like.destination.id}`)
   }
 
-  const handleRemoveLike = async (like: LikedDestination) => {
+  const handleRemoveLike = async (like: Like) => {
     console.log(like)
     try {
       const response = await axios.delete(`http://localhost:3000/likes/${like.id}.json`)
@@ -72,10 +77,10 @@ export function AccountPage() {
 
   return (
     <div>
-      {likedDestinations.map((destination) => (
-        <div key={destination.id}>
-          <h1>{destination.city}</h1>
-          {destination.images && destination.images.map((image_url, index) => (
+      {likedDestinations.map((like) => (
+        <div key={like.id}>
+          <h1>{like.destination.city}</h1>
+          {like.destination.image && like.destination.image.map((image_url, index) => (
             <div key={index}>
               <img src={image_url} style={{ height: '300px', width: '400px' }}></img>
             </div>
