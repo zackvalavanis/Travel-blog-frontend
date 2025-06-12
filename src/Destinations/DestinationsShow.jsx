@@ -153,8 +153,9 @@ export function DestinationsShow() {
       ) : (
         <p>There are no images</p>
       )}
-      <div className='navigate-container'>
+      <div className='navigate-container' >
         <button
+          style={{color: 'white', backgroundColor: ' #da9b68'}}
           className='navigate-images'
           onClick={navToSeeAllImages}
         >

@@ -1,44 +1,55 @@
 .footer-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   background-color: #eae6da;
   padding: 20px 0;
-  color: #cd3c2a;
+  color: white;
   text-align: center;
 }
 
+.footer-div-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 98%;
+  height: 20rem;
+  background-color: #da9b68;
+}
+
+.footer-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer-words {
-  display: flex;
-  justify-content: center;
   padding: 10px;
-  color: #cd3c2a;
-}
-
-.footer-container link {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.footer-container a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  color: white;
   text-decoration: none;
-  margin-bottom: 30px;
-  color: inherit;
-  font-size: 17px;
-}
-
-.footer-container a:hover {
-  text-decoration: underline;
 }
 
 .link-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  gap: 20px
+  gap: .8rem
+}
+
+.link-container a {
+  text-decoration: none;
+  color: white;
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.link-container a:hover {
+  text-decoration: underline;
+
+  /* optional */
 }

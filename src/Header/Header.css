@@ -1,3 +1,7 @@
+* {
+  background-color: #eae6da;
+}
+
 body {
   overflow-y: scroll;
   /* Always show scrollbar, even when not needed */
@@ -5,9 +9,7 @@ body {
 
 .header-container {
   display: flex;
-  margin: 0 auto !important;
-  width: 100% !important;
-  background: #eae6da !important;
+  background-color: white !important;
 }
 
 .destination-button:hover {

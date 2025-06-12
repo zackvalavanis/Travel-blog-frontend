@@ -12,7 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
 
@@ -26,6 +26,8 @@ export function Header() {
   const [selectedPage, setSelectedPage] = useState('');
   const [selectedSetting, setSelectedSetting] = useState('');
   const { name, loading } = useContext(UserContext);
+  const [scrolled, setScrolled] = useState(false)
+  const [hideHeader, setHideHeader] = useState(false);
 
   const settings = [
     { label: 'Login', path: '/Login' },
@@ -67,9 +69,36 @@ export function Header() {
     setSelectedSetting(path);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+      setHideHeader(window.scrollY > 100); // header hides after scrolling 100px
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
+
+
+
   return (
     <div className="header-container">
-      <AppBar position="static" sx={{ backgroundColor: '#Eae6da' }}>
+      <AppBar position='fixed' sx={{
+        backgroundColor: '#da9b68',
+        width: '90%',
+        left: 0,
+        right: 0,
+        margin: '0 auto',
+        borderRadius: '20px',
+        transition: 'all 0.3s ease, opacity 0.3s ease',
+        boxShadow: scrolled ? 4 : 0,
+        py: scrolled ? 0.5 : 2,
+        transform: hideHeader ? 'translateY(-100%)' : 'translateY(0)',
+        opacity: hideHeader ? 0 : 1,
+      }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters sx={{ position: 'relative' }}>
             {/* Left side - Logo and nav buttons */}
@@ -81,7 +110,7 @@ export function Header() {
                 }}
                 sx={{ p: 0, display: { xs: 'none', md: 'flex' }, mr: 1 }}
               >
-                <AdbIcon sx={{ color: '#cd3c2a' }} />
+                <AdbIcon sx={{ color: 'white' }} />
               </IconButton>
 
               {/* Navigation buttons (always show Destinations, only show New Post if logged in) */}
@@ -92,7 +121,7 @@ export function Header() {
                   }}
                   sx={{
                     my: 2,
-                    color: '#cd3c2a',
+                    color: 'white',
                     display: 'block',
                     textDecoration: getSelectedPage() === 'Destinations' ? 'underline' : 'none',
                   }}
@@ -108,7 +137,7 @@ export function Header() {
                     }}
                     sx={{
                       my: 2,
-                      color: '#cd3c2a',
+                      color: 'white',
                       display: 'block',
                       textDecoration: getSelectedPage() === 'New Post' ? 'underline' : 'none',
                     }}
@@ -138,7 +167,7 @@ export function Header() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: '#cd3c2a',
+                color: 'white',
                 textDecoration: 'none',
                 cursor: 'pointer',
                 userSelect: 'none',

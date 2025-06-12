@@ -1,14 +1,23 @@
 html,
 body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  min-height: 150vh;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
   max-width: 100%;
+  background-color: #eae6da;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding-top: 120px;
+  background-color: #eae6da;
+  /* to avoid being behind the fixed header */
 }

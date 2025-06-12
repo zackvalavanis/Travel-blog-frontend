@@ -3,30 +3,47 @@
   box-sizing: border-box;
 }
 
+.main-container {
+  background-color: #eae6da;
+}
+
 html,
 body {
   width: 100%;
   overflow-x: hidden;
   font-family: system-ui, sans-serif;
+  background-color: #eae6da;
 }
 
 .container-main {
   display: flex;
-  justify-content: space-between;
+  padding: 1rem;
+  justify-content: center;
   height: 500px;
 }
 
 .container-first {
   display: flex;
-  flex-direction: row;
+  padding: 2rem;
+  flex-direction: column;
   justify-content: space-between;
   width: 45%;
 }
 
 .img-container-1 {
   display: flex;
+  height: auto;
+  object-fit: contain;
   align-items: right;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.japan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+
 }
 
 .london {
@@ -37,12 +54,14 @@ body {
 }
 
 /* Remove debugging background if not needed */
-.container-main,
+/* .container-main,
 .container-japan,
-.container-n {
-  background-color: #000;
-  /* or set a background that fits your design */
-}
+.container-n,
+.container-2,
+.container-3,
+.container-bottom {
+  background-color: #eae6da;
+} */
 
 img {
   display: block;
