@@ -41,6 +41,10 @@ export function Destinations() {
     navigate('/New Post');
   };
 
+  const handleLike = () => {
+    console.log('You have liked this')
+  }
+
   return (
     <div className='container-all'>
       <div className='header-container-8'>
@@ -93,6 +97,14 @@ export function Destinations() {
                   handleShow(d)
                 }}>
                 More Information
+              </button>
+            </div>
+            <div className='like-button-container'>
+              <button
+                className='like-button-button'
+                onClick={handleLike}
+              >
+                Like
               </button>
             </div>
           </div>

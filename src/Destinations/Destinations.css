@@ -115,7 +115,8 @@
 }
 
 .moreInfo-button,
-.new-post-button {
+.new-post-button,
+.like-button-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -135,7 +136,8 @@
 }
 
 .button-container-1,
-.button-container-3 {
+.button-container-3,
+.like-button-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -144,6 +146,10 @@
 
 .button-container-1:hover,
 .new-post-button:hover {
+  transform: scale(1.05);
+}
+
+.like-button-button:hover {
   transform: scale(1.05);
 }
 
