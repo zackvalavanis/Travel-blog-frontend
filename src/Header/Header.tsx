@@ -89,17 +89,16 @@ export function Header() {
       <AppBar position='fixed' sx={{
         backgroundColor: '#da9b68',
         width: '90%',
-        left: 0,
-        right: 0,
-        margin: '0 auto',
+        left: '50%',
+        transform: 'translateX(-50.4%)',
         borderRadius: '20px',
         transition: 'all 0.3s ease, opacity 0.3s ease',
         boxShadow: scrolled ? 4 : 0,
         py: scrolled ? 0.5 : 2,
-        transform: hideHeader ? 'translateY(-100%)' : 'translateY(0)',
         opacity: hideHeader ? 0 : 1,
+        top: 0, // just in case
       }}>
-        <Container maxWidth="xl">
+        <Container disableGutters maxWidth={false} sx={{ px: 3 }}>
           <Toolbar disableGutters sx={{ position: 'relative' }}>
             {/* Left side - Logo and nav buttons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
