@@ -10,7 +10,7 @@ export function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const { name, setName } = useContext(UserContext);
+  const { name, setName, id, setUserId } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -19,7 +19,10 @@ export function Login() {
         email: email,
         password: password,
       })
+      console.log(response.data)
       const formattedName = response.data.email.split('@')[0].toUpperCase();
+      console.log('Setting user ID to:', response.data.user_id);
+      setUserId(response.data.user_id);
       setName(formattedName);
       localStorage.setItem('jwt', response.data.jwt);
     } catch (error) {

@@ -80,10 +80,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-
-
-
   return (
     <div className="header-container">
       <AppBar position='fixed' sx={{

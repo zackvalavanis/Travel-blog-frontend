@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import './Destinations.css';
 import { HereMap } from '../Map/Map.jsx';
 import React from 'react';
-
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext.js';
 
 type DestinationImage = {
   image_url: string
@@ -19,6 +20,11 @@ type Destination = {
 export function Destinations() {
   const [destination, setDestination] = useState<Destination[]>([])
   const navigate = useNavigate();
+  const { id: user_id } = useContext(UserContext);
+
+
+
+  console.log(user_id)
 
   const handleIndex = async () => {
     try {
@@ -41,8 +47,21 @@ export function Destinations() {
     navigate('/New Post');
   };
 
-  const handleLike = () => {
-    console.log('You have liked this')
+  const handleLike = async (d: Destination) => {
+    if (!user_id) {
+      console.error('User ID not found')
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/likes.json', {
+        user_id,
+        destination_id: d.id
+      })
+      console.log('Like Posted')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -102,7 +121,7 @@ export function Destinations() {
             <div className='like-button-container'>
               <button
                 className='like-button-button'
-                onClick={handleLike}
+                onClick={() => handleLike(d)}
               >
                 Like
               </button>
