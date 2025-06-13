@@ -57,19 +57,15 @@ export function CreateNewDestination() {
       </div>
       <form onSubmit={handleCreate} className="form-create">
         <label>
-          City:
           <input className="city-input" type="text" placeholder="city" name="city" required />
         </label>
         <label>
-          State: 
           <input className="city-input" type="text" placeholder="State if applicable" name="state"></input>
         </label>
         <label>
-          Country:
           <input className="country-input" type="text" placeholder="country" name="country" required />
         </label>
         <label>
-          Description:
           <textarea
             className="description-input"
             placeholder="Description"

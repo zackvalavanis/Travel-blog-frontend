@@ -84,10 +84,10 @@ export function Header() {
     <div className="header-container">
       <AppBar position='fixed' sx={{
         backgroundColor: '#da9b68',
-        width: '90%',
-        left: '50%',
-        transform: 'translateX(-50.4%)',
-        borderRadius: '20px',
+        width: { xs: '100%', sm: '90%' },
+        left: { xs: 0, sm: '50%' },
+        transform: { xs: 'none', sm: 'translateX(-50.55%)' },
+        borderRadius: { xs: '0px', sm: '20px' },
         transition: 'all 0.3s ease, opacity 0.3s ease',
         boxShadow: scrolled ? 4 : 0,
         py: scrolled ? 0.5 : 2,
@@ -209,6 +209,6 @@ export function Header() {
           </Toolbar>
         </Container>
       </AppBar>
-    </div>
+    </div >
   );
 }

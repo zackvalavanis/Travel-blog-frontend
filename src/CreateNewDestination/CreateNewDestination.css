@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80rem;
 }
 
 .header-container-5 {
@@ -110,4 +111,11 @@ label,
   display: flex;
   justify-content: left;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .form-wrapper-5 {
+    height: 58rem;
+  }
+
 }

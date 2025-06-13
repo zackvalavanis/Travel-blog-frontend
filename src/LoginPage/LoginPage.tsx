@@ -40,15 +40,16 @@ export function Login() {
           className='login-form'
           onSubmit={handleLogin}
         >
+          <h1 style={{ display: 'flex', justifyContent: 'center', color: 'black' }}> Sign-in</h1>
           <label
             className='label1'
           >
-            Email:
           </label>
           <input
             className='input1'
             name='email'
             type='email'
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           >
@@ -56,12 +57,12 @@ export function Login() {
           <label
             className='label2'
           >
-            Password
           </label>
           <input
             className='input2'
             name='password'
             type='password'
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           >
@@ -73,7 +74,7 @@ export function Login() {
             Login
           </button>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }

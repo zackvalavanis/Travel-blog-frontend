@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   margin: 0;
+  background-color: #eae6da;
   /* remove default margin */
 }
 
@@ -9,6 +10,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 20px;
   background-color: #da9b68;
   align-items: center;
 }
@@ -37,8 +41,8 @@ body {
 
 .input1,
 .input2 {
-  border-radius: 1px;
-  height: 20px;
+  border-radius: 5px;
+  height: 40px;
 }
 
 .button-login {
