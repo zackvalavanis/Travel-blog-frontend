@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-
+import './AccountPage.css'
 
 
 type Like = {
@@ -28,7 +28,6 @@ export function AccountPage() {
   const { id: userId, loading } = useContext(UserContext);
 
   const handleLikes = async () => {
-    console.log("handleLikes called");
 
     try {
       const response = await axios.post("http://localhost:3000/graphql", {
@@ -54,14 +53,10 @@ export function AccountPage() {
         }
       });
 
-      console.log("GraphQL response:", response.data);
-
       const allLikes: Like[] = response.data.data.likes;
       const userLikes = allLikes.filter((like) => {
         return Number(like.user.id) === userId
       })
-
-      console.log("Filtered likes for user:", userLikes);
 
       setLikedDestinations(userLikes);
     } catch (error) {
@@ -70,12 +65,10 @@ export function AccountPage() {
   };
 
   const handleNavigate = (like: Like) => {
-    console.log(like)
     navigate(`/destinations/${like.destination.id}`)
   }
 
   const handleRemoveLike = async (like: Like) => {
-    console.log(like)
     try {
       const response = await axios.delete(`http://localhost:3000/likes/${like.id}.json`)
       setLikedDestinations(prev => prev.filter((d) => d.id !== like.id))
@@ -85,12 +78,7 @@ export function AccountPage() {
 
   }
 
-
-
   useEffect(() => {
-    console.log("userId from context:", userId);
-    console.log("loading from context:", loading);
-
     if (!loading && userId !== undefined) {
       handleLikes();
     }
@@ -102,21 +90,18 @@ export function AccountPage() {
     }
   }, [userId]);
 
-
-
-
   return (
-    <div>
+    <div className='liked-posts-container'>
       {likedDestinations.map((like) => (
-        <div key={like.id}>
-          <h1>{like.destination.city}</h1>
+        <div className='likes' key={like.id}>
+          <h1 style={{ textAlign: 'center', color: 'black' }}>{like.destination.city}</h1>
           {like.destination.image && like.destination.image.map((image_url, index) => (
             <div key={index}>
-              <img src={image_url} style={{ height: '300px', width: '400px' }}></img>
+              <img className="like-card__image" src={image_url}></img>
             </div>
           ))}
-          <button onClick={() => handleNavigate(like)}>Expand Story</button>
-          <button onClick={() => handleRemoveLike(like)}>Delete</button>
+          <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
+          <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
         </div>
       ))
       }

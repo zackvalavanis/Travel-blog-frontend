@@ -32,7 +32,6 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     const storedId = localStorage.getItem('userId');
     if (storedId) setUserId(Number(storedId));
 
-    console.log(storedId)
     if (storedName) {
       setNameState(storedName);
     }

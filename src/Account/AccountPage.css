@@ -1,0 +1,91 @@
+.liked-posts-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* allow items to wrap onto new rows */
+  justify-content: center;
+  gap: 20px;
+  /* spacing between items */
+  width: 90%;
+  margin: 0 auto;
+}
+
+.likes {
+  flex: 1 1 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.button-expand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 30px;
+  width: 350px;
+}
+
+.button-expand:hover {
+  transform: scale(1.05);
+  background-color: green;
+}
+
+.button-delete-1 {
+  width: 350px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .likes {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .likes img {
+    width: 200px;
+    height: auto;
+    /* preserve aspect ratio */
+    object-fit: cover;
+    /* crop if the ratio doesn’t match exactly */
+    border-radius: 8px;
+    /* optional rounded corners */
+  }
+
+  .like-card__image {
+    width: 120px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .button-expand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+    width: 150px;
+  }
+
+  .button-delete-1 {
+    width: 150px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+}

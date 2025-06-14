@@ -22,10 +22,6 @@ export function Destinations() {
   const navigate = useNavigate();
   const { id: user_id } = useContext(UserContext);
 
-
-
-  console.log(user_id)
-
   const handleIndex = async () => {
     try {
       const response = await axios.get('http://localhost:3000/destinations.json');
@@ -59,6 +55,7 @@ export function Destinations() {
         destination_id: d.id
       })
       console.log('Like Posted')
+      alert('Liked Post')
     } catch (error) {
       console.log(error)
     }
