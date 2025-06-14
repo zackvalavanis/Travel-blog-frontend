@@ -30,9 +30,10 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [hideHeader, setHideHeader] = useState(false);
   const { setUserId, setName } = useContext(UserContext);
+  const isLoggedIn = Boolean(localStorage.getItem('jwt'));
 
-  const settings = [
-    { label: 'Login', path: '/Login' },
+  const settings = isLoggedIn ? [
+
     { label: 'Account', path: '/account' },
     { label: 'Dashboard', path: '/dashboard' },
     {
@@ -49,9 +50,11 @@ export function Header() {
         navigate('/Login')
       }
     }
+  ] : [
+    { label: 'Login', path: '/Login' }
   ];
 
-  const firstLetter = name ? name.charAt(0).toUpperCase() : '?';
+  const firstLetter = name ? name.charAt(0).toUpperCase() : '';
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -184,7 +187,7 @@ export function Header() {
             <Box sx={{ marginLeft: 'auto' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu}>
-                  <Avatar alt={name}>{firstLetter || ''}</Avatar>
+                  <Avatar alt={name}>{firstLetter}</Avatar>
                 </IconButton>
               </Tooltip>
               <Menu
