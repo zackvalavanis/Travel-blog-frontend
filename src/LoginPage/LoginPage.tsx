@@ -25,6 +25,8 @@ export function Login() {
       setUserId(response.data.user_id);
       setName(formattedName);
       localStorage.setItem('jwt', response.data.jwt);
+      localStorage.setItem('userId', response.data.user_id.toString());
+
     } catch (error) {
       console.log(error)
     }
@@ -32,6 +34,7 @@ export function Login() {
     setPassword('')
     navigate('/')
   }
+
 
   return (
     <div className='login-page'>

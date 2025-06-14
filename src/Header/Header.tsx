@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
+import axios from 'axios';
 
 
 
@@ -28,6 +29,7 @@ export function Header() {
   const { name, loading } = useContext(UserContext);
   const [scrolled, setScrolled] = useState(false)
   const [hideHeader, setHideHeader] = useState(false);
+  const { setUserId, setName } = useContext(UserContext);
 
   const settings = [
     { label: 'Login', path: '/Login' },
@@ -35,8 +37,15 @@ export function Header() {
     { label: 'Dashboard', path: '/dashboard' },
     {
       label: 'Logout', action: () => {
+        setUserId(undefined)
+        setName('')
+
+        delete axios.defaults.headers.common['Authorization'];
+
         localStorage.removeItem('jwt')
         localStorage.removeItem('name')
+        localStorage.removeItem('userId')
+
         navigate('/Login')
       }
     }

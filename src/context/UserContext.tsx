@@ -27,11 +27,17 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [name, setNameState] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
 
-
   useEffect(() => {
     const storedName = localStorage.getItem('name');
+    const storedId = localStorage.getItem('userId');
+    if (storedId) setUserId(Number(storedId));
+
+    console.log(storedId)
     if (storedName) {
       setNameState(storedName);
+    }
+    if (storedId) {
+      setUserId(parseInt(storedId))
     }
     setLoading(false);
   }, []);

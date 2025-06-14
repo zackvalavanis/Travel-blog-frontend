@@ -55,7 +55,7 @@ import { AccountPage } from './Account/AccountPage.tsx'
           element: <SignUp />
         }, 
         { 
-          path: '/Account', 
+          path: '/account', 
           element: <AccountPage/>
         }
 

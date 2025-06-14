@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
 
 
@@ -20,14 +22,16 @@ type Like = {
   }
 }
 
-
 export function AccountPage() {
   const [likedDestinations, setLikedDestinations] = useState<Like[]>([])
   const navigate = useNavigate()
+  const { id: userId, loading } = useContext(UserContext);
 
   const handleLikes = async () => {
+    console.log("handleLikes called");
+
     try {
-      const response = await axios.post('http://localhost:3000/graphql', {
+      const response = await axios.post("http://localhost:3000/graphql", {
         query: `{ 
           likes { 
             id
@@ -43,22 +47,27 @@ export function AccountPage() {
               image
             }
           }
-        }`
+        }`,
       }, {
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         }
-      }
-      )
-      setLikedDestinations(response.data.data.likes)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+      });
 
-  useEffect(() => {
-    handleLikes()
-  }, [])
+      console.log("GraphQL response:", response.data);
+
+      const allLikes: Like[] = response.data.data.likes;
+      const userLikes = allLikes.filter((like) => {
+        return Number(like.user.id) === userId
+      })
+
+      console.log("Filtered likes for user:", userLikes);
+
+      setLikedDestinations(userLikes);
+    } catch (error) {
+      console.log("Error in handleLikes:", error);
+    }
+  };
 
   const handleNavigate = (like: Like) => {
     console.log(like)
@@ -73,7 +82,28 @@ export function AccountPage() {
     } catch (error) {
       console.log(error)
     }
+
   }
+
+
+
+  useEffect(() => {
+    console.log("userId from context:", userId);
+    console.log("loading from context:", loading);
+
+    if (!loading && userId !== undefined) {
+      handleLikes();
+    }
+  }, [userId, loading]);
+
+  useEffect(() => {
+    if (userId === undefined) {
+      setLikedDestinations([]);  // clear the list when there is no user
+    }
+  }, [userId]);
+
+
+
 
   return (
     <div>
