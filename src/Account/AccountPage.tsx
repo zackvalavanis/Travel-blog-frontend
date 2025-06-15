@@ -100,8 +100,10 @@ export function AccountPage() {
               <img className="like-card__image" src={image_url}></img>
             </div>
           ))}
-          <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
-          <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
+          <div className='button-container-account'>
+            <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
+            <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
+          </div>
         </div>
       ))
       }

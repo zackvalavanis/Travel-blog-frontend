@@ -5,6 +5,7 @@ import { Logout } from '../Logout/LogoutLink.tsx'
 export function Footer() { 
 
   const jwt = localStorage.getItem('jwt')
+  const loggedIn = Boolean(localStorage.getItem('jwt'));
 
   return (
     <div className='footer-container'>
@@ -14,11 +15,18 @@ export function Footer() {
         </div>
 
         <div className='link-container'>
-          <Link to='/destinations'>Destinations</Link>
-          <Link to='/New Post'>New Post</Link>
-          <Link to='/Login'>Login</Link>
-          <Link to='/Signup'>Signup</Link>
-          {jwt && jwt.length > 0 ? <Logout/> : ''}
+          {loggedIn ? (
+            <>
+            <Link to='/destinations'>Destinations</Link>
+            <Link to='/New Post'>New Post</Link>
+            </>
+          ) : (
+            <>
+            <Link to='/Login'>Login</Link>
+            <Link to='/Signup'>Signup</Link>
+            {jwt && jwt.length > 0 ? <Logout/> : ''}
+            </>
+          )}
         </div>
       </div>
     </div>

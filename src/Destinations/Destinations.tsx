@@ -21,6 +21,23 @@ export function Destinations() {
   const [destination, setDestination] = useState<Destination[]>([])
   const navigate = useNavigate();
   const { id: user_id } = useContext(UserContext);
+  const [likes, setLikes] = useState<any[]>([]);
+
+  const fetchLikes = async () => {
+    if (!user_id) return;
+    try {
+      const response = await axios.get(`http://localhost:3000/users/${user_id}/likes.json`);
+      setLikes(response.data);
+    } catch (error) {
+      console.error('Error fetching likes', error);
+    }
+  };
+
+  useEffect(() => {
+    handleIndex();
+    fetchLikes();
+  }, [user_id]);
+
 
   const handleIndex = async () => {
     try {
@@ -49,6 +66,16 @@ export function Destinations() {
       return;
     }
 
+    const alreadyLiked = likes?.some(
+      (like) => like.user_id === user_id && like.destination_id === d.id
+    );
+
+    if (alreadyLiked) {
+      alert('You have already liked this destination.');
+      return;
+    }
+
+
     try {
       const response = await axios.post('http://localhost:3000/likes.json', {
         user_id,
@@ -56,6 +83,7 @@ export function Destinations() {
       })
       console.log('Like Posted')
       alert('Liked Post')
+      setLikes((prev) => [...prev, response.data]);
     } catch (error) {
       console.log(error)
     }
@@ -80,9 +108,6 @@ export function Destinations() {
           />
         </div>
       </div>
-
-
-
 
       <div className='container-4'>
         {destination.length === 0 ? (
@@ -119,8 +144,9 @@ export function Destinations() {
               <button
                 className='like-button-button'
                 onClick={() => handleLike(d)}
+                disabled={likes.some(like => like.user_id === user_id && like.destination_id === d.id)}
               >
-                Like
+                {likes.some(like => like.user_id === user_id && like.destination_id === d.id) ? 'Liked' : 'Like'}
               </button>
             </div>
           </div>
