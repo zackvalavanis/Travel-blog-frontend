@@ -1,5 +1,12 @@
+.entire-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .liked-posts-container {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   /* allow items to wrap onto new rows */
   justify-content: center;
@@ -53,6 +60,43 @@
   flex-direction: column;
 }
 
+.profile-image {
+  display: flex;
+  flex-direction: column;
+  height: 1000px
+}
+
+.profile-image-container-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.profile-background {
+  border-radius: 20px;
+  height: 20rem;
+  width: 100%;
+  /* take full width of its container */
+  max-width: 90vw;
+  /* match .liked-posts-container which is 90% width */
+  object-fit: cover;
+}
+
+.profile-image-container-1 .MuiSvgIcon-root {
+  position: absolute;
+  top: 350px;
+  /* adjust these values as needed */
+  font-size: 64px;
+  /* bigger icon */
+  color: white;
+  /* color so it stands out */
+  cursor: pointer;
+  /* optional */
+  z-index: 10;
+  /* ensure it’s above the image */
+}
+
 @media (max-width: 600px) {
   .likes {
     margin: 0 auto;
@@ -96,6 +140,13 @@
     width: 150px;
     height: 30px;
     border-radius: 10px;
+  }
+
+  .profile-background {
+    border-radius: 20px;
+    height: 15rem;
+    width: 26rem;
+    object-fit: cover;
   }
 
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import './AccountPage.css'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 type Like = {
@@ -91,22 +92,35 @@ export function AccountPage() {
   }, [userId]);
 
   return (
-    <div className='liked-posts-container'>
-      {likedDestinations.map((like) => (
-        <div className='likes' key={like.id}>
-          <h1 style={{ textAlign: 'center', color: 'black' }}>{like.destination.city}</h1>
-          {like.destination.image && like.destination.image.map((image_url, index) => (
-            <div key={index}>
-              <img className="like-card__image" src={image_url}></img>
-            </div>
-          ))}
-          <div className='button-container-account'>
-            <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
-            <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
-          </div>
+    <div className='entire-container'>
+      <div className='profile-image'>
+        <div className='profile-image-container-1'>
+          <img
+            src='https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg?cs=srgb&dl=pexels-pixabay-259280.jpg&fm=jpg'
+            className="profile-background">
+          </img>
+          <AccountCircleIcon />
         </div>
-      ))
-      }
-    </div >
+
+        <div className='liked-posts-container'>
+
+          {likedDestinations.map((like) => (
+            <div className='likes' key={like.id}>
+              <h1 style={{ textAlign: 'center', color: 'black' }}>{like.destination.city}</h1>
+              {like.destination.image && like.destination.image.map((image_url, index) => (
+                <div key={index}>
+                  <img className="like-card__image" src={image_url}></img>
+                </div>
+              ))}
+              <div className='button-container-account'>
+                <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
+                <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
+              </div>
+            </div>
+          ))
+          }
+        </div>
+      </div >
+    </div>
   )
 }
