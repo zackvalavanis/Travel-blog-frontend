@@ -23,7 +23,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .likes img {
@@ -63,7 +63,7 @@
 .profile-image {
   display: flex;
   flex-direction: column;
-  height: 1000px
+  height: 1300px
 }
 
 .profile-image-container-1 {
@@ -78,7 +78,7 @@
   height: 20rem;
   width: 100%;
   /* take full width of its container */
-  max-width: 90vw;
+  max-width: 85vw;
   /* match .liked-posts-container which is 90% width */
   object-fit: cover;
 }

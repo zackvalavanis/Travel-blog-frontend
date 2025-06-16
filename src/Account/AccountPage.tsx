@@ -106,13 +106,15 @@ export function AccountPage() {
 
           {likedDestinations.map((like) => (
             <div className='likes' key={like.id}>
-              <h1 style={{ textAlign: 'center', color: 'black' }}>{like.destination.city}</h1>
-              {like.destination.image && like.destination.image.map((image_url, index) => (
-                <div key={index}>
-                  <img className="like-card__image" src={image_url}></img>
-                </div>
-              ))}
-              <div className='button-container-account'>
+              <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
+              {
+                like.destination.image && like.destination.image.map((image_url, index) => (
+                  <div key={index}>
+                    <img className="like-card__image" src={image_url}></img>
+                  </div>
+                ))
+              }
+              < div className='button-container-account' >
                 <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
                 <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
               </div>
@@ -121,6 +123,6 @@ export function AccountPage() {
           }
         </div>
       </div >
-    </div>
+    </div >
   )
 }

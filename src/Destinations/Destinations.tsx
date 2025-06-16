@@ -154,6 +154,7 @@ export function Destinations() {
                 onClick={() => handleLike(d)}
               // disabled={likes.some(like => like.user_id === user_id && like.destination_id === d.id)}
               >
+                Like
                 {/* {likes.some(like => like.user_id === user_id && like.destination_id === d.id) ? 'Liked' : 'Like'} */}
               </button>
             </div>
