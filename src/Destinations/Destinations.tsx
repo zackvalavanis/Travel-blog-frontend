@@ -17,6 +17,18 @@ type Destination = {
   images: DestinationImage[];
 }
 
+type Like = {
+  id: number;
+  destination_id: number;
+  // add any other fields your API returns
+};
+
+type User = {
+  id: number;
+  likes: Like[];
+  // other user fields if needed
+};
+
 export function Destinations() {
   const [destination, setDestination] = useState<Destination[]>([])
   const navigate = useNavigate();
@@ -26,18 +38,12 @@ export function Destinations() {
   const fetchLikes = async () => {
     if (!user_id) return;
     try {
-      const response = await axios.get(`http://localhost:3000/users/${user_id}/likes.json`);
-      setLikes(response.data);
+      const response = await axios.get(`http://localhost:3000/users/${user_id}.json`);
+      setLikes(response.data.destinations || []);
     } catch (error) {
       console.error('Error fetching likes', error);
     }
   };
-
-  useEffect(() => {
-    handleIndex();
-    fetchLikes();
-  }, [user_id]);
-
 
   const handleIndex = async () => {
     try {
@@ -50,7 +56,9 @@ export function Destinations() {
 
   useEffect(() => {
     handleIndex();
-  }, []);
+    fetchLikes();
+  }, [user_id]);
+
 
   const handleShow = (d: Destination) => {
     navigate(`/destinations/${d.id}`);
@@ -62,19 +70,19 @@ export function Destinations() {
 
   const handleLike = async (d: Destination) => {
     if (!user_id) {
-      console.error('User ID not found')
+      console.error('User or user ID not found');
       return;
     }
+    console.log("likes is", likes);
+    console.log("type of likes", typeof likes);
 
-    const alreadyLiked = likes?.some(
-      (like) => like.user_id === user_id && like.destination_id === d.id
-    );
+
+    const alreadyLiked = likes.some(like => like.id === d.id);
 
     if (alreadyLiked) {
       alert('You have already liked this destination.');
       return;
     }
-
 
     try {
       const response = await axios.post('http://localhost:3000/likes.json', {
@@ -83,7 +91,7 @@ export function Destinations() {
       })
       console.log('Like Posted')
       alert('Liked Post')
-      setLikes((prev) => [...prev, response.data]);
+      await fetchLikes()
     } catch (error) {
       console.log(error)
     }
@@ -144,9 +152,9 @@ export function Destinations() {
               <button
                 className='like-button-button'
                 onClick={() => handleLike(d)}
-                disabled={likes.some(like => like.user_id === user_id && like.destination_id === d.id)}
+              // disabled={likes.some(like => like.user_id === user_id && like.destination_id === d.id)}
               >
-                {likes.some(like => like.user_id === user_id && like.destination_id === d.id) ? 'Liked' : 'Like'}
+                {/* {likes.some(like => like.user_id === user_id && like.destination_id === d.id) ? 'Liked' : 'Like'} */}
               </button>
             </div>
           </div>
