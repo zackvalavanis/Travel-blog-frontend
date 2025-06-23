@@ -39,7 +39,7 @@
 .profile-avatar {
   position: absolute;
   bottom: 30px;
-  left: 200px;
+  left: 150px;
   width: var(--profile-avatar-size);
   height: var(--profile-avatar-size);
   border-radius: 50%;
@@ -49,7 +49,6 @@
   box-shadow: var(--profile-avatar-shadow);
   transition: transform 0.3s ease;
   cursor: pointer;
-  /* if you want it clickable */
 }
 
 .profile-avatar:hover {

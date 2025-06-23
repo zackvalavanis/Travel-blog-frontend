@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import './AccountPage.css'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 
 
 type Like = {
@@ -90,7 +90,8 @@ export function AccountPage() {
     }
   }, [userId]);
 
-  const profileImage = localStorage.getItem('profileImage')
+  const storedImage = localStorage.getItem('profileImage');
+  const profileImage = storedImage && storedImage !== 'null' && storedImage !== '' ? storedImage : null;
   const jwt = localStorage.getItem('jwt')
 
   const loggedIn = jwt
@@ -108,33 +109,27 @@ export function AccountPage() {
           {profileImage ? (
             <img className="profile-avatar" src={profileImage} alt='Profile' />
           ) : (
-            <img className="profile-avatar" src="https://via.placeholder.com/150" alt="Default profile" />
+            <img className="profile-avatar" src="/ProfileImage.png" alt="Profile" />
           )}
         </div>
 
-
-
-        {/* <div className='profile-icon'>
-            {loggedIn ? '' : <AccountCircleIcon />}
-            </div> */}
         {likedDestinations.map((like) => (
           <div className='likes' key={like.id}>
             <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
             {
               like.destination.image && like.destination.image.map((image_url, index) => (
                 <div key={index}>
-                  <img className="like-card__image" src={image_url}></img>
+                  <img className="like-card__image" src={image_url} alt={`Image ${index + 1}`} />
                 </div>
               ))
             }
-            < div className='button-container-account' >
+            <div className='button-container-account'>
               <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
               <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
             </div>
           </div>
-        ))
-        }
-      </div>
-    </div >
+        ))}
+      </div> {/* Closing profile-image */}
+    </div>  /* Closing entire-container */
   )
-}
+}    
