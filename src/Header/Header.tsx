@@ -98,7 +98,7 @@ export function Header() {
         backgroundColor: '#da9b68',
         width: { xs: '100%', sm: '90%' },
         left: { xs: 0, sm: '50%' },
-        transform: { xs: 'none', sm: 'translateX(-50%)' },
+        transform: { xs: 'none', sm: 'translateX(-50.5%)' },
         borderRadius: { xs: '0px', sm: '20px' },
         transition: 'all 0.3s ease, opacity 0.3s ease',
         boxShadow: scrolled ? 4 : 0,

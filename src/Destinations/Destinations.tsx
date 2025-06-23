@@ -100,21 +100,8 @@ export function Destinations() {
   return (
     <div className='container-all'>
       <div className='header-container-8'>
-        <h1 className='header-destinations'>My Travels</h1>
-        <div className='image-container'>
-          <img
-            className='image-header-2'
-            src='/FDD87365-651A-4492-A41F-D0D0A701A372.jpeg'
-            alt='header'
-            rel="noopener noreferrer"
-          />
-          <img
-            className='image-header-2'
-            src='/80C487E2-9948-426A-BE36-FE4506A265C0_1_105_c.jpeg'
-            alt='header'
-            rel="noopener noreferrer"
-          />
-        </div>
+        <h1 className="header-destinations">Community Travels</h1>
+        <p className="subtext">See what fellow travelers have been up to!</p>
       </div>
 
       <div className='container-4'>

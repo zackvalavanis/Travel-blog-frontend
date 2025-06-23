@@ -53,7 +53,7 @@ export function AccountPage() {
           "Content-Type": "application/json",
         }
       });
-
+      console.log(response)
       const allLikes: Like[] = response.data.data.likes;
       const userLikes = allLikes.filter((like) => {
         return Number(like.user.id) === userId
@@ -76,7 +76,6 @@ export function AccountPage() {
     } catch (error) {
       console.log(error)
     }
-
   }
 
   useEffect(() => {
@@ -91,38 +90,51 @@ export function AccountPage() {
     }
   }, [userId]);
 
+  const profileImage = localStorage.getItem('profileImage')
+  const jwt = localStorage.getItem('jwt')
+
+  const loggedIn = jwt
+
+  // const profileImage = <img src={image}>''</img>
+
   return (
     <div className='entire-container'>
       <div className='profile-image'>
         <div className='profile-image-container-1'>
           <img
             src='https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg?cs=srgb&dl=pexels-pixabay-259280.jpg&fm=jpg'
-            className="profile-background">
-          </img>
-          <AccountCircleIcon />
+            className="profile-background"
+          />
+          {profileImage ? (
+            <img className="profile-avatar" src={profileImage} alt='Profile' />
+          ) : (
+            <img className="profile-avatar" src="https://via.placeholder.com/150" alt="Default profile" />
+          )}
         </div>
 
-        <div className='liked-posts-container'>
 
-          {likedDestinations.map((like) => (
-            <div className='likes' key={like.id}>
-              <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
-              {
-                like.destination.image && like.destination.image.map((image_url, index) => (
-                  <div key={index}>
-                    <img className="like-card__image" src={image_url}></img>
-                  </div>
-                ))
-              }
-              < div className='button-container-account' >
-                <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
-                <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
-              </div>
+
+        {/* <div className='profile-icon'>
+            {loggedIn ? '' : <AccountCircleIcon />}
+            </div> */}
+        {likedDestinations.map((like) => (
+          <div className='likes' key={like.id}>
+            <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
+            {
+              like.destination.image && like.destination.image.map((image_url, index) => (
+                <div key={index}>
+                  <img className="like-card__image" src={image_url}></img>
+                </div>
+              ))
+            }
+            < div className='button-container-account' >
+              <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
+              <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
             </div>
-          ))
-          }
-        </div>
-      </div >
+          </div>
+        ))
+        }
+      </div>
     </div >
   )
 }

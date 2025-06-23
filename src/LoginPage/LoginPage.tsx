@@ -10,7 +10,7 @@ export function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const { name, setName, id, setUserId } = useContext(UserContext);
+  const { name, setName, id, setUserId, profileImage, setProfileImage } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -24,6 +24,8 @@ export function Login() {
       console.log('Setting user ID to:', response.data.user_id);
       setUserId(response.data.user_id);
       setName(formattedName);
+      setProfileImage(response.data.profile_image)
+      localStorage.setItem('profileImage', response.data.profile_image)
       localStorage.setItem('jwt', response.data.jwt);
       localStorage.setItem('userId', response.data.user_id.toString());
 
