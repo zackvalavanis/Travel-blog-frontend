@@ -119,13 +119,14 @@ export function AccountPage() {
             {
               like.destination.image && like.destination.image.map((image_url, index) => (
                 <div key={index}>
-                  <img className="like-card__image" src={image_url} alt={`Image ${index + 1}`} />
+                  <button className='image-select' style={{ cursor: 'pointer', borderRadius: '20px', border: 'none' }} onClick={() => handleNavigate(like)}>
+                    <img className="like-card__image" src={image_url} alt={`Image ${index + 1}`} />
+                  </button>
                 </div>
               ))
             }
             <div className='button-container-account'>
-              <button className='button-expand' onClick={() => handleNavigate(like)}>Expand Story</button>
-              <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Delete</button>
+              <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Unlike</button>
             </div>
           </div>
         ))}

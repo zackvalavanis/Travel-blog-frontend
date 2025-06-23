@@ -145,6 +145,10 @@
   width: 100%;
 }
 
+.image-select:hover {
+  transform: scale(1.02);
+}
+
 /* Responsive Styles */
 
 @media (max-width: 600px) {
