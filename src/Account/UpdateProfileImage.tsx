@@ -48,12 +48,19 @@ export function UpdateProfileImage({ show, onClose, onProfileUpdated }: UpdatePr
   return (
     <div className='modal-container'>
       <div className='modal'>
-        <h1>Update Profile Photo</h1>
-        <input type="file" accept="image/*" onChange={handleFileChange} />
-        <button onClick={handleUpdateProfilePhoto} disabled={!selectedFile}>
-          Update Profile Photo
-        </button>
-        <button onClick={onClose}>Close</button>
+        <h1 className='title-11212'>Update Profile Photo</h1>
+        <div className='buttons-99'>
+          <div className='buttons-100'>
+            <input style={{ display: 'none' }} id="profile-upload" type="file" accept="image/*" onChange={handleFileChange} />
+            <label style={{ border: 'none', borderRadius: '5px', marginBottom: '5px', cursor: 'pointer' }} htmlFor="profile-upload" className="custom-upload-button">
+              Upload Image
+            </label>
+            <button className='button-update' onClick={handleUpdateProfilePhoto} disabled={!selectedFile}>
+              Update Profile Photo
+            </button>
+          </div>
+        </div>
+        <button className='button-close' onClick={onClose}>Close</button>
       </div>
     </div>
   );

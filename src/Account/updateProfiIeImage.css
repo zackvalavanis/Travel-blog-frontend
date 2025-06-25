@@ -1,7 +1,35 @@
 .modal-container {
   width: 300px;
-  height: 200px;
+  height: 300px;
   border-radius: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.buttons-100 {
+  display: flex;
+  gap: 5px
+}
+
+.button-update {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: black;
+  height: 40px;
+  width: 130px;
+
+}
+
+.title-11212 {
+  text-align: center;
 }
 
 .modal {
@@ -9,4 +37,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2px;
+}
+
+.custom-upload-button {
+  background-color: grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  /* or whatever width you want */
+  height: 40px;
+  /* optional: keeps height consistent */
+  text-align: center;
+  font-size: 14px;
+}
+
+.custom-upload-button:hover,
+.button-update:hover {
+  transform: scale(1.02);
+  color: white;
+}
+
+.button-close {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.button-close:hover {
+  transform: scale(1.02);
+
 }
