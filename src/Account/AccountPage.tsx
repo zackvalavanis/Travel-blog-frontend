@@ -29,8 +29,30 @@ export function AccountPage() {
   const navigate = useNavigate()
   const { id: userId, loading } = useContext(UserContext);
   const [modalShowing, isModalShowing] = useState(false)
+  const [profileImage, setProfileImage] = useState<string | null>(null);
 
 
+
+
+
+
+  const fetchProfile = async () => {
+    const userId = localStorage.getItem("userId");
+    console.log(userId)
+    if (!userId) return;
+
+    try {
+      const response = await axios.get(`http://localhost:3000/users/${userId}`, { withCredentials: true });
+      console.log(response.data)
+
+      if (response.data.profile_image_url) {
+        setProfileImage(response.data.profile_image_url);
+        localStorage.setItem('profileImage', response.data.profile_image_url);
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
 
 
   const handleLikes = async () => {
@@ -95,19 +117,23 @@ export function AccountPage() {
     }
   }, [userId]);
 
-  const storedImage = localStorage.getItem('profileImage');
-  const profileImage = storedImage && storedImage !== 'null' && storedImage !== '' ? storedImage : null;
   const jwt = localStorage.getItem('jwt')
 
   const loggedIn = jwt
 
-  const handleUpdateProfileImage = () => {
+  const handleShowModal = () => {
     isModalShowing(true)
   }
 
   const handleModalHide = () => {
     isModalShowing(false)
   }
+
+  useEffect(() => {
+    if (!loading && userId !== undefined) {
+      fetchProfile()
+    }
+  }, [userId, loading])
 
   // const profileImage = <img src={image}>''</img>
 
@@ -121,12 +147,12 @@ export function AccountPage() {
           />
           {profileImage ? (
             <button onClick={
-              handleUpdateProfileImage
+              handleShowModal
             }>
               <img className="profile-avatar" src={profileImage} alt='Profile' />
             </button>
           ) : (
-            <button onClick={(handleUpdateProfileImage)}>
+            <button onClick={(handleShowModal)}>
               <img className="profile-avatar" src="/ProfileImage.png" alt="Profile" />
             </button>
           )}
@@ -154,6 +180,7 @@ export function AccountPage() {
         <UpdateProfileImage
           show={modalShowing}
           onClose={handleModalHide}
+          onProfileUpdated={fetchProfile}
         />
       )}
     </div>

@@ -1,18 +1,60 @@
-import React from "react";
-import './updateProfiIeImage.css'
+import React, { useState, useEffect } from "react";
+import './updateProfiIeImage.css';
+import axios from "axios";
 
 type UpdateProfileImageProps = {
   show: boolean;
-  onClose: () => void
-}
+  onClose: () => void;
+  onProfileUpdated: () => void
+};
 
-export function UpdateProfileImage({ show, onClose }: UpdateProfileImageProps) {
+export function UpdateProfileImage({ show, onClose, onProfileUpdated }: UpdateProfileImageProps) {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const userId = localStorage.getItem('userId');
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const handleUpdateProfilePhoto = async () => {
+    if (!selectedFile || !userId) {
+      console.log("No selected file or user not logged in");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("profile_image", selectedFile, selectedFile.name);
+
+    try {
+      await axios.patch(`http://localhost:3000/users/${userId}`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+
+      alert("Profile image updated!");
+      onProfileUpdated();
+      onClose();
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  if (!show) return null;
+
   return (
     <div className='modal-container'>
       <div className='modal'>
-        <h1>Hello</h1>
+        <h1>Update Profile Photo</h1>
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+        <button onClick={handleUpdateProfilePhoto} disabled={!selectedFile}>
+          Update Profile Photo
+        </button>
         <button onClick={onClose}>Close</button>
       </div>
     </div>
-  )
+  );
 }
