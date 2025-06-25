@@ -1,11 +1,10 @@
-import React from "react";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../context/UserContext";
-import './AccountPage.css'
+import axios from "axios";
 
+import { UserContext } from "../context/UserContext";
+import './AccountPage.css';
+import { UpdateProfileImage } from './UpdateProfileImage'
 
 
 type Like = {
@@ -23,10 +22,16 @@ type Like = {
   }
 }
 
+
+
 export function AccountPage() {
   const [likedDestinations, setLikedDestinations] = useState<Like[]>([])
   const navigate = useNavigate()
   const { id: userId, loading } = useContext(UserContext);
+  const [modalShowing, isModalShowing] = useState(false)
+
+
+
 
   const handleLikes = async () => {
 
@@ -96,6 +101,14 @@ export function AccountPage() {
 
   const loggedIn = jwt
 
+  const handleUpdateProfileImage = () => {
+    isModalShowing(true)
+  }
+
+  const handleModalHide = () => {
+    isModalShowing(false)
+  }
+
   // const profileImage = <img src={image}>''</img>
 
   return (
@@ -107,9 +120,15 @@ export function AccountPage() {
             className="profile-background"
           />
           {profileImage ? (
-            <img className="profile-avatar" src={profileImage} alt='Profile' />
+            <button onClick={
+              handleUpdateProfileImage
+            }>
+              <img className="profile-avatar" src={profileImage} alt='Profile' />
+            </button>
           ) : (
-            <img className="profile-avatar" src="/ProfileImage.png" alt="Profile" />
+            <button onClick={(handleUpdateProfileImage)}>
+              <img className="profile-avatar" src="/ProfileImage.png" alt="Profile" />
+            </button>
           )}
         </div>
 
@@ -130,7 +149,13 @@ export function AccountPage() {
             </div>
           </div>
         ))}
-      </div> {/* Closing profile-image */}
-    </div>  /* Closing entire-container */
+      </div>
+      {modalShowing && (
+        <UpdateProfileImage
+          show={modalShowing}
+          onClose={handleModalHide}
+        />
+      )}
+    </div>
   )
 }    
