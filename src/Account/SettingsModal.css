@@ -1,0 +1,22 @@
+.settings-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.settings-modal-container {
+  height: 700px;
+  width: 700px;
+  background-color: black;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  position: relative;
+}

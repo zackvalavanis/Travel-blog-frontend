@@ -1,151 +1,33 @@
-* {
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .main-container {
-  background-color: #eae6da;
-}
-
-html,
-body {
-  width: 100%;
-  overflow-x: hidden;
-  font-family: system-ui, sans-serif;
-  background-color: #eae6da;
-}
-
-.container-main {
   display: flex;
-  padding: 1rem;
-  justify-content: center;
-  height: 500px;
-}
-
-.container-first {
-  display: flex;
-  padding: 2rem;
   flex-direction: column;
-  justify-content: space-between;
-  width: 45%;
-}
-
-.img-container-1 {
-  display: flex;
-  height: auto;
-  object-fit: contain;
-  align-items: right;
   justify-content: center;
+  align-items: center;
+  height: 60rem;
 }
 
-.japan {
+.button-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
-
 }
 
-.london {
-  height: 300px;
+.main-container h1 {
+  color: black;
+}
+
+.main-container button {
+  width: 50rem;
+  height: 5rem;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 20px;
   border: none;
-  border-radius: 20px;
-  margin: 20px;
+  background-color: bisque;
+  margin-bottom: 10rem;
 }
 
-/* Remove debugging background if not needed */
-/* .container-main,
-.container-japan,
-.container-n,
-.container-2,
-.container-3,
-.container-bottom {
-  background-color: #eae6da;
-} */
-
-img {
-  display: block;
-  width: 100%;
-  /* max-width: 100%; */
-  height: auto;
-  vertical-align: bottom;
-  object-fit: cover;
-}
-
-/* MAIN CONTAINER */
-.container-main {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* TEXT OVERLAY */
-.text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  font-size: 6vw;
-  /* Responsive font size */
-  font-weight: bold;
-  padding: 0 10px;
-  /* For safety on smaller screens */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-  /* Optional: improve contrast */
-}
-
-/* IMAGE CONTAINERS */
-.container-japan,
-.container-n {
-  width: 100%;
-  overflow: hidden;
-}
-
-.container-japan img,
-.container-n img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.container-2,
-.container-3 {
-  display: flex;
-  justify-content: space-around;
-  height: 800px
-}
-
-.lefthalf-1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
-
-.righthalf-1 {
-  display: flex;
-  align-items: center;
-}
-
-.image-1,
-.image-2 {
-  border: none;
-  border-radius: 20px;
-  height: 80%;
-  width: 70%;
-}
-
-.lefthalf-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.righthalf-2 {
-  display: flex;
-  align-items: center;
-  width: 50%;
+.main-container button:hover {
+  transform: scale(1.01);
+  background-color: rgb(153, 232, 153);
 }

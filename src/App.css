@@ -21,5 +21,4 @@ body {
   flex-grow: 1;
   padding-top: 120px;
   background-color: #eae6da;
-  /* to avoid being behind the fixed header */
 }

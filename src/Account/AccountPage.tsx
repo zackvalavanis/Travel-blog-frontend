@@ -5,6 +5,8 @@ import axios from "axios";
 import { UserContext } from "../context/UserContext";
 import './AccountPage.css';
 import { UpdateProfileImage } from './UpdateProfileImage'
+import SettingsIcon from '@mui/icons-material/Settings';
+import { SettingsModal } from "./SettingsModal";
 
 
 type Like = {
@@ -23,18 +25,14 @@ type Like = {
 }
 
 
-
 export function AccountPage() {
   const [likedDestinations, setLikedDestinations] = useState<Like[]>([])
   const navigate = useNavigate()
   const { id: userId, loading } = useContext(UserContext);
   const [modalShowing, isModalShowing] = useState(false)
   const [profileImage, setProfileImage] = useState<string | null>(null);
-
-
-
-
-
+  const [backgroundImage, setBackgroundImage] = useState<string | null>(null)
+  const [settingsModalShowing, isSettingsModalShowing] = useState(false)
 
   const fetchProfile = async () => {
     const userId = localStorage.getItem("userId");
@@ -47,6 +45,7 @@ export function AccountPage() {
 
       if (response.data.profile_image_url) {
         setProfileImage(response.data.profile_image_url);
+        setBackgroundImage(response.data.background_image_url)
         localStorage.setItem('profileImage', response.data.profile_image_url);
       }
     } catch (error) {
@@ -80,7 +79,6 @@ export function AccountPage() {
           "Content-Type": "application/json",
         }
       });
-      console.log(response)
       const allLikes: Like[] = response.data.data.likes;
       const userLikes = allLikes.filter((like) => {
         return Number(like.user.id) === userId
@@ -113,7 +111,7 @@ export function AccountPage() {
 
   useEffect(() => {
     if (userId === undefined) {
-      setLikedDestinations([]);  // clear the list when there is no user
+      setLikedDestinations([]);
     }
   }, [userId]);
 
@@ -129,6 +127,15 @@ export function AccountPage() {
     isModalShowing(false)
   }
 
+  const handleOpenSettingsModal = () => {
+    console.log('gekkkwbvhbw')
+    isSettingsModalShowing(true)
+  }
+
+  const hideSettings = () => {
+    isSettingsModalShowing(false)
+  }
+
   useEffect(() => {
     if (!loading && userId !== undefined) {
       fetchProfile()
@@ -141,10 +148,19 @@ export function AccountPage() {
     <div className='entire-container'>
       <div className='profile-image'>
         <div className='profile-image-container-1'>
-          <img
-            src='https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg?cs=srgb&dl=pexels-pixabay-259280.jpg&fm=jpg'
-            className="profile-background"
-          />
+          <div className='background-wrapper'>
+            <img
+              src={backgroundImage || 'https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg?cs=srgb&dl=pexels-pixabay-259280.jpg&fm=jpg'}
+              className="profile-background"
+            />
+            <button
+              className="settings-button"
+              onClick={handleOpenSettingsModal}
+            >
+              <SettingsIcon style={{ fontSize: "30px" }} />
+            </button>
+          </div>
+
           {profileImage ? (
             <button onClick={
               handleShowModal
@@ -183,6 +199,11 @@ export function AccountPage() {
           onProfileUpdated={fetchProfile}
         />
       )}
+
+      {settingsModalShowing && (
+        <SettingsModal show={settingsModalShowing} onClose={hideSettings} />
+      )}
+
     </div>
   )
 }    

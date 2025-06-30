@@ -39,7 +39,7 @@ export function Destinations() {
     if (!user_id) return;
     try {
       const response = await axios.get(`http://localhost:3000/users/${user_id}.json`);
-      setLikes(response.data.destinations || []);
+      setLikes(response.data.likes);
     } catch (error) {
       console.error('Error fetching likes', error);
     }
@@ -73,11 +73,12 @@ export function Destinations() {
       console.error('User or user ID not found');
       return;
     }
-    console.log("likes is", likes);
+    console.log("likes", likes);
     console.log("type of likes", typeof likes);
 
 
-    const alreadyLiked = likes.some(like => like.id === d.id);
+    const alreadyLiked = likes.some(like => like.destination.id === d.id);
+    console.log(alreadyLiked)
 
     if (alreadyLiked) {
       alert('You have already liked this destination.');
