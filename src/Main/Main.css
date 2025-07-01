@@ -13,7 +13,7 @@
 }
 
 .main-container h1 {
-  color: black;
+  color: white;
 }
 
 .main-container button {
@@ -23,8 +23,9 @@
   cursor: pointer;
   border-radius: 20px;
   border: none;
-  background-color: bisque;
+  background-color: #da9B68;
   margin-bottom: 10rem;
+  color: white
 }
 
 .main-container button:hover {

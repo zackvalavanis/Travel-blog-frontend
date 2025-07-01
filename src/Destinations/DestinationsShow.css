@@ -19,6 +19,12 @@
   /* Maintains the aspect ratio of the image */
   object-fit: cover;
   /* Ensures the image fills the container without distortion */
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.images-show:hover {
+  transform: scale(1.0009);
 }
 
 .place-name {

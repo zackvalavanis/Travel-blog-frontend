@@ -157,7 +157,7 @@ export function AccountPage() {
               className="settings-button"
               onClick={handleOpenSettingsModal}
             >
-              <SettingsIcon style={{ fontSize: "30px" }} />
+              <SettingsIcon className='settings-wheel' style={{ fontSize: "30px" }} />
             </button>
           </div>
 

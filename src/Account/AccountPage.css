@@ -38,7 +38,6 @@
   position: absolute;
   top: -340px;
   right: 50px;
-
   border: none;
   cursor: pointer;
 
@@ -145,6 +144,14 @@
 .button-delete-1:hover {
   background-color: #b71c1c;
   transform: scale(1.05);
+}
+
+.settings-wheel {
+  cursor: pointer;
+}
+
+.settings-wheel:hover {
+  transform: scale(1.1);
 }
 
 /* Profile icon (MuiSvgIcon) styling if used */

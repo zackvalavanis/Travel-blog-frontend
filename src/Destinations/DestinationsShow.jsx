@@ -145,24 +145,15 @@ export function DestinationsShow() {
       </div>
         )}
       {images.length > 0 && images[0] ? (
-        <img
-          className='images-show'
-          src={images[0].image_url}
-          alt={`Image of ${destinations.city}`}
-        />
+          <img
+            className='images-show'
+            src={images[0].image_url}
+            alt={`Image of ${destinations.city}`}
+            onClick={navToSeeAllImages}
+          />
       ) : (
         <p>There are no images</p>
       )}
-      <div className='navigate-container' >
-        <button
-          style={{color: 'white', backgroundColor: ' #da9b68'}}
-          className='navigate-images'
-          onClick={navToSeeAllImages}
-        >
-          See all Images
-        </button>
-      </div>
-{/* Adding pictures once your on the show page.*/}
       <Modal2
         show={modalShow2}
         onClose={handleModalHide2}
