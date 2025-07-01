@@ -51,7 +51,7 @@ export function Modal2({show, onClose, destinations}) {
   return ( 
   <>
   <div className='modal-overlay'>
-    <div className='modal-container'>
+    <div className='modal-container' style={{width: '80%', height: '80%'}}>
       <h1 className='textModal'>
         Add Images
       </h1>
@@ -75,6 +75,7 @@ export function Modal2({show, onClose, destinations}) {
               value={url}
               onChange={(e) => handleImageUrlChange(index, e.target.value)}
               required
+              style={{width: "15rem"}}
             />
           </label>
           ))}
@@ -87,7 +88,7 @@ export function Modal2({show, onClose, destinations}) {
           <button 
             className='button-look2'
             type='button' 
-            onClick={subtractImageUrlField}>Remove
+            onClick={subtractImageUrlField}>Remove Image
           </button>
           <button 
             className='button-look3'
