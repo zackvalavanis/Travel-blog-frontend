@@ -16,6 +16,7 @@ import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { Logout } from '../Logout/LogoutLink';
 import axios from 'axios';
+import { SignUp } from '../NewAccount/NewAccount';
 
 
 
@@ -51,7 +52,8 @@ export function Header() {
       }
     }
   ] : [
-    { label: 'Login', path: '/Login' }
+    { label: 'Login', path: '/Login' },
+    { label: 'Sign-up', path: '/Signup' }
   ];
 
   const firstLetter = name ? name.charAt(0).toUpperCase() : '';

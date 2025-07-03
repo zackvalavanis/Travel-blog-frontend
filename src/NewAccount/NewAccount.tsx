@@ -38,51 +38,60 @@ export function SignUp() {
         onSubmit={(e) => handleSubmit(e)}
         className='form-signup'
       >
+        <h1 style={{ color: 'black' }}>Sign-up</h1>
+        <div className='input-container-12'>
+          <div className='inputs'>
+            <input
+              className='input-1'
+              type="text"
+              name='name'
+              value={name}
+              placeholder='Name'
+              onChange={(e) => setName(e.target.value)}
+              required>
+            </input>
+          </div>
 
-        <div>
-          <input
-            type="text"
-            name='name'
-            value={name}
-            placeholder='Name'
-            onChange={(e) => setName(e.target.value)}
-            required>
-          </input>
-        </div>
+          <div className='inputs'>
+            <input
+              className='input-1'
+              name='email'
+              type='email'
+              placeholder='Email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required>
+            </input>
+          </div>
 
-        <div>
-          <input
-            name='email'
-            type='email'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required>
-          </input>
-        </div>
+          <div className='inputs'>
+            <input
+              className='input-1'
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required>
+            </input>
+          </div>
 
-        <div>
-          <input
-            type='password'
-            name='password'
-            placeholder='Password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required>
-          </input>
+          <div className='inputs'>
+            <input
+              className='input-1'
+              type='password_confrimation'
+              name='password_confirmation'
+              placeholder='Confirm Password'
+              value={password_confrimation}
+              onChange={(e) => setPassword_confirmation(e.target.value)}
+              required
+            ></input>
+          </div>
         </div>
-
-        <div>
-          <input
-            type='password_confrimation'
-            name='password_confirmation'
-            placeholder='Confirm Password'
-            value={password_confrimation}
-            onChange={(e) => setPassword_confirmation(e.target.value)}
-            required
-          ></input>
-        </div>
-        <button type='submit'>Signup</button>
+        <button
+          className='button-submit'
+          type='submit'>
+          Signup</button>
       </form>
     </div>
   )
