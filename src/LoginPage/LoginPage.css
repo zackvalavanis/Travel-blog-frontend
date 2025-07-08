@@ -61,6 +61,19 @@ body {
 }
 
 @media (max-width: 600px) {
+
+  .login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: #da9b68;
+    align-items: center;
+    height: 65rem;
+  }
+
   .login-container {
     display: flex;
     justify-content: center;
