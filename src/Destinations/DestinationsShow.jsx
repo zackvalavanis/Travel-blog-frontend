@@ -94,12 +94,17 @@ export function DestinationsShow() {
   }
 
 
-
+  
+  
   useEffect(() => {
     setDescription(destinations.description || "");
     setCity(destinations.city || "");
     setCountry(destinations.country || "");
   }, [destinations]);
+  
+  const handleLikeDestination = (destinations) => { 
+    console.log('this is your destination', destinations.id)
+  }
 
 
   return (
@@ -168,16 +173,24 @@ export function DestinationsShow() {
       >
       </Modal2>
       <div className='button-add-container'>
-        <button 
-            className='button-add-button'
-            onClick={handleModalShow2}
-          >Add Additional Images
-        </button>
+        <div className="container-add">
+          <button 
+              className='button-add-button'
+              onClick={handleModalShow2}
+            >Add Additional Images
+          </button>
+        </div>
+        <div className="container-likes">
+          <button
+            className='button-like'
+            onClick={() => handleLikeDestination(destinations)}>Like
+          </button>
+        </div>
       </div>
       <h1 
         style={{display:'flex', justifyContent: 'center'}}
       >
-        What is {destinations.city}
+        {destinations.city} 
       </h1>
         <p className='description'>{description}</p>
 {/* Add destination description */}
