@@ -78,6 +78,11 @@ export function Login() {
           >
             Login
           </button>
+          <button
+            onClick={() => {
+              window.location.href = "http://localhost:3000/auth/google_oauth2"
+            }}
+          >Login With Google</button>
         </form>
       </div >
     </div >

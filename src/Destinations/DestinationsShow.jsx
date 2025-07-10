@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom"
 import './DestinationsShow.css'
 import { Modal2 } from "./Modal2"
 import { Modal3 } from "./Modal3"
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
+import L from 'leaflet'
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+L.Icon.Default.mergeOptions({ iconUrl: icon, shadowUrl: iconShadow });
 
 export function DestinationsShow() { 
   const destinations = useLoaderData()
@@ -196,9 +203,15 @@ export function DestinationsShow() {
       >
       </div>
       <div className='container-middle-2'>
-        <h1>
-          Middle Container
-        </h1>
+        <MapContainer center={[42.0722, -87.7228]} zoom={13} style={{ height: "700px", width: "70%", borderRadius: '20px' }}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[42.0722, -87.7228]}>
+            <Popup>You're looking at Wilmette, IL!</Popup>
+          </Marker>
+        </MapContainer>
       </div>
 
       <div className='button-container'>
@@ -209,7 +222,6 @@ export function DestinationsShow() {
           Delete Destination
         </button>
       </div>
-  
       <Modal
         show={modalShow}
         onClose={handleModalHide}
