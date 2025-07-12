@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { useNavigate} from 'react-router-dom'
 import './CreateNewDestination.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { UserContext } from "../context/UserContext";
 
 export function CreateNewDestination() { 
   const navigate = useNavigate()
   const [imageUrls, setImageUrls] = useState(['']);
+  const { id: userId } = useContext(UserContext);
 
   const handleImageUrlChange = (index, value) => {
     const newImageUrls = [...imageUrls];
@@ -56,6 +58,9 @@ export function CreateNewDestination() {
         <h1 className='heaeder-5'>New Destination</h1>
       </div>
       <form onSubmit={handleCreate} className="form-create">
+        <label>
+          <input className='user_id-input' type='text' name='user_id' placeholder={userId} required/>
+        </label>
         <label>
           <input className="city-input" type="text" placeholder="city" name="city" required />
         </label>

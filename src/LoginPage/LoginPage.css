@@ -50,7 +50,7 @@ body {
   width: 200px;
   height: 50px;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 20px;
   background-color: #da9b68;
   margin-top: 20px;
 }
@@ -58,6 +58,34 @@ body {
 .button-login:hover {
   background-color: rgb(126, 157, 126);
   transform: scale(1.05);
+}
+
+.oAuth-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: 200px
+}
+
+.oAuth-button {
+  display: flex;
+  border: solid 1px grey;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+  width: 200px;
+  border-radius: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.oAuth-button:hover {
+  transform: scale(1.03);
+}
+
+.image-google {
+  padding-left: 5px;
+  padding-right: 10px;
 }
 
 @media (max-width: 600px) {

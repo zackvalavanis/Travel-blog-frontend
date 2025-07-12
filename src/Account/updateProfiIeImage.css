@@ -23,7 +23,7 @@
   cursor: pointer;
   background-color: #4caf50;
   color: black;
-  height: 50px;
+  height: 60px;
   width: 130px;
 
 }
@@ -47,7 +47,7 @@
   justify-content: center;
   width: 130px;
   /* or whatever width you want */
-  height: 50px;
+  height: 60px;
   /* optional: keeps height consistent */
   text-align: center;
   font-size: 14px;

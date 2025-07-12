@@ -1,13 +1,14 @@
 import { useLoaderData } from "react-router-dom"
 import axios from 'axios'
 import { Modal } from "./Modal"
-import { useState, useEffect} from "react"
+import { useState, useEffect, useContext} from "react"
 import { useNavigate } from "react-router-dom"
 import './DestinationsShow.css'
 import { Modal2 } from "./Modal2"
 import { Modal3 } from "./Modal3"
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { UserContext } from '../context/UserContext.js';
 
 import L from 'leaflet'
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -24,6 +25,8 @@ export function DestinationsShow() {
   const [city, setCity] = useState(destinations.city || "");
   const [country, setCountry] = useState(destinations.country || "");
   const [isEditing, setIsEditing] = useState(false)
+  const {id: userId} = useContext(UserContext)
+
 
 
   const handleSave = () => { 
@@ -31,10 +34,16 @@ export function DestinationsShow() {
     setIsEditing(false)
   }
   const handleDelete = async (id) => { 
+    const token = localStorage.getItem("jwt")
     try { 
-      const response = await axios.delete(`http://localhost:3000/destinations/${id}.json`)
+      const response = await axios.delete(`http://localhost:3000/destinations/${id}.json`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    })
       console.log('success:', response.data)
     } catch (error) { 
+      alert('Unauthorized to delete other users blog posts.')
       console.log(error)
     }
     navigate('/destinations')
@@ -228,12 +237,16 @@ export function DestinationsShow() {
       </div>
 
       <div className='button-container'>
+        {userId == destinations.user_id ? ( 
         <button
           onClick={handleModalShow}
           className='button-delete'
         >
           Delete Destination
         </button>
+        ) : (
+          ''
+        )}
       </div>
       <Modal
         show={modalShow}

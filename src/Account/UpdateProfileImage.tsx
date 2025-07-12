@@ -52,7 +52,7 @@ export function UpdateProfileImage({ show, onClose, onProfileUpdated }: UpdatePr
         <div className='buttons-99'>
           <div className='buttons-100'>
             <input style={{ display: 'none' }} id="profile-upload" type="file" accept="image/*" onChange={handleFileChange} />
-            <label style={{ border: 'none', borderRadius: '5px', marginBottom: '5px', cursor: 'pointer' }} htmlFor="profile-upload" className="custom-upload-button">
+            <label style={{ border: 'none', borderRadius: '5px', marginBottom: '5px', cursor: 'pointer' }} htmlFor="profile-upload" className="custom-upload-button">{selectedFile ? 'Image-added' : ''}
               <img src="public/Upload_Image.png" style={{ width: '20px', height: '20px' }} />
               Upload Image
             </label>
