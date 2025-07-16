@@ -12,7 +12,7 @@ export function Main() {
   }
   return (
     <div className='main-container'>
-      <img
+      {/* <img
         className='logo'
         src='./Screenshot 2025-07-03 at 12.37.01 PM.png'></img>
       <h1 style={{
@@ -25,7 +25,7 @@ export function Main() {
         fontFamily: 'Helvetica, Arial, sans-serif'
       }}>
         Welcome to Storyline
-      </h1>
+      </h1> */}
       <div className='image-main-container'>
         <img
           className='image-main'

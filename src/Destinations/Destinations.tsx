@@ -15,6 +15,7 @@ type Destination = {
   id: number;
   city: string;
   images: DestinationImage[];
+  user_name: string
 }
 
 type Like = {
@@ -49,6 +50,7 @@ export function Destinations() {
     try {
       const response = await axios.get('http://localhost:3000/destinations.json');
       setDestination(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error('Error fetching data', error);
     }
@@ -114,7 +116,7 @@ export function Destinations() {
         {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
           <div className='information-d' key={d.id}>
             <h1 className='headers-5'>
-              {d.city}
+              {d.user_name} Recently Visited {d.city}
             </h1>
             {d.images && d.images.length > 0 ? (
               <div className='single-image-wrapper'>

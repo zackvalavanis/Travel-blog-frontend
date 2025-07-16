@@ -36,16 +36,14 @@ export function AccountPage() {
 
   const fetchProfile = async () => {
     const userId = localStorage.getItem("userId");
-    console.log(userId)
     if (!userId) return;
 
     try {
       const response = await axios.get(`http://localhost:3000/users/${userId}`, { withCredentials: true });
-      console.log(response.data)
 
       if (response.data.profile_image_url) {
         setProfileImage(response.data.profile_image_url);
-        setBackgroundImage(response.data.background_image_url)
+        setBackgroundImage(response.data.background_image)
         localStorage.setItem('profileImage', response.data.profile_image_url);
       }
     } catch (error) {
@@ -128,7 +126,6 @@ export function AccountPage() {
   }
 
   const handleOpenSettingsModal = () => {
-    console.log('gekkkwbvhbw')
     isSettingsModalShowing(true)
   }
 
@@ -150,7 +147,7 @@ export function AccountPage() {
         <div className='profile-image-container-1'>
           <div className='background-wrapper'>
             <img
-              src={backgroundImage || 'https://images.pexels.com/photos/259280/pexels-photo-259280.jpeg?cs=srgb&dl=pexels-pixabay-259280.jpg&fm=jpg'}
+              src={backgroundImage || './stock-background.jpg'}
               className="profile-background"
             />
             <button

@@ -59,7 +59,7 @@ export function CreateNewDestination() {
       </div>
       <form onSubmit={handleCreate} className="form-create">
         <label>
-          <input className='user_id-input' type='text' name='user_id' placeholder={userId} required/>
+          <input className='user_id-input' type='hidden' name='user_id' defaultValue={userId} required/>
         </label>
         <label>
           <input className="city-input" type="text" placeholder="city" name="city" required />

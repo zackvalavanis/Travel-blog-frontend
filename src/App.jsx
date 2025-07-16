@@ -13,6 +13,8 @@ import { UserProvider } from './context/UserContext.tsx'
 import { SignUp } from './NewAccount/NewAccount.tsx'
 import { AccountPage } from './Account/AccountPage.tsx'
 import { OAuthSuccess } from "./LoginPage/OAuthSuccess.tsx";
+import { Dashboard } from './Account/Dashboard.tsx'
+
 
   const router = createBrowserRouter([
     {
@@ -62,6 +64,10 @@ import { OAuthSuccess } from "./LoginPage/OAuthSuccess.tsx";
         { 
           path: '/oauth-success', 
           element: <OAuthSuccess />
+        }, 
+        { 
+          path: '/Dashboard', 
+          element: <Dashboard/>
         }
 
       ]
