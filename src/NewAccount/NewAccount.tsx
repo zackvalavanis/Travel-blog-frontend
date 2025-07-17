@@ -92,7 +92,18 @@ export function SignUp() {
           className='button-submit'
           type='submit'>
           Signup</button>
+        <div className='oAuth-button-container'>
+          <button
+            className='oAuth-button'
+            onClick={() => {
+              window.location.href = "http://localhost:3000/auth/google_oauth2"
+            }}
+          >
+            <img className='image-google' style={{ height: '20px', width: '20x' }} src='./google-image.png' />
+            Login With Google</button>
+        </div>
       </form>
+
     </div>
   )
 }

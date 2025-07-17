@@ -19,29 +19,28 @@ export function CreateNewDestination() {
     setImageUrls([...imageUrls, '']);
   };
   
-  const handleCreate = async (event) => { 
-    event.preventDefault()
-    const params = new FormData(event.target)
-    try { 
-      const response = await axios.post('http://localhost:3000/destinations.json', params)
-      const destinationId = response.data.destinationid
-      console.log(response.data)
-      console.log('this is id: ', destinationId)
-
-      for (const url of imageUrls) {
-        await axios.post('http://localhost:3000/images.json', {
-          image: { 
-            destination_id: destinationId,
-            image_url: url
-          }
-        });
-      }
-    } catch(error) { 
-      console.log(error)
+  const handleCreate = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+  
+    // Append images as JSON string inside FormData (you could adjust backend to parse this)
+    const imagesData = imageUrls.map(url => ({ image_url: url }));
+    formData.append('images', JSON.stringify(imagesData));
+  
+    try {
+      const response = await axios.post('http://localhost:3000/destinations.json', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+  
+      console.log('Destination created with images:', response.data);
+      navigate('/destinations');
+    } catch (error) {
+      console.error(error);
     }
-    navigate('/destinations')
-
-  }
+  };
+  
 
   const handleRemoveImage = () => { 
     if(imageUrls.length === 1){ 

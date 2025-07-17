@@ -99,6 +99,11 @@
   width: 300px;
   border-radius: 10px;
   flex-shrink: 0;
+  cursor: pointer;
+}
+
+.carousel-image:hover {
+  transform: scale(1.01);
 }
 
 .arrow-button {
@@ -119,7 +124,8 @@
 
 .moreInfo-button,
 .new-post-button,
-.like-button-button {
+.like-button-button,
+.dis-like-button-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -152,8 +158,17 @@
   transform: scale(1.05);
 }
 
-.like-button-button:hover {
+.like-button-button:hover,
+.dis-like-button-button:hover {
   transform: scale(1.05);
+}
+
+.like-button-button:hover {
+  background-color: green;
+}
+
+.dis-like-button-button:hover {
+  background-color: red;
 }
 
 .information-d {
@@ -207,154 +222,30 @@
 }
 
 @media (max-width: 600px) {
-  .container-all {
-    font-size: 14px;
-    flex-direction: column;
-  }
-
-  .header-container-8 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 500px;
-    background-color: #da9b68;
-  }
-
   .container-4 {
-    display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #ffffff, #f5f5f5, #e0e0e0);
-    padding: 2%;
+    height: auto;
+    /* avoid fixed height */
+    padding: 20px;
+    /* less padding */
+  }
+
+  .image-header-2,
+  .carousel-image {
+    max-width: 90vw;
+    /* almost full viewport width */
+    height: auto;
+    border-radius: 20px;
+    /* slightly smaller radius for small screens */
   }
 
   .headers-5 {
-    color: #333
-  }
-
-  .image-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2%;
-  }
-
-  .image-header-2 {
-    display: flex;
-    max-width: 300px;
-    max-height: 400px;
-    border-radius: 50px;
-  }
-
-  .image-header-2:hover {
-    transform: scale(1.01);
-  }
-
-  .header-destinations {
-    display: flex;
-    margin-left: 6%;
-  }
-
-  .container-header-10 {
-    display: flex;
-    background-color: white;
-    justify-content: center;
-  }
-
-  .h1-10 {
-    color: black;
+    text-align: center;
   }
 
   .carousel-image {
-    height: 200px;
-    width: 300px;
-    border-radius: 10px;
-    flex-shrink: 0;
-  }
-
-  .arrow-button {
-    background-color: transparent;
-    border: none;
-    font-size: 2rem;
+    width: 90vw;
     cursor: pointer;
-    z-index: 1;
-  }
-
-  .arrow-button.left {
-    margin-right: 10px;
-  }
-
-  .arrow-button.right {
-    margin-left: 10px;
-  }
-
-  .moreInfo-button,
-  .new-post-button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    cursor: pointer;
-    margin: 10px;
-    padding: 10px 20px;
-    /* Add padding to make the button larger */
-    background-color: #2d975b;
-    /* Optional: red background to signify deletion */
-    color: white;
-    /* White text */
-    border: none;
-    /* Remove border */
-    cursor: pointer;
-    /* Make it appear clickable */
-    border-radius: 5px;
-  }
-
-  .button-container-1,
-  .button-container-3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-
-  .button-container-1:hover,
-  .new-post-button:hover {
-    transform: scale(1.05);
-  }
-
-  .information-d {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .button-container-3 {
-    margin-top: 40px;
-  }
-
-  .new-post-container {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center;
-    background: white
-  }
-
-  .middle-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 1000px;
-    background: linear-gradient(135deg, #343333, #f5f5f5, #e0e0e0);
-    padding: 10%;
-    text-wrap: wrap;
-  }
-
-  .middle-container-2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-wrap: wrap;
-    gap: 20px
+    height: auto;
   }
 }

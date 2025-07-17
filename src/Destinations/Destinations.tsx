@@ -6,6 +6,8 @@ import { HereMap } from '../Map/Map.jsx';
 import React from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext.js';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 
 type DestinationImage = {
   image_url: string
@@ -116,7 +118,7 @@ export function Destinations() {
         {destination.sort((a, b) => a.city.localeCompare(b.city)).map((d) => (
           <div className='information-d' key={d.id}>
             <h1 className='headers-5'>
-              {d.user_name} Recently Visited {d.city}
+              {d.user_name} Visited {d.city}
             </h1>
             {d.images && d.images.length > 0 ? (
               <div className='single-image-wrapper'>
@@ -124,29 +126,30 @@ export function Destinations() {
                   className='carousel-image'
                   src={d.images[0].image_url}
                   alt={`image of ${d.city}`}
+                  onClick={() => handleShow(d)}
                 />
               </div>
             ) : (
               <button>Button</button>
             )}
             <div className='button-container-1'>
-              <button
-                className='moreInfo-button'
-                onClick={() => {
-                  handleShow(d)
-                }}>
-                More Information
-              </button>
             </div>
             <div className='like-button-container'>
-              <button
-                className='like-button-button'
-                onClick={() => handleLike(d)}
-              // disabled={likes.some(like => like.user_id === user_id && like.destination_id === d.id)}
-              >
-                Like
-                {/* {likes.some(like => like.user_id === user_id && like.destination_id === d.id) ? 'Liked' : 'Like'} */}
-              </button>
+              <div>
+                <button
+                  className='like-button-button'
+                  onClick={() => handleLike(d)}
+                >
+                  <ThumbUpIcon />
+                </button>
+              </div>
+              <div>
+                <button
+                  className='dis-like-button-button'
+                >
+                  <ThumbDownAltIcon />
+                </button>
+              </div>
             </div>
           </div>
         ))}

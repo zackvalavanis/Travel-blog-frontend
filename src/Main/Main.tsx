@@ -1,11 +1,33 @@
 import './Main.css';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { UserContext } from '../context/UserContext';
+import { useEffect, useState } from 'react';
 
 
 export function Main() {
   const navigate = useNavigate()
   const isLoggedIn = localStorage.jwt && localStorage.jwt.length > 0
+  const storedName = localStorage.getItem('name');
+  const [formattedName, setFormattedName] = useState('')
+
+  const formatName = (storedName: string) => {
+    var splitName = storedName.split('')
+    var final = ''
+
+    for (let i = 1; i < splitName.length; i++) {
+      final += splitName[i].toLowerCase()
+    }
+    var formattedName = splitName[0] + final
+    return formattedName
+  }
+
+  useEffect(() => {
+    if (storedName) {
+      const formattingName = formatName(storedName)
+      setFormattedName(formattingName)
+    }
+  }, [])
 
   const start = () => {
     isLoggedIn ? navigate('/New Post') : navigate('/signup')
@@ -34,8 +56,23 @@ export function Main() {
         ></img>
       </div>
       <div className='button-container'>
-        <button onClick={start}>Start Your Blogging Journey Today</button>
+        {isLoggedIn ? (
+          <h1>Welcome Back {formattedName}</h1>
+        ) : (
+          <>
+            <button onClick={start}>Start Your Blogging Journey Today</button>
+          </>
+        )}
       </div>
     </div>
   );
 }
+
+{/* {isLoggedIn(
+          <h1>hi</h1>
+        ) : (
+        <>
+          <button onClick={start}>Start Your Blogging Journey Today</button>
+        </>
+        )}
+      </div> */}

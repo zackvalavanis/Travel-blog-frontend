@@ -10,7 +10,7 @@ export function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
-  const { name, setName, id, setUserId, profileImage, setProfileImage } = useContext(UserContext);
+  const { name, setName, id, setUserId, profileImage, setProfileImage, location, setLocation, requestLocation } = useContext(UserContext);
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -20,7 +20,7 @@ export function Login() {
         password: password,
       })
       console.log(response.data)
-      const formattedName = response.data.email.split('@')[0].toUpperCase();
+      const formattedName = response.data.name.split('@')[0].toUpperCase();
       console.log('Setting user ID to:', response.data.user_id);
       setUserId(response.data.user_id);
       setName(formattedName);
@@ -29,12 +29,20 @@ export function Login() {
       localStorage.setItem('jwt', response.data.jwt);
       localStorage.setItem('userId', response.data.user_id.toString());
 
+      console.log("Requesting location...");
+      const location = await requestLocation();
+      console.log("Got location:", location);
+      if (location.lat && location.lon) {
+        localStorage.setItem('location', JSON.stringify(location));
+      }
+
+      navigate('/')
+
     } catch (error) {
       console.log(error)
     }
     setEmail('')
     setPassword('')
-    navigate('/')
   }
 
 

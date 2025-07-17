@@ -26,6 +26,7 @@ export function DestinationsShow() {
   const [country, setCountry] = useState(destinations.country || "");
   const [isEditing, setIsEditing] = useState(false)
   const {id: userId} = useContext(UserContext)
+  const [coordinates, setCoordinates] = useState(null)
 
 
 
@@ -102,9 +103,6 @@ export function DestinationsShow() {
     }
   }
 
-
-  
-  
   useEffect(() => {
     setDescription(destinations.description || "");
     setCity(destinations.city || "");
@@ -115,6 +113,41 @@ export function DestinationsShow() {
     console.log('this is your destination', destinations.id)
   }
 
+
+  const getCoordinates = async (city, country) => { 
+    console.log(city, country)
+    const query = `${city}, ${country}`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+
+    try { 
+      const response = await fetch(url)
+      const data = await response.json()
+
+      if(data && data.length > 0){
+        return { 
+          lat: parseFloat(data[0].lat), 
+          lng: parseFloat(data[0].lon)
+        };
+      } else { 
+        throw new Error('Location not found')
+      }
+    } catch (error) {
+      console.error('Geocoding Error', error)
+    }
+  }
+
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      const coords = await getCoordinates(city, country); 
+      if (coords) {
+        setCoordinates(coords);
+        console.log('new Coordinates', coords)
+      }
+      
+    };
+  
+    fetchCoordinates();
+  }, [city, country]);
 
   return (
     <div className='container-all-2'>
@@ -224,18 +257,19 @@ export function DestinationsShow() {
         style={{display:'flex', flexDirection:'row', gap: '25%', justifyContent: 'center', padding: '5%'}}
       >
       </div>
-      <div className='container-middle-2'>
-        <MapContainer center={[42.0722, -87.7228]} zoom={13} style={{ height: "700px", width: "70%", borderRadius: '20px' }}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[42.0722, -87.7228]}>
-            <Popup>You're looking at Wilmette, IL!</Popup>
-          </Marker>
-        </MapContainer>
-      </div>
-
+        {coordinates && (
+          <div className='container-middle-2'>
+          <MapContainer center={[coordinates.lat, coordinates.lng]} zoom={13} style={{ height: "700px", width: "70%", borderRadius: '20px' }}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[coordinates.lat, coordinates.lng]}>
+              <Popup>You're looking at Wilmette, IL!</Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+        )}
       <div className='button-container'>
         {userId == destinations.user_id ? ( 
         <button
