@@ -102,6 +102,11 @@ export function Destinations() {
     }
   }
 
+
+  const handleDislike = (d) => {
+    console.log(d.id)
+  }
+
   return (
     <div className='container-all'>
       <div className='header-container-8'>
@@ -146,6 +151,7 @@ export function Destinations() {
               <div>
                 <button
                   className='dis-like-button-button'
+                  onClick={() => handleDislike(d)}
                 >
                   <ThumbDownAltIcon />
                 </button>

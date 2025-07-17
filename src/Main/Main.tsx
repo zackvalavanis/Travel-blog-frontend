@@ -57,7 +57,7 @@ export function Main() {
       </div>
       <div className='button-container'>
         {isLoggedIn ? (
-          <h1>Welcome Back {formattedName}</h1>
+          <h1 style={{ color: 'black' }}>Welcome Back, {formattedName}</h1>
         ) : (
           <>
             <button onClick={start}>Start Your Blogging Journey Today</button>

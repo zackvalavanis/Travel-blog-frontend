@@ -95,6 +95,7 @@
   align-items: center;
   gap: 10px;
   text-align: center;
+  background-color: #eae6da;
 }
 
 .likes img {
@@ -102,6 +103,7 @@
   height: 200px;
   border-radius: var(--like-card-radius);
   object-fit: cover;
+  background-color: #eae6da;
 }
 
 .button-container-account {
@@ -172,6 +174,17 @@
   /* Remove fixed height to be flexible */
   width: 100%;
 }
+
+.container-likes {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  gap: 30px;
+  background-color: #eae6da;
+  height: 50rem;
+  width: 90%;
+}
+
 
 .image-select:hover {
   transform: scale(1.02);

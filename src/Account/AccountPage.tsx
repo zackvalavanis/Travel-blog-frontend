@@ -171,23 +171,26 @@ export function AccountPage() {
           )}
         </div>
 
-        {likedDestinations.map((like) => (
-          <div className='likes' key={like.id}>
-            <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
-            {
-              like.destination.image && like.destination.image.map((image_url, index) => (
-                <div key={index}>
-                  <button className='image-select' style={{ cursor: 'pointer', borderRadius: '20px', border: 'none' }} onClick={() => handleNavigate(like)}>
-                    <img className="like-card__image" src={image_url} alt={`Image ${index + 1}`} />
-                  </button>
-                </div>
-              ))
-            }
-            <div className='button-container-account'>
-              <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Unlike</button>
+
+        <div className='container-likes'>
+          {likedDestinations.map((like) => (
+            <div className='likes' key={like.id}>
+              <p style={{ textAlign: 'center', color: 'black', marginBottom: '0', marginTop: '30%' }}>{like.destination.city}</p>
+              {
+                like.destination.image && like.destination.image.map((image_url, index) => (
+                  <div key={index}>
+                    <button className='image-select' style={{ cursor: 'pointer', borderRadius: '20px', border: 'none' }} onClick={() => handleNavigate(like)}>
+                      <img className="like-card__image" src={image_url} alt={`Image ${index + 1}`} />
+                    </button>
+                  </div>
+                ))
+              }
+              <div className='button-container-account'>
+                <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Unlike</button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       {modalShowing && (
         <UpdateProfileImage
