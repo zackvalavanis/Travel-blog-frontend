@@ -9,6 +9,37 @@
   --like-card-radius: 20px;
 }
 
+.button-container-account {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 160px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  /* position above button */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.button-container-account:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 2s;
+}
+
+
 .entire-container {
   display: flex;
   flex-direction: column;
@@ -33,14 +64,12 @@
   max-width: 85vw;
 }
 
-
 .settings-button {
   position: absolute;
   top: -340px;
   right: 50px;
   border: none;
   cursor: pointer;
-
 }
 
 .settings-button svg {
@@ -69,6 +98,7 @@
   box-shadow: var(--profile-avatar-shadow);
   transition: transform 0.3s ease;
   cursor: pointer;
+  display: block;
 }
 
 .profile-avatar:hover {
@@ -103,7 +133,10 @@
   height: 200px;
   border-radius: var(--like-card-radius);
   object-fit: cover;
-  background-color: #eae6da;
+  background-color: transparent;
+  /* ✅ no background */
+  border: none !important;
+  display: block;
 }
 
 .button-container-account {
@@ -112,24 +145,20 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 10px;
 }
 
 .button-expand,
 .button-delete-1 {
-  width: 100%;
-  height: var(--button-height);
-  border-radius: var(--button-radius);
+  width: 20%;
+  margin: 0 auto;
+  height: 2.5rem;
   border: none;
   cursor: pointer;
   justify-content: center;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button-expand {
   background-color: #4caf50;
-  /* green */
   color: white;
 }
 
@@ -156,7 +185,6 @@
   transform: scale(1.1);
 }
 
-/* Profile icon (MuiSvgIcon) styling if used */
 .profile-image-container-1 .MuiSvgIcon-root {
   position: absolute;
   top: 350px;
@@ -166,12 +194,10 @@
   z-index: 10;
 }
 
-/* Profile image container flex height */
 .profile-image {
   display: flex;
   flex-direction: column;
   height: auto;
-  /* Remove fixed height to be flexible */
   width: 100%;
 }
 
@@ -185,13 +211,47 @@
   width: 90%;
 }
 
-
 .image-select:hover {
   transform: scale(1.02);
 }
 
-/* Responsive Styles */
+/* Remove focus outlines (optional) */
+.profile-avatar:focus,
+.profile-avatar:active,
+.image-select:focus,
+.image-select:active,
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
 
+.button-delete-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  /* position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Show tooltip after 3s */
+.button-delete-text:hover .button-delete-text {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 3s;
+}
+
+/* Responsive Styles */
 @media (max-width: 600px) {
   .entire-container {
     padding: 0.5rem;
@@ -210,10 +270,10 @@
   }
 
   .profile-avatar {
-    width: 100px;
-    height: 100px;
-    bottom: 15px;
-    left: 15px;
+    width: 80px;
+    height: 80px;
+    bottom: 10%;
+    left: 10%;
   }
 
   .liked-posts-container {

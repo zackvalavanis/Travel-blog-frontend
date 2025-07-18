@@ -7,6 +7,7 @@ import './AccountPage.css';
 import { UpdateProfileImage } from './UpdateProfileImage'
 import SettingsIcon from '@mui/icons-material/Settings';
 import { SettingsModal } from "./SettingsModal";
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 
 
 type Like = {
@@ -158,16 +159,14 @@ export function AccountPage() {
             </button>
           </div>
 
-          {profileImage ? (
-            <button onClick={
-              handleShowModal
-            }>
-              <img className="profile-avatar" src={profileImage} alt='Profile' />
-            </button>
-          ) : (
-            <button onClick={(handleShowModal)}>
-              <img className="profile-avatar" src="/ProfileImage.png" alt="Profile" />
-            </button>
+          {profileImage && (
+            <img
+              className="profile-avatar"
+              src={profileImage}
+              alt="Profile"
+              onClick={handleShowModal}
+              style={{ cursor: 'pointer' }}
+            />
           )}
         </div>
 
@@ -185,8 +184,13 @@ export function AccountPage() {
                   </div>
                 ))
               }
-              <div className='button-container-account'>
-                <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>Unlike</button>
+              <div className='button-container-account' style={{ position: 'relative' }}>
+                <button className='button-delete-1' onClick={() => handleRemoveLike(like)}>
+                  <ThumbDownAltIcon />
+                </button>
+                <span className='tooltip-text'>
+                  This will remove the destination from your page.
+                </span>
               </div>
             </div>
           ))}
@@ -203,7 +207,6 @@ export function AccountPage() {
       {settingsModalShowing && (
         <SettingsModal show={settingsModalShowing} onClose={hideSettings} />
       )}
-
     </div>
   )
 }    
