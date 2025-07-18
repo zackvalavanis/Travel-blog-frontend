@@ -160,13 +160,16 @@ export function AccountPage() {
           </div>
 
           {profileImage && (
-            <img
-              className="profile-avatar"
-              src={profileImage}
-              alt="Profile"
-              onClick={handleShowModal}
-              style={{ cursor: 'pointer' }}
-            />
+            <div className="tooltip-container">
+              <img
+                className="profile-avatar"
+                src={profileImage}
+                alt="Profile"
+                onClick={handleShowModal}
+                style={{ cursor: 'pointer' }}
+              />
+              <span className="tooltip-text-2">Click to edit profile image</span>
+            </div>
           )}
         </div>
 
