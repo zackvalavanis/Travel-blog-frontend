@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 type SettingsModalProps = {
   show: boolean,
   onClose: () => void
+  setBackgroundImage: (url: string) => void
 }
 
-export function SettingsModal({ show, onClose }: SettingsModalProps) {
+export function SettingsModal({ show, onClose, setBackgroundImage }: SettingsModalProps) {
   const userId = localStorage.getItem('userId')
   const [file, setFile] = useState<File | null>(null)
 
@@ -34,6 +35,7 @@ export function SettingsModal({ show, onClose }: SettingsModalProps) {
           }
         })
       console.log("upload Successful", response.data);
+      setBackgroundImage(response.data.background_image)
     } catch (error) {
       console.error('Upload Failed', error)
     }
@@ -46,21 +48,38 @@ export function SettingsModal({ show, onClose }: SettingsModalProps) {
   return (
     <div className='settings-modal-overlay'>
       <div className='settings-modal-container' onClick={(e) => e.stopPropagation()}>
-        Hello
-        <input
-          id='background-upload'
-          type='file'
-          accept='image/*'
-          onChange={handleFileChange}
-        />
-      </div>
-      {file && (
-        <div>
-          <p>Selected ${file.name}</p>
-          <button onClick={handleUpload}>Upload Image</button>
+        <div className='header-settings-modal'>
+          <h1 style={{ textAlign: 'center' }}>Choose a Background Photo</h1>
         </div>
-      )}
-      <button onClick={onClose}>Close</button>
+        <div className='input-settings'>
+          <input
+            id='background-upload'
+            type='file'
+            accept='image/*'
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="background-upload" className='input-field-button'>Select Background Image</label>
+        </div>
+
+        <div className='upload-image-container'>
+          {file && (
+            <div className='upload-buttons'>
+              <p>Selected: {file.name}</p>
+              <button
+                onClick={handleUpload}
+                className='upload-image-button'
+              >Upload Image</button>
+            </div>
+          )}
+          <div className='close-button'>
+            <button
+              onClick={onClose}
+              className="close-button-button"
+            >Close</button>
+          </div>
+        </div>
+      </div>
     </div>
 
   )

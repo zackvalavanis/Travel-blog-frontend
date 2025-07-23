@@ -208,7 +208,11 @@ export function AccountPage() {
       )}
 
       {settingsModalShowing && (
-        <SettingsModal show={settingsModalShowing} onClose={hideSettings} />
+        <SettingsModal
+          show={settingsModalShowing}
+          onClose={hideSettings}
+          setBackgroundImage={setBackgroundImage}
+        />
       )}
     </div>
   )
